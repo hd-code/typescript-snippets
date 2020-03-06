@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rm -rf ./build",
     "copy": "cp ./src/*.js ./build",
-    "minify": "for i in ./build/*.js; do uglifyjs $i -o $i -m; done;",
+    "minify": "for i in ./build/*.js; do uglifyjs $i -o $i -cm; done;",
     "start": "npm run clear && tsc && npm run copy && npm run minify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
