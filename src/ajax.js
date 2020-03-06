@@ -8,7 +8,7 @@
  */
 function ajax(url, callback, method, data) {
     url = typeof url === 'string' ? url : ''
-    callback = typeof callback === 'function' ? callback : (st, msg) => { console.log(st, '–', msg) }
+    callback = typeof callback === 'function' ? callback : function(st, msg) { console.log(st, '–', msg) }
     method = /^GET|POST|UPDATE|DELETE$/.test(method) ? method : 'GET'
 
     var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP')

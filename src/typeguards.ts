@@ -1,3 +1,8 @@
+/** TypeGuard to check if a value is `null`. */
+export function isNull(value: any): value is null {
+    return value === null;
+}
+
 /** TypeGuard to check if a value is a `boolean`. */
 export function isBool(bool: any): bool is boolean {
     return typeof bool === 'boolean';
@@ -48,10 +53,10 @@ export function isArray<T>(a: any, TypeGuard?: (e:any) => e is T): a is T[] {
  * is valid. Arrays are also not accepted as valid objects. Use `isArray()`
  * function in that case.
  * 
- * If you want to check the object for specific keys, use `isKeyOfObject()`.
+ * If you want to check the object for specific keys, use `hasKey()`.
  */
 export function isObject(obj:any): obj is object {
-    return typeof obj === 'object' && obj !== null && !isArray(obj);
+    return typeof obj === 'object' && obj !== null && !Array.isArray(obj);
 }
 
 /**
@@ -62,7 +67,6 @@ export function isObject(obj:any): obj is object {
  * the given key is found, the value associated with that key is then 
  * type-checked by the TypeGuard.
  */
-// TODO: find out if there is a better function signature?
-export function isKeyOfObject<T,U>(obj: any, key: keyof T, keyTypeGuard?: (e:any) => e is U): obj is T {
-    return isObject(obj) && obj.hasOwnProperty(key) && (!keyTypeGuard || keyTypeGuard((obj as any)[key]));
+export function hasKey<T,U>(obj: any, key: PropertyKey, typeGuard?: (k: any) => k is U): key is keyof T {
+    return !!obj && obj.hasOwnProperty(key) && (!typeGuard || typeGuard(obj[key]));
 }
