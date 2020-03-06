@@ -11,5 +11,4 @@ This repo just contains a collection of very helpful JS functions that I use aga
 ### TODOs:
 
 * switch all to typescript
-* build building pipeline (tsc and minify)
 * setup test environment
