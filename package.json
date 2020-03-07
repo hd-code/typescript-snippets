@@ -4,11 +4,12 @@
   "description": "This repo just contains a collection of very helpful JS functions that I use again and again in several projects. There are browser as well as node.js snippets.",
   "main": "index.js",
   "scripts": {
+    "build": "npm run clear && tsc && npm run copy && npm run minify",
     "clear": "rm -rf ./build",
     "copy": "cp ./src/*.js ./build",
     "minify": "for i in ./build/*.js; do uglifyjs $i -o $i -cm; done;",
-    "start": "npm run clear && tsc && npm run copy && npm run minify",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm test",
+    "test": "npm run build && mocha"
   },
   "keywords": [],
   "author": "",
