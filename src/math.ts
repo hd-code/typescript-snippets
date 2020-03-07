@@ -25,7 +25,7 @@ export function calcDotProduct(vec1: number[], vec2: number[]) {
     return vec1.reduce((result, _, i) => result + vec1[i] * vec2[i], 0);
 }
 
-export function getVectorMagnitude(vector: number[]) {
+export function calcMagnitude(vector: number[]) {
     return Math.sqrt(calcDotProduct(vector, vector));
 }
 

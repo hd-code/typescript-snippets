@@ -9,18 +9,18 @@ export function isBool(bool: any): bool is boolean {
 }
 
 /** TypeGuard to check if a value is a `number`. */
-export function isNumber(num: any): num is number {
-    return typeof num === 'number';
+export function isNumber(number: any): number is number {
+    return typeof number === 'number';
 }
 
 /** TypeGuard to check if a value is a `number` with no decimals. */
-export function isInteger(num: any): num is number {
-    return isNumber(num) && Math.floor(num) === num;
+export function isInteger(number: any): number is number {
+    return isNumber(number) && Math.floor(number) === number;
 }
 
 /** TypeGuard to check if a value is a `string`. */
-export function isString(str: any): str is string {
-    return typeof str === 'string';
+export function isString(string: any): string is string {
+    return typeof string === 'string';
 }
 
 /** TypeGuard to check if a value is a JS Date type. */
@@ -35,12 +35,12 @@ export function isDate(date: any): date is Date {
  * will perform a type check on each element of the array. If the type check
  * fails on any element, the function will return false;
  */
-export function isArray<T>(a: any, TypeGuard?: (e:any) => e is T): a is T[] {
-    if (!Array.isArray(a)) return false;
+export function isArray<T>(array: any, TypeGuard?: (e:any) => e is T): array is T[] {
+    if (!Array.isArray(array)) return false;
     if (!TypeGuard) return true;
 
-    for (let i = 0, ie = a.length; i < ie; i++) {
-        if (!TypeGuard(a[i]))
+    for (let i = 0, ie = array.length; i < ie; i++) {
+        if (!TypeGuard(array[i]))
             return false;
     }
 
@@ -55,8 +55,8 @@ export function isArray<T>(a: any, TypeGuard?: (e:any) => e is T): a is T[] {
  * 
  * If you want to check the object for specific keys, use `hasKey()`.
  */
-export function isObject(obj:any): obj is object {
-    return typeof obj === 'object' && obj !== null && !Array.isArray(obj);
+export function isObject(object:any): object is object {
+    return typeof object === 'object' && object !== null && !Array.isArray(object);
 }
 
 /**
@@ -67,6 +67,6 @@ export function isObject(obj:any): obj is object {
  * the given key is found, the value associated with that key is then 
  * type-checked by the TypeGuard.
  */
-export function hasKey<T,U>(obj: any, key: PropertyKey, typeGuard?: (k: any) => k is U): key is keyof T {
-    return !!obj && obj.hasOwnProperty(key) && (!typeGuard || typeGuard(obj[key]));
+export function hasKey<T,U>(object: any, key: PropertyKey, typeGuard?: (k: any) => k is U): key is keyof T {
+    return !!object && object.hasOwnProperty(key) && (!typeGuard || typeGuard(object[key]));
 }
