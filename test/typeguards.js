@@ -66,6 +66,7 @@ describe(__filename, () => {
         check(tg.isObject, ['date', 'object']);
     });
     it('hasKey()', () => {
+        check(arr => tg.hasKey(arr, 1), ['string', 'arrayNum', 'arrayString', 'arrayArrayNum']);
         check(obj => tg.hasKey(obj, 'firstname'), ['object']);
         check(obj => tg.hasKey(obj, 'lastname'), ['object']);
         check(obj => tg.hasKey(obj, 'age'), ['object']);

@@ -1,13 +1,13 @@
 {
   "name": "hd-snippets-js",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "This repo just contains a collection of very helpful JS functions that I use again and again in several projects. There are browser as well as node.js snippets.",
   "main": "index.js",
   "scripts": {
     "build": "npm run clear && tsc && npm run copy && npm run minify",
     "clear": "rm -rf ./build",
     "copy": "cp ./src/*.js ./build",
-    "minify": "for i in ./build/*.js; do uglifyjs $i -o $i -cm; done;",
+    "minify": "for i in build/*.js; do uglifyjs $i -o $i -cm; done;",
     "start": "npm test",
     "test": "npm run build && mocha"
   },

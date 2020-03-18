@@ -60,8 +60,11 @@ export function isObject(object:any): object is object {
 }
 
 /**
- * TypeGuard to check if a value is an `object` and also contains the specified
- * `key`. (`{ key: ... }`)
+ * TypeGuard to check if a passed `object` contains the specified `key`.
+ * 
+ * Also, you can check an array or a string if they have an entry at a specific
+ * index. Just pass the array as the `object` parameter and the index as the
+ * `key` to this function.
  * 
  * Optional: You can pass a TypeGuard as a third argument to this function. If 
  * the given key is found, the value associated with that key is then 

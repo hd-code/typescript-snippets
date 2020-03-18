@@ -3,11 +3,11 @@ export declare function isNull(value: any): value is null;
 /** TypeGuard to check if a value is a `boolean`. */
 export declare function isBool(bool: any): bool is boolean;
 /** TypeGuard to check if a value is a `number`. */
-export declare function isNumber(num: any): num is number;
+export declare function isNumber(number: any): number is number;
 /** TypeGuard to check if a value is a `number` with no decimals. */
-export declare function isInteger(num: any): num is number;
+export declare function isInteger(number: any): number is number;
 /** TypeGuard to check if a value is a `string`. */
-export declare function isString(str: any): str is string;
+export declare function isString(string: any): string is string;
 /** TypeGuard to check if a value is a JS Date type. */
 export declare function isDate(date: any): date is Date;
 /**
@@ -17,7 +17,7 @@ export declare function isDate(date: any): date is Date;
  * will perform a type check on each element of the array. If the type check
  * fails on any element, the function will return false;
  */
-export declare function isArray<T>(a: any, TypeGuard?: (e: any) => e is T): a is T[];
+export declare function isArray<T>(array: any, TypeGuard?: (e: any) => e is T): array is T[];
 /**
  * TypeGuard to check if a value is an object. If the value is `null`, the type
  * guard will reject the value. However, just an empty object (like this: `{}`)
@@ -26,13 +26,16 @@ export declare function isArray<T>(a: any, TypeGuard?: (e: any) => e is T): a is
  *
  * If you want to check the object for specific keys, use `hasKey()`.
  */
-export declare function isObject(obj: any): obj is object;
+export declare function isObject(object: any): object is object;
 /**
- * TypeGuard to check if a value is an `object` and also contains the specified
- * `key`. (`{ key: ... }`)
+ * TypeGuard to check if a passed `object` contains the specified `key`.
+ *
+ * Also, you can check an array or a string if they have an entry at a specific
+ * index. Just pass the array as the `object` parameter and the index as the
+ * `key` to this function.
  *
  * Optional: You can pass a TypeGuard as a third argument to this function. If
  * the given key is found, the value associated with that key is then
  * type-checked by the TypeGuard.
  */
-export declare function hasKey<T, U>(obj: any, key: PropertyKey, typeGuard?: (k: any) => k is U): key is keyof T;
+export declare function hasKey<T, U>(object: any, key: PropertyKey, typeGuard?: (k: any) => k is U): key is keyof T;
