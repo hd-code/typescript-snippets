@@ -1,3 +1,6 @@
+/** @file This file contains several type guards that can be used for excessive
+ * type checking in Typescript or Javascript. */
+
 /** TypeGuard to check if a value is `null`. */
 export function isNull(value: any): value is null {
     return value === null;

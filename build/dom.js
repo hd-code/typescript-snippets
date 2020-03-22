@@ -1,1 +1,2 @@
+/*! hd-snippets-js v0.1.0 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
 function $(e){return document.querySelectorAll(e)}function createElement(e,n,t){if(!e)return null;var r=document.createElement(e);for(var i in n)r.setAttribute(i,n[i]);return r.innerHTML=t||"",r}function insertBefore(e,n){n.parentElement.insertBefore(e,n)}function insertAfter(e,n){n.parentElement.insertBefore(e,n.nextElementSibling)}

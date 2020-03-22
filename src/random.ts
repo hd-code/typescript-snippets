@@ -1,5 +1,10 @@
+/** @file In JavaScript the Math.random() function is not seedable. So you
+ * cannot have repeatable scripts with native JS. Therefore, this is a
+ * implementation of the Lehmer random number generator. A rather simple but
+ * effective random number generator. And it is seeadable. */
+
 /** Set the seed for the random number generator. It should be a positive whole
- * number. Other numbers work as well, but they are all set to a default seed. */
+ * number. Other numbers work as well, but are set to a default seed. */
 export function setSeed(seed: number) {
     if (1 <= seed && seed < mod) {
         val = Math.floor(seed);
