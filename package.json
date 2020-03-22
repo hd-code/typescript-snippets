@@ -10,6 +10,9 @@
   "license": "MIT",
   "author": "Hannes Dröse <office.hd@gmx.net> (https://github.com/hd-code/)",
   "main": "index.js",
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "npm run clear && tsc && npm run copy && npm run minify && npm run license",
     "clear": "rm -rf ./build",

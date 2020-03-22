@@ -1,4 +1,6 @@
 /*! hd-snippets-js v0.1.0 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/** @file Contains some advanced math constructs and functions. Mainly vectors
+ * and 2d matrices. */
 export declare function isVector(vector: any): vector is number[];
 export declare function addVector(vec1: number[], vec2: number[]): number[];
 export declare function subVector(vec1: number[], vec2: number[]): number[];
@@ -13,3 +15,4 @@ export declare function mulMatrix(left: number[][], right: number[][]): number[]
 export declare function scaleMatrix(scalar: number, matrix: number[][]): number[][];
 export declare function transposeMatrix(matrix: number[][]): number[][];
 export declare function mulVectorMatrix(vector: number[], matrix: number[][]): number[];
+export declare function mulMatrixVector(matrix: number[][], vector: number[]): number[];
