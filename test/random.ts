@@ -1,5 +1,5 @@
-const rd = require('../build/random');
-const assert = require('assert');
+import assert from 'assert';
+import * as rd from '../src/random';
 
 // -----------------------------------------------------------------------------
 

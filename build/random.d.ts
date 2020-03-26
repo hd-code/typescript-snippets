@@ -1,4 +1,4 @@
-/*! hd-snippets-js v0.1.0 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/*! hd-snippets-js v0.1.1 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
 /** @file In JavaScript the Math.random() function is not seedable. So you
  * cannot have repeatable scripts with native JS. Therefore, this is a
  * implementation of the Lehmer random number generator. A rather simple but

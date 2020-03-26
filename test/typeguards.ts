@@ -1,10 +1,10 @@
-const tg = require('../build/typeguards');
-const assert = require('assert');
+import assert from 'assert';
+import * as tg from '../src/typeguards';
 
 // -----------------------------------------------------------------------------
 
 describe(__filename, () => {
-    const testData = {
+    const testData: {[key: string]: any} = {
         undefined: undefined,
         null: null,
         boolean: false,
@@ -25,14 +25,10 @@ describe(__filename, () => {
         },
     };
     
-    /**
-     * @param {(p: any) => boolean} func 
-     * @param {PropertyKey[]} trueProperties 
-     */
-    function check(func, trueProperties) {
+    function check(func: (p: any) => boolean, trueProperties: PropertyKey[]) {
         for (const key in testData) {
             const shouldBeTrue = trueProperties.includes(key);
-            assert.ok(shouldBeTrue ? func(testData[key]) : !func(testData[key]));
+            assert(shouldBeTrue ? func(testData[key]) : !func(testData[key]));
         }
     }
 
@@ -60,7 +56,11 @@ describe(__filename, () => {
     it('isArray() with type guard', () => {
         check(val => tg.isArray(val, tg.isNumber), ['arrayNum']);
         check(val => tg.isArray(val, tg.isString), ['arrayString']);
-        check(val => tg.isArray(val, row => tg.isArray(row, tg.isNumber)), ['arrayArrayNum']);
+        check(val => tg.isArray(val, isNumArray), ['arrayArrayNum']);
+
+        function isNumArray(row: any): row is number[] {
+            return tg.isArray(row, tg.isNumber);
+        }
     });
     it('isObject()', () => {
         check(tg.isObject, ['date', 'object']);

@@ -1,6 +1,6 @@
 {
   "name": "hd-snippets-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This repo just contains a collection of very helpful JS functions that I use again and again in several projects. There are browser as well as node.js snippets.",
   "keywords": [],
   "repository": {
@@ -8,22 +8,24 @@
     "url": "https://github.com/hd-code/hd-snippets-js"
   },
   "license": "MIT",
-  "author": "Hannes Dröse <office.hd@gmx.net> (https://github.com/hd-code/)",
-  "main": "index.js",
+  "author": "Hannes Dröse <office.hd@gmx.net>",
+  "main": "build/index.js",
   "files": [
     "build"
   ],
   "scripts": {
-    "build": "npm run clear && tsc && npm run copy && npm run minify && npm run license",
+    "build": "npm run clear && tsc && npm run minify && npm run license",
     "clear": "rm -rf ./build",
-    "copy": "cp ./src/*.js ./build",
     "license": "for i in build/*; do (echo \"/*! $npm_package_name v$npm_package_version | $npm_package_license | Hannes Dröse $npm_package_repository_url */\"; cat $i) > __tmp; mv __tmp $i; done;",
-    "minify": "for i in build/*.js; do uglifyjs $i -o $i -cm; done;",
+    "minify": "for i in $(find build -name *.js); do uglifyjs $i -o $i -mc; done;",
     "start": "npm test",
-    "test": "npm run build && mocha"
+    "test": "mocha -r ts-node/register 'test/**/*.ts'"
   },
   "devDependencies": {
-    "mocha": "^7.1.0",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^12.12.31",
+    "mocha": "^7.1.1",
+    "ts-node": "^8.8.1",
     "typescript": "^3.8.3",
     "uglify-js": "^3.8.0"
   }

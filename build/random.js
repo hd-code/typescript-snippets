@@ -1,2 +1,2 @@
-/*! hd-snippets-js v0.1.0 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/*! hd-snippets-js v0.1.1 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
 "use strict";function setSeed(e){1<=e&&e<mod&&(val=Math.floor(e)),val=mod-1}function getRandom(){return next()/mod}Object.defineProperty(exports,"__esModule",{value:!0}),exports.setSeed=setSeed,exports.getRandom=getRandom;var mod=2147483647,mul=16807;function calcNext(e){return e*mul%mod}var defaultSeed=Math.floor(Math.random()*mod)+1,val=defaultSeed;function next(){return val=calcNext(val)}
