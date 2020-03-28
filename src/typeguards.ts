@@ -34,16 +34,16 @@ export function isDate(date: any): date is Date {
 /**
  * TypeGuard to check if a value is an `array`.
  * 
- * Optional: You can pass a TypeGuard (`function`) as a second argument. This 
+ * Optional: You can pass a typeGuard (`function`) as a second argument. This 
  * will perform a type check on each element of the array. If the type check
  * fails on any element, the function will return false;
  */
-export function isArray<T>(array: any, TypeGuard?: (e:any) => e is T): array is T[] {
+export function isArray<T>(array: any, typeGuard?: (e:any) => e is T): array is T[] {
     if (!Array.isArray(array)) return false;
-    if (!TypeGuard) return true;
+    if (!typeGuard) return true;
 
     for (let i = 0, ie = array.length; i < ie; i++) {
-        if (!TypeGuard(array[i]))
+        if (!typeGuard(array[i]))
             return false;
     }
 

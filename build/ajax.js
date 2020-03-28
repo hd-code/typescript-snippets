@@ -1,2 +1,2 @@
-/*! hd-snippets-js v0.1.1 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/*! hd-snippets-js v0.1.2 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
 "use strict";function ajax(e,t,n,o){e="string"==typeof e?e:"",t="function"==typeof t?t:function(e,t){console.log(e,"–",t)},n=/^GET|POST|UPDATE|DELETE$/.test(n)?n:"GET";var s,r=window.XMLHttpRequest?new XMLHttpRequest:new ActiveXObject("Microsoft.XMLHTTP");if(r.open(n,e),r.onreadystatechange=function(){t&&3<r.readyState&&t(r.status,r.responseText)},o&&"object"==typeof o)for(var a in r.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),s="",o)s+=a+"="+o[a]+"\n";return r.setRequestHeader("X-Requested-With","XMLHttpRequest"),r.send(s),r}

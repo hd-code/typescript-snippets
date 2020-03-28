@@ -1,29 +1,78 @@
 import assert from 'assert';
-import * as rd from '../src/random';
+import Random from '../src/random';
 
 // -----------------------------------------------------------------------------
 
-describe(__filename, () => {
-    it('getRandom()', () => {
-        for (let i = 0; i < 999; i++) {
-            const num = rd.getRandom();
-            assert(0 <= num && num < 1);
-        }
+describe('random', () => {
+    describe('setSeed()', () => {
+        it('should work even for strange seeds', () => {
+            test(5);
+            test(0);
+            test(100.5);
+            test(-30);            
+            test(Infinity);
+
+            function test(seed: number) {
+                Random.setSeed(seed);
+                Random.get();
+            }
+        });
+
+        it('should produce the same random numbers for the same seeds', () => {
+            assert.deepStrictEqual(generateValues(1, 999), generateValues(1, 999));
+            assert.deepStrictEqual(generateValues(5, 10), generateValues(5, 10));
+            assert.deepStrictEqual(generateValues(-30.4, 10), generateValues(-30.4, 10));
+
+            function generateValues(seed: number, numOfValues: number) {
+                Random.setSeed(seed);
+                return Array(numOfValues).map(_ => Random.get());
+            }
+        });
     });
-    it('setSeed()', () => {
-        rd.setSeed(5);
-        rd.getRandom();
 
-        rd.setSeed(0);
-        rd.getRandom();
+    describe('get()', () => {
+        it('should only produce numbers between 0 and 1 (not included)', () => {
+            for (let i = 0; i < 99999; i++) {
+                const num = Random.get();
+                assert(0 < num && num < 1);
+            }
+        });
+    });
 
-        rd.setSeed(100.5);
-        rd.getRandom();
+    describe('getInt()', () => {
+        it('should only produce whole numbers', () => {
+            for (let i = 0; i < 99999; i++) {
+                const num = Random.getInt(99999);
+                assert(num === Math.floor(num));
+            }
+        });
 
-        rd.setSeed(-30);
-        rd.getRandom();
-        
-        rd.setSeed(Infinity);
-        rd.getRandom();
+        it('should only produce numbers between 0 and the given max (both included)', () => {
+            for (let i = 0; i < 99999; i++) {
+                const num = Random.getInt(10);
+                assert(0 <= num && num <= 10);
+            }
+        });
+
+        it('should ignore fractions in max parameter and just use the whole number', () => {
+            for (let i = 0; i < 99999; i++) {
+                const num = Random.getInt(10.43);
+                assert(0 <= num && num <= 10);
+            }
+        });
+
+        it('should treat negative max values as positive ones', () => {
+            for (let i = 0; i < 99999; i++) {
+                const num = Random.getInt(-10);
+                assert(0 <= num && num <= 10);
+            }
+        });
+
+        it('should only output 0 if max is 0', () => {
+            for (let i = 0; i < 99999; i++) {
+                const num = Random.getInt(0);
+                assert(0 === num);
+            }
+        });
     });
 });

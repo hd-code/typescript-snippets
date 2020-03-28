@@ -1,4 +1,4 @@
-/*! hd-snippets-js v0.1.1 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/*! hd-snippets-js v0.1.2 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
 /**
  * Select an element from the DOM using css selector syntax.
  * @param {string} css the css selector

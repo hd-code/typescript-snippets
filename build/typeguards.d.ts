@@ -1,4 +1,4 @@
-/*! hd-snippets-js v0.1.1 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/*! hd-snippets-js v0.1.2 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
 /** @file This file contains several type guards that can be used for excessive
  * type checking in Typescript or Javascript. */
 /** TypeGuard to check if a value is `null`. */
@@ -16,11 +16,11 @@ export declare function isDate(date: any): date is Date;
 /**
  * TypeGuard to check if a value is an `array`.
  *
- * Optional: You can pass a TypeGuard (`function`) as a second argument. This
+ * Optional: You can pass a typeGuard (`function`) as a second argument. This
  * will perform a type check on each element of the array. If the type check
  * fails on any element, the function will return false;
  */
-export declare function isArray<T>(array: any, TypeGuard?: (e: any) => e is T): array is T[];
+export declare function isArray<T>(array: any, typeGuard?: (e: any) => e is T): array is T[];
 /**
  * TypeGuard to check if a value is an object. If the value is `null`, the type
  * guard will reject the value. However, just an empty object (like this: `{}`)

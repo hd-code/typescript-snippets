@@ -3,7 +3,8 @@ import * as tg from '../src/typeguards';
 
 // -----------------------------------------------------------------------------
 
-describe(__filename, () => {
+describe('typeguards', () => {
+    /** This contains a bunch of different data type and all typeguards will be checked against these ones. */
     const testData: {[key: string]: any} = {
         undefined: undefined,
         null: null,
@@ -25,10 +26,13 @@ describe(__filename, () => {
         },
     };
     
-    function check(func: (p: any) => boolean, trueProperties: PropertyKey[]) {
+    /** Runs the type guard on all entires in `testData`. Specify in
+     * `trueProperties` which of the entries in `testData` should perform
+     * positively (so the type guard succeeds and lets them pass). */
+    function check(typeguard: (p: any) => boolean, trueProperties: PropertyKey[]) {
         for (const key in testData) {
             const shouldBeTrue = trueProperties.includes(key);
-            assert(shouldBeTrue ? func(testData[key]) : !func(testData[key]));
+            assert(shouldBeTrue ? typeguard(testData[key]) : !typeguard(testData[key]));
         }
     }
 

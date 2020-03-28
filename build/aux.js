@@ -1,2 +1,2 @@
-/*! hd-snippets-js v0.1.1 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/*! hd-snippets-js v0.1.2 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
 "use strict";function deepClone(e){return JSON.parse(JSON.stringify(e))}function flattenArray(e){return e.reduce(function(e,r){return e.concat(r)},[])}Object.defineProperty(exports,"__esModule",{value:!0}),exports.deepClone=deepClone,exports.flattenArray=flattenArray;
