@@ -22,12 +22,18 @@ describe('random', () => {
             assert.deepStrictEqual(generateValues(1, 999), generateValues(1, 999));
             assert.deepStrictEqual(generateValues(5, 10), generateValues(5, 10));
             assert.deepStrictEqual(generateValues(-30.4, 10), generateValues(-30.4, 10));
-
-            function generateValues(seed: number, numOfValues: number) {
-                Random.setSeed(seed);
-                return [...Array(numOfValues)].map(_ => Random.get());
-            }
         });
+
+        it('should produce different numbers for different seeds', () => {
+            assert.notDeepStrictEqual(generateValues(1, 999), generateValues(2, 999));
+            assert.notDeepStrictEqual(generateValues(4, 10), generateValues(5, 10));
+            assert.notDeepStrictEqual(generateValues(40, 10), generateValues(99999, 10));
+        });
+
+        function generateValues(seed: number, numOfValues: number) {
+            Random.setSeed(seed);
+            return [...Array(numOfValues)].map(_ => Random.get());
+        }
     });
 
     describe('get()', () => {

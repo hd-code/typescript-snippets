@@ -1,6 +1,6 @@
 {
   "name": "hd-snippets-js",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "This repo just contains a collection of very helpful JS functions that I use again and again in several projects. There are browser as well as node.js snippets.",
   "keywords": [],
   "repository": {

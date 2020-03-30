@@ -1,4 +1,4 @@
-/*! hd-snippets-js v0.1.2 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/*! hd-snippets-js v0.1.3 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
 /** @file This file contains several type guards that can be used for excessive
  * type checking in Typescript or Javascript. */
 /** TypeGuard to check if a value is `null`. */
