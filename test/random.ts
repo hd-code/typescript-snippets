@@ -25,7 +25,7 @@ describe('random', () => {
 
             function generateValues(seed: number, numOfValues: number) {
                 Random.setSeed(seed);
-                return Array(numOfValues).map(_ => Random.get());
+                return [...Array(numOfValues)].map(_ => Random.get());
             }
         });
     });
