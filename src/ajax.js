@@ -1,3 +1,5 @@
+/*! ajax v0.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+
 /**
  * Performs an ajax request.
  * @param {string} url the target url

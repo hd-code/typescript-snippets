@@ -1,16 +1,21 @@
-/*
+/*! dom-advanced v0.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 
-In this file you find extensions to the NodeList and Element prototypes.
-They add typical JQuery-like methods and functionality directly to the Elements and NodeLists.
-
-In combination with the $(css) function in 'dom.js' you get a very lightweight pseudo-JQuery implementation.
-E.g.:
-    $('button').on('click', function(event) { event.preventDefault() })
-    $('#user-info').hide()
-
-It's written unobtrusively. If there is already an implementation e.g. for NodeList.prototype.forEach, than this file will not overwrite the existing implementation.
-
-*/
+/**
+ * @file
+ * In this file you find extensions to the NodeList and Element prototypes.
+ * They add typical JQuery-like methods and functionality directly to the
+ * Elements and NodeLists.
+ * 
+ * In combination with the $(css) function in 'dom.js' you get a very
+ * lightweight pseudo-JQuery implementation.
+ * E.g.:
+ *  $('button').on('click', function(event) { event.preventDefault() })
+ *  $('#user-info').hide()
+ * 
+ * It's written unobtrusively. If there is already an implementation e.g.
+ * for NodeList.prototype.forEach, than this file will not overwrite the
+ * existing implementation.
+ */
 
 /* --------------------------- forEach,map,reduce --------------------------- */
 

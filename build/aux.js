@@ -1,2 +1,2 @@
-/*! hd-snippets-js v0.1.3 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
-"use strict";function deepClone(e){return JSON.parse(JSON.stringify(e))}function flattenArray(e){return e.reduce(function(e,r){return e.concat(r)},[])}Object.defineProperty(exports,"__esModule",{value:!0}),exports.deepClone=deepClone,exports.flattenArray=flattenArray;
+"use strict";
+/*! aux v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */function deepClone(r){return JSON.parse(JSON.stringify(r))}function flattenArray(r){return r.reduce(function(r,e){return r.concat(e)},[])}function isInArray(r,e){for(var n=0,t=r.length;n<t;n++)if(e(r[n]))return!0;return!1}Object.defineProperty(exports,"__esModule",{value:!0}),exports.deepClone=deepClone,exports.flattenArray=flattenArray,exports.isInArray=isInArray;

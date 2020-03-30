@@ -1,6 +1,9 @@
-/*! hd-snippets-js v0.1.3 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
-/** @file Contains some advanced math constructs and functions. Mainly vectors
- * and 2d matrices. */
+/*! math v0.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/**
+ * @file
+ * Contains some advanced math constructs and functions. Mainly vectors and 2d
+ * matrices.
+ */
 export declare function isVector(vector: any): vector is number[];
 export declare function addVector(vec1: number[], vec2: number[]): number[];
 export declare function subVector(vec1: number[], vec2: number[]): number[];

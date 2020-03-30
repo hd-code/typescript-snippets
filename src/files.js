@@ -1,3 +1,5 @@
+/*! files-browser v0.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+
 /**
  * Saves a string of data to a file.
  * @param {string} data string of data to be saved to a file

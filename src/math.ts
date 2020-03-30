@@ -1,5 +1,10 @@
-/** @file Contains some advanced math constructs and functions. Mainly vectors
- * and 2d matrices. */
+/*! math v0.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+
+/**
+ * @file
+ * Contains some advanced math constructs and functions. Mainly vectors and 2d
+ * matrices.
+ */
 
 // -----------------------------------------------------------------------------
 // Vector Calculus

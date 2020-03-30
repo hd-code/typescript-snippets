@@ -1,23 +1,24 @@
 {
   "name": "hd-snippets-js",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "This repo just contains a collection of very helpful JS functions that I use again and again in several projects. There are browser as well as node.js snippets.",
-  "keywords": [],
+  "homepage": "https://github.com/hd-code/hd-snippets-js#readme",
+  "bugs": {
+    "url": "https://github.com/hd-code/hd-snippets-js/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/hd-code/hd-snippets-js"
   },
   "license": "MIT",
   "author": "Hannes Dröse <office.hd@gmx.net>",
-  "main": "build/index.js",
   "files": [
     "build"
   ],
   "scripts": {
-    "build": "npm run clear && tsc && npm run minify && npm run license",
+    "build": "npm run clear && tsc && npm run minify",
     "clear": "rm -rf ./build",
-    "license": "for i in build/*; do (echo \"/*! $npm_package_name v$npm_package_version | $npm_package_license | Hannes Dröse $npm_package_repository_url */\"; cat $i) > __tmp; mv __tmp $i; done;",
-    "minify": "for i in $(find build -name *.js); do uglifyjs $i -o $i -mc; done;",
+    "minify": "for i in $(find build -name *.js); do uglifyjs $i -o $i -mc --comments /^!/; done;",
     "start": "npm test",
     "test": "mocha -r ts-node/register 'test/**/*.ts'"
   },

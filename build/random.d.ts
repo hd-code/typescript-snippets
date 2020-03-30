@@ -1,4 +1,4 @@
-/*! hd-snippets-js v0.1.3 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
+/*! random v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
  * In JavaScript the Math.random() function is not seedable. So you
  * cannot have repeatable scripts with native JS. Therefore, this is a

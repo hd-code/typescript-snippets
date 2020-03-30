@@ -1,5 +1,10 @@
-/** @file This file contains several type guards that can be used for excessive
- * type checking in Typescript or Javascript. */
+/*! typeguards v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+
+/**
+ * @file
+ * This file contains several type guards that can be used for excessive type
+ * checking in Typescript or Javascript.
+ */
 
 /** TypeGuard to check if a value is `null`. */
 export function isNull(value: any): value is null {
@@ -42,6 +47,7 @@ export function isArray<T>(array: any, typeGuard?: (e:any) => e is T): array is 
     if (!Array.isArray(array)) return false;
     if (!typeGuard) return true;
 
+    // for loop is a lot fast than any functional implementation
     for (let i = 0, ie = array.length; i < ie; i++) {
         if (!typeGuard(array[i]))
             return false;
@@ -63,11 +69,11 @@ export function isObject(object:any): object is object {
 }
 
 /**
- * TypeGuard to check if a passed `object` contains the specified `key`.
+ * TypeGuard to check if a passed object contains the specified key.
  * 
  * Also, you can check an array or a string if they have an entry at a specific
- * index. Just pass the array as the `object` parameter and the index as the
- * `key` to this function.
+ * index. Just pass the array as the object parameter and the index as the key
+ * to this function.
  * 
  * Optional: You can pass a TypeGuard as a third argument to this function. If 
  * the given key is found, the value associated with that key is then 

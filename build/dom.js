@@ -1,2 +1,2 @@
-/*! hd-snippets-js v0.1.3 | MIT | Hannes Dröse git+https://github.com/hd-code/hd-snippets-js.git */
-"use strict";function $(e){return document.querySelectorAll(e)}function createElement(e,t,n){if(!e)return null;var r=document.createElement(e);for(var i in t)r.setAttribute(i,t[i]);return r.innerHTML=n||"",r}function insertBefore(e,t){t.parentElement.insertBefore(e,t)}function insertAfter(e,t){t.parentElement.insertBefore(e,t.nextElementSibling)}
+"use strict";
+/*! dom v0.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */function $(e){return document.querySelectorAll(e)}function createElement(e,t,n){if(!e)return null;var r=document.createElement(e);for(var i in t)r.setAttribute(i,t[i]);return r.innerHTML=n||"",r}function insertBefore(e,t){t.parentElement.insertBefore(e,t)}function insertAfter(e,t){t.parentElement.insertBefore(e,t.nextElementSibling)}

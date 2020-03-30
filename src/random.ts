@@ -1,3 +1,5 @@
+/*! random v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+
 /** 
  * In JavaScript the Math.random() function is not seedable. So you
  * cannot have repeatable scripts with native JS. Therefore, this is a

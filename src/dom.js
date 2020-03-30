@@ -1,3 +1,5 @@
+/*! dom v0.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+
 /**
  * Select an element from the DOM using css selector syntax.
  * @param {string} css the css selector
