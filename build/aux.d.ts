@@ -1,4 +1,4 @@
-/*! aux v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! aux v1.1.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
  * @file
  * This file contains some auxiliary function that have found no other place.
@@ -24,3 +24,7 @@ export declare function flattenArray<T>(original: T[][]): T[];
  * Use it to check if an array contains a certain kind(s) of element.
  */
 export declare function isInArray<T>(array: T[], callback: (e: T) => boolean): boolean;
+/**
+ * Pauses the execution of an asynchronous function for a fixed duration.
+ */
+export declare function sleep(milliseconds: number): Promise<unknown>;

@@ -1,4 +1,4 @@
-/*! aux v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! aux v1.1.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 
 /**
  * @file
@@ -38,3 +38,10 @@ export function isInArray<T>(array: T[], callback: (e: T) => boolean): boolean {
     }
     return false;
 }
+
+/**
+ * Pauses the execution of an asynchronous function for a fixed duration.
+ */
+export async function sleep(milliseconds: number) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+ }

@@ -53,4 +53,38 @@ describe('aux', () => {
             testData.forEach(testData => assert(!aux.isInArray(testData.data, testData.func)));
         });
     });
+
+    describe('sleep()', () => {
+        async function test(milliseconds: number) {
+            const begin = Date.now();
+            await aux.sleep(milliseconds);
+            const end = Date.now();
+
+            return end - begin;
+        }
+
+        it('should take at least 10ms to execute function with sleep(10)', (done) => {
+            const ms = 10;
+            test(ms).then(duration => {
+                try {
+                    assert(ms <= duration);
+                    done();
+                } catch (err) {
+                    done(err);
+                }
+            });
+        });
+
+        it('should take at least 20ms to execute function with sleep(20)', (done) => {
+            const ms = 20;
+            test(ms).then(duration => {
+                try {
+                    assert(ms <= duration);
+                    done();
+                } catch (err) {
+                    done(err);
+                }
+            });
+        });
+    });
 });
