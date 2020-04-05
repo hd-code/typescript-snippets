@@ -20,7 +20,7 @@
  * file.
  * 
  * _Important:_ Worker scripts do not work in ts-node, so they always have to be
- * compiled before usage.
+ * compiled and run with node traditionally.
  * 
  * Example:
  * ```ts
@@ -136,7 +136,7 @@ export default class Script {
      * needed. Otherwise it will keep the whole node program running.
      */
     delete() {
-        this.worker.unref();
+        this.worker.terminate();
     }
 }
 
