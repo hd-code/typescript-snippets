@@ -1,9 +1,9 @@
 import assert from 'assert';
-import * as tg from '../src/typeguards';
+import * as tg from '../src/type-guards';
 
 // -----------------------------------------------------------------------------
 
-describe('typeguards', () => {
+describe('type-guards', () => {
     /** This contains a bunch of different data type and all typeguards will be checked against these ones. */
     const testData: {[key: string]: any} = {
         undefined: undefined,

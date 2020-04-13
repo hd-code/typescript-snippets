@@ -48,15 +48,127 @@ describe('aux', () => {
         });
     });
 
-    describe('deepClone()', () => {
-        it('should clone several data types except undefined, classes and objects with functions', () => {
-            const data = [null, 20.5, 'string', [1,2,3], {name: 'John', age: 21}];
-            data.forEach(data => assert.deepStrictEqual(data, aux.deepClone(data)));
+    describe('clone()', () => {
+        it('should clone primitive types (number,string,null,undefined)', () => {
+            const DATA = [1,'text',null,undefined];
+            DATA.forEach(data => assert.strictEqual(aux.clone(data), data));
         });
 
-        it('should not be able to clone classes and objects with functions', () => {
-            const data = [new Date(), {name: 'John', age: 21, greet: () => 'Hello World'}];
-            data.forEach(data => assert.notDeepStrictEqual(aux.deepClone(data), data));
+        it('should clone array of numbers – arrays should be independant now', () => {
+            const DATA = [1,2,3,4];
+            const actual = aux.clone(DATA);
+            assert.deepStrictEqual(actual, DATA);
+            actual[0] = 0;
+            assert.notDeepStrictEqual(actual, DATA);
+        });
+
+        it('should clone array of array of numbers – nested arrays are not independant!', () => {
+            const DATA = [[1,2],[3,4]];
+            const actual = aux.clone(DATA);
+            assert.deepStrictEqual(actual, DATA);
+            actual[0][0] = 0;
+            assert.deepStrictEqual(actual, DATA);
+        });
+
+        it('should clone object of primitive values – objects should be independent now', () => {
+            const DATA = { name: 'John Doe', age: 42 };
+            const actual = aux.clone(DATA);
+            assert.deepStrictEqual(actual, DATA);
+            actual.age = 0;
+            assert.notDeepStrictEqual(actual, DATA);
+        });
+
+        it('should clone complex object with string, number, array, object, function – nested elements are not independant', () => {
+            const DATA = {
+                name: 'John Doe',
+                age: 42,
+                hobbies: ['poker','baccarat'],
+                phone: { company: 'Apple', model: 'iPhone SE' },
+                greet: () => 'Hello World'
+            };
+            const actual = aux.clone(DATA);
+            assert.deepStrictEqual(actual, DATA);
+
+            actual.age = 0;
+            assert.notDeepStrictEqual(actual, DATA);
+            actual.age = 42,
+
+            actual.hobbies[0] = 'roulette';
+            assert.deepStrictEqual(actual, DATA);
+            actual.hobbies[0] = 'poker';
+
+            actual.phone.company = 'Samsung';
+            assert.deepStrictEqual(actual, DATA);
+            actual.phone.company = 'Apple';
+        });
+
+        it('should not be able to correctly clone classes', () => {
+            class CTest { getValue() { return 1; } }
+            const DATA = new CTest;
+            const actual = aux.clone(DATA);
+            assert.notDeepStrictEqual(actual, DATA);
+        });
+    });
+
+    describe('deepClone()', () => {
+        it('should clone primitive types (number,string,null,undefined)', () => {
+            const DATA = [1,'text',null,undefined];
+            DATA.forEach(data => assert.strictEqual(aux.deepClone(data), data));
+        });
+
+        it('should clone array of numbers – arrays should be independant now', () => {
+            const DATA = [1,2,3,4];
+            const actual = aux.deepClone(DATA);
+            assert.deepStrictEqual(actual, DATA);
+            actual[0] = 0;
+            assert.notDeepStrictEqual(actual, DATA);
+        });
+
+        it('should clone array of array of numbers – arrays should be independant now', () => {
+            const DATA = [[1,2],[3,4]];
+            const actual = aux.deepClone(DATA);
+            assert.deepStrictEqual(actual, DATA);
+            actual[0][0] = 0;
+            assert.notDeepStrictEqual(actual, DATA);
+        });
+
+        it('should clone object of primitive values – objects should be independent now', () => {
+            const DATA = { name: 'John Doe', age: 42 };
+            const actual = aux.deepClone(DATA);
+            assert.deepStrictEqual(actual, DATA);
+            actual.age = 0;
+            assert.notDeepStrictEqual(actual, DATA);
+        });
+
+        it('should clone complex object with string, number, array, object, function – objects should be independent now', () => {
+            const DATA = {
+                name: 'John Doe',
+                age: 42,
+                hobbies: ['poker','baccarat'],
+                phone: { company: 'Apple', model: 'iPhone SE' },
+                greet: () => 'Hello World'
+            };
+            const actual = aux.deepClone(DATA);
+            assert.deepStrictEqual(actual, DATA);
+
+            actual.age = 0;
+            assert.notDeepStrictEqual(actual, DATA);
+            actual.age = 42,
+
+            actual.hobbies[0] = 'roulette';
+            assert.notDeepStrictEqual(actual, DATA);
+            actual.hobbies[0] = 'poker';
+
+            actual.phone.company = 'Samsung';
+            assert.notDeepStrictEqual(actual, DATA);
+            actual.phone.company = 'Apple';
+        });
+
+        it('should not be able to correctly clone classes', () => {
+            class CTest { getValue() { return 1; } }
+            const DATA = new CTest;
+            const actual = aux.deepClone(DATA);
+            assert.notDeepStrictEqual(actual, DATA);
         });
     });
 
