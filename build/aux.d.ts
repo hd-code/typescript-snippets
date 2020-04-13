@@ -10,7 +10,7 @@
  * Also, it is possible to specify the number of digits the result should have.
  * This is optional.
  * @param n      The decimal number to be transformed.
- * @param digits (optional )The number of digits, the result should have.
+ * @param digits (optional) The number of digits, the result should have.
  */
 export declare function dec2bin(n: number, digits?: number): string;
 /**
@@ -20,7 +20,7 @@ export declare function dec2bin(n: number, digits?: number): string;
  * Also, it is possible to specify the number of digits the result should have.
  * This is optional.
  * @param n      The decimal number to be transformed.
- * @param digits (optional )The number of digits, the result should have.
+ * @param digits (optional) The number of digits, the result should have.
  */
 export declare function dec2binArray(n: number, digits?: number): number[];
 /**

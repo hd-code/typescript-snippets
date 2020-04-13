@@ -12,7 +12,7 @@
  * Also, it is possible to specify the number of digits the result should have.
  * This is optional.
  * @param n      The decimal number to be transformed.
- * @param digits (optional )The number of digits, the result should have.
+ * @param digits (optional) The number of digits, the result should have.
  */
 export function dec2bin(n: number, digits?: number): string {
     const bin = (n >>> 0).toString(2);
@@ -28,7 +28,7 @@ export function dec2bin(n: number, digits?: number): string {
  * Also, it is possible to specify the number of digits the result should have.
  * This is optional.
  * @param n      The decimal number to be transformed.
- * @param digits (optional )The number of digits, the result should have.
+ * @param digits (optional) The number of digits, the result should have.
  */
 export function dec2binArray(n: number, digits?: number): number[] {
     const bin = dec2bin(n, digits);
