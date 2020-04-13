@@ -1,4 +1,4 @@
-/*! aux v1.2.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! aux v1.3.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
  * @file
  * This file contains some auxiliary function that have found no other place.
@@ -24,10 +24,24 @@ export declare function dec2bin(n: number, digits?: number): string;
  */
 export declare function dec2binArray(n: number, digits?: number): number[];
 /**
- * Deep-clones the passed object.
+ * Clones an object, array or primitive value. It creates shallow clones only.
+ * So, nested arrays or objects are copied only by reference. Changes to the
+ * nested elements in the copy will effect the original and vice versa.
  *
- * _Attention_: If the object contains any functions, they will be removed.
- * @param original Any object, array or value, that should be cloned.
+ * If deep clones are needed, use `deepClone()`. However, deep cloning is a lot
+ * slower.
+ *
+ * _Attention_: Classes are not correctly cloned.
+ * @param original Any object, array or primitive value to be cloned.
+ */
+export declare function clone<T>(original: T): T;
+/**
+ * Clones a passed object, array or primitive value. It creates deep clones.
+ * So nested arrays or objects will be copied as well. That means that the
+ * original and the clone are completely independent from each other.
+ *
+ * _Attention_: Classes are not correctly cloned.
+ * @param original Any object, array or primitive value to be deep cloned.
  */
 export declare function deepClone<T>(original: T): T;
 /**
