@@ -1,4 +1,4 @@
-/*! typeguards v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! type-guards v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
  * @file
  * This file contains several type guards that can be used for excessive type
