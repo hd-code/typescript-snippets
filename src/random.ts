@@ -31,10 +31,12 @@ namespace Random {
         return getNext() / mod;
     }
 
-    /** Returns a random integer between 0 and `max` (both included).
+    /**
+     * Returns a random integer between 0 and `max` (both included).
      * 
      * Negative `max` values will be transformed to positive values and 
-     * fractional `max` values will be rounded down (floor). */
+     * fractional `max` values will be rounded down (floor).
+     */
     export function getInt(max: number): number {
         return Math.floor(get() * (Math.floor(Math.abs(max)) + 1));
     }

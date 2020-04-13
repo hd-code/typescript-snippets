@@ -24,10 +24,12 @@ declare namespace Random {
     function setSeed(seed: number): void;
     /** Returns a random number between 0 and 1 (both not included). */
     function get(): number;
-    /** Returns a random integer between 0 and `max` (both included).
+    /**
+     * Returns a random integer between 0 and `max` (both included).
      *
      * Negative `max` values will be transformed to positive values and
-     * fractional `max` values will be rounded down (floor). */
+     * fractional `max` values will be rounded down (floor).
+     */
     function getInt(max: number): number;
 }
 export default Random;
