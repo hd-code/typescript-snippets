@@ -2,7 +2,7 @@
 
 /**
  * @file
- * This file contains some auxiliary function that have found no other place.
+ * This file contains some auxiliary functions that have found no other place.
  */
 
 /**

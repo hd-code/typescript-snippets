@@ -94,7 +94,7 @@ function main(input: TInput): TOutput {
 // -----------------------------------------------------------------------------
 
 /**
- * Execute CPU intensive tasks in a separate thread and get noticed once it is
+ * Execute CPU-intensive tasks in a separate thread and get noticed once it is
  * done.
  */
 export default class Script {

@@ -1,7 +1,7 @@
 /*! aux v1.3.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
  * @file
- * This file contains some auxiliary function that have found no other place.
+ * This file contains some auxiliary functions that have found no other place.
  */
 /**
  * Transforms a decimal number into a binary number. The returned binary number
