@@ -1,6 +1,6 @@
 {
   "name": "hd-snippets-js",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "files": [
     "build"
@@ -14,10 +14,10 @@
   },
   "devDependencies": {
     "@types/mocha": "^7.0.2",
-    "@types/node": "^12.12.32",
+    "@types/node": "^12.12.36",
     "mocha": "^7.1.1",
-    "ts-node": "^8.8.1",
+    "ts-node": "^8.8.2",
     "typescript": "^3.8.3",
-    "uglify-js": "^3.8.1"
+    "uglify-js": "^3.9.1"
   }
 }
