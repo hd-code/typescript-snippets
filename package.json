@@ -1,17 +1,7 @@
 {
   "name": "hd-snippets-js",
-  "version": "0.2.0",
-  "description": "This repo just contains a collection of very helpful JS functions that I use again and again in several projects. There are browser as well as node.js snippets.",
-  "homepage": "https://github.com/hd-code/hd-snippets-js#readme",
-  "bugs": {
-    "url": "https://github.com/hd-code/hd-snippets-js/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hd-code/hd-snippets-js"
-  },
-  "license": "MIT",
-  "author": "Hannes Dröse <office.hd@gmx.net>",
+  "version": "1.0.0",
+  "private": true,
   "files": [
     "build"
   ],
