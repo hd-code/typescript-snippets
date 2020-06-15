@@ -4,26 +4,6 @@
  * This file contains some auxiliary functions that have found no other place.
  */
 /**
- * Transforms a decimal number into a binary number. The returned binary number
- * is a string.
- *
- * Also, it is possible to specify the number of digits the result should have.
- * This is optional.
- * @param n      The decimal number to be transformed.
- * @param digits (optional) The number of digits, the result should have.
- */
-export declare function dec2bin(n: number, digits?: number): string;
-/**
- * Transforms a decimal number into a binary number. The returned binary number
- * is an array of numbers.
- *
- * Also, it is possible to specify the number of digits the result should have.
- * This is optional.
- * @param n      The decimal number to be transformed.
- * @param digits (optional) The number of digits, the result should have.
- */
-export declare function dec2binArray(n: number, digits?: number): number[];
-/**
  * Clones an object, array or primitive value. It creates shallow clones only.
  * So, nested arrays or objects are copied only by reference. Changes to the
  * nested elements in the copy will effect the original and vice versa.

@@ -6,38 +6,6 @@
  */
 
 /**
- * Transforms a decimal number into a binary number. The returned binary number
- * is a string.
- * 
- * Also, it is possible to specify the number of digits the result should have.
- * This is optional.
- * @param n      The decimal number to be transformed.
- * @param digits (optional) The number of digits, the result should have.
- */
-export function dec2bin(n: number, digits?: number): string {
-    const bin = (n >>> 0).toString(2);
-    let zeros = '';
-    for (let i = 0; i < (digits ?? 0); i++) zeros += '0';
-    return !digits ? bin : (zeros + bin).slice(-digits);
-}
-
-/**
- * Transforms a decimal number into a binary number. The returned binary number
- * is an array of numbers.
- * 
- * Also, it is possible to specify the number of digits the result should have.
- * This is optional.
- * @param n      The decimal number to be transformed.
- * @param digits (optional) The number of digits, the result should have.
- */
-export function dec2binArray(n: number, digits?: number): number[] {
-    const bin = dec2bin(n, digits);
-    let result = [];
-    for (let i = 0, ie = bin.length; i < ie; i++) result.push(parseInt(bin[i]));
-    return result;
-}
-
-/**
  * Clones an object, array or primitive value. It creates shallow clones only.
  * So, nested arrays or objects are copied only by reference. Changes to the
  * nested elements in the copy will effect the original and vice versa.

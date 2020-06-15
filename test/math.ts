@@ -6,12 +6,12 @@ import * as math from '../src/math';
 describe('math', () => {
     it('add()', () => {
         const cases = [
-            { input: [   1,    1 ], expected:    2 },
-            { input: [   1,   -1 ], expected:    0 },
-            { input: [  10,    3 ], expected:   13 },
-            { input: [   3,   10 ], expected:   13 },
-            { input: [ 1.5,    1 ], expected:  2.5 },
-            { input: [   1, -6.4 ], expected: -5.4 },
+            { input: [ 1, 1 ], expected: 2 },
+            { input: [ 1, -1 ], expected: 0 },
+            { input: [ 10, 3 ], expected: 13 },
+            { input: [ 3, 10 ], expected: 13 },
+            { input: [ 1.5, 1 ], expected: 2.5 },
+            { input: [ 1, -6.4 ], expected: -5.4 },
         ];
 
         cases.forEach(({input, expected}) => {
@@ -22,12 +22,12 @@ describe('math', () => {
 
     it('sub()', () => {
         const cases = [
-            { input: [   1,    1 ], expected:    0 },
-            { input: [   1,   -1 ], expected:    2 },
-            { input: [  10,    3 ], expected:    7 },
-            { input: [   3,   10 ], expected:   -7 },
-            { input: [ 1.5,    1 ], expected:  0.5 },
-            { input: [   1, -6.4 ], expected:  7.4 },
+            { input: [ 1, 1 ], expected: 0 },
+            { input: [ 1, -1 ], expected: 2 },
+            { input: [ 10, 3 ], expected: 7 },
+            { input: [ 3, 10 ], expected: -7 },
+            { input: [ 1.5, 1 ], expected: 0.5 },
+            { input: [ 1, -6.4 ], expected: 7.4 },
         ];
 
         cases.forEach(({input, expected}) => {
@@ -38,12 +38,12 @@ describe('math', () => {
 
     it('mul()', () => {
         const cases = [
-            { input: [   1,    1 ], expected:    1 },
-            { input: [   1,   -1 ], expected:   -1 },
-            { input: [  10,    3 ], expected:   30 },
-            { input: [   3,   10 ], expected:   30 },
-            { input: [ 1.5,    1 ], expected:  1.5 },
-            { input: [   1, -6.4 ], expected: -6.4 },
+            { input: [ 1, 1 ], expected: 1 },
+            { input: [ 1, -1 ], expected: -1 },
+            { input: [ 10, 3 ], expected: 30 },
+            { input: [ 3, 10 ], expected: 30 },
+            { input: [ 1.5, 1 ], expected: 1.5 },
+            { input: [ 1, -6.4 ], expected: -6.4 },
         ];
 
         cases.forEach(({input, expected}) => {
@@ -54,12 +54,12 @@ describe('math', () => {
 
     it('div()', () => {
         const cases = [
-            { input: [   1,    1 ], expected:    1 },
-            { input: [   1,   -1 ], expected:   -1 },
-            { input: [  10,    3 ], expected: 10/3 },
-            { input: [   3,   10 ], expected:  0.3 },
-            { input: [ 1.5,    1 ], expected:  1.5 },
-            { input: [   1, -6.4 ], expected: -0.15625 },
+            { input: [ 1, 1 ], expected: 1 },
+            { input: [ 1, -1 ], expected: -1 },
+            { input: [ 10, 3 ], expected: 10/3 },
+            { input: [ 3, 10 ], expected: 0.3 },
+            { input: [ 1.5, 1 ], expected: 1.5 },
+            { input: [ 1, -6.4 ], expected: -0.15625 },
         ];
 
         cases.forEach(({input, expected}) => {
@@ -70,12 +70,12 @@ describe('math', () => {
 
     it('mod()', () => {
         const cases = [
-            { input: [   1,    1 ], expected:    0 },
-            { input: [   1,   -1 ], expected:    0 },
-            { input: [  10,    3 ], expected:    1 },
-            { input: [   3,   10 ], expected:    3 },
-            { input: [ 1.5,    1 ], expected:  0.5 },
-            { input: [   1, -6.4 ], expected:    1 },
+            { input: [ 1, 1 ], expected: 0 },
+            { input: [ 1, -1 ], expected: 0 },
+            { input: [ 10, 3 ], expected: 1 },
+            { input: [ 3, 10 ], expected: 3 },
+            { input: [ 1.5, 1 ], expected: 0.5 },
+            { input: [ 1, -6.4 ], expected: 1 },
         ];
 
         cases.forEach(({input, expected}) => {
@@ -84,51 +84,35 @@ describe('math', () => {
         });
     });
 
-    it('sum()', () => {
+    it('round()', () => {});
+
+    it('dec2bin()', () => {
         const cases = [
-            { input: [1,2,3], expected: 6 },
-            { input: [1,1,1], expected: 3 },
-            { input: [4,7,2,3,4], expected: 20 },
-            { input: [-2,-3,4], expected: -1 },
-            { input: [1.5,1.5,1.4], expected: 4.4 },
-            { input: [-0.3,-0.4], expected: -0.7 },
+            { input: [ 2 ], expected: '10' },
+            { input: [ 5 ], expected: '101' },
+            { input: [ 5, 5 ], expected: '00101' },
+            { input: [ -1, 4 ], expected: '1111' },
+            { input: [ -2, 4 ], expected: '1110' },
         ];
 
         cases.forEach(({input, expected}) => {
-            const actual = math.sum(input);
+            const actual = math.dec2bin(input[0], input[1]);
             assert.strictEqual(actual, expected);
         });
     });
 
-    it('avg()', () => {
+    it('dec2binArray()', () => {
         const cases = [
-            { input: [1,2,3], expected: 2 },
-            { input: [1,1,1], expected: 1 },
-            { input: [4,7,2,3,4], expected: 4 },
-            { input: [-2,-3,4], expected: -1/3 },
-            { input: [1.5,1.5,1.4], expected: 4.4/3 },
-            { input: [-0.3,-0.4], expected: -0.35 },
+            { input: [ 2 ], expected: [1,0] },
+            { input: [ 5 ], expected: [1,0,1] },
+            { input: [ 5, 5 ], expected: [0,0,1,0,1] },
+            { input: [ -1, 4 ], expected: [1,1,1,1] },
+            { input: [ -2, 4 ], expected: [1,1,1,0] },
         ];
 
         cases.forEach(({input, expected}) => {
-            const actual = math.avg(input);
-            assert.strictEqual(actual, expected);
-        });
-    });
-
-    it('median()', () => {
-        const cases = [
-            { input: [1,2,3], expected: 2 },
-            { input: [1,1,1], expected: 1 },
-            { input: [4,7,2,3,4], expected: 4 },
-            { input: [-2,-3,4], expected: -2 },
-            { input: [1.5,1.5,1.4], expected: 1.5 },
-            { input: [-0.3,-0.4], expected: -0.35 },
-        ];
-
-        cases.forEach(({input, expected}) => {
-            const actual = math.median(input);
-            assert.strictEqual(actual, expected);
+            const actual = math.dec2binArray(input[0], input[1]);
+            assert.deepStrictEqual(actual, expected);
         });
     });
 });

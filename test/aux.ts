@@ -4,50 +4,6 @@ import * as aux from '../src/aux';
 // -----------------------------------------------------------------------------
 
 describe('aux', () => {
-    describe('dec2bin()', () => {
-        it('should transform 2 to 10', () => {
-            assert(aux.dec2bin(2) === '10');
-        });
-
-        it('should transform 5 to 101', () => {
-            assert(aux.dec2bin(5) === '101');
-        });
-
-        it('should transform 5 to 00101 (with 5 digits)', () => {
-            assert(aux.dec2bin(5, 5) === '00101');
-        });
-
-        it('should transform -1 to 1111 (with 4 digits)', () => {
-            assert(aux.dec2bin(-1, 4) === '1111');
-        });
-
-        it('should transform -2 to 1110 (with 4 digits)', () => {
-            assert(aux.dec2bin(-2, 4) === '1110');
-        });
-    });
-
-    describe('dec2binArray()', () => {
-        it('should transform 2 to [1,0]', () => {
-            assert.deepStrictEqual(aux.dec2binArray(2), [1,0]);
-        });
-
-        it('should transform 5 to [1,0,1]', () => {
-            assert.deepStrictEqual(aux.dec2binArray(5), [1,0,1]);
-        });
-
-        it('should transform 5 to [0,0,1,0,1] (with 5 digits)', () => {
-            assert.deepStrictEqual(aux.dec2binArray(5, 5), [0,0,1,0,1]);
-        });
-
-        it('should transform -1 to [1,1,1,1] (with 4 digits)', () => {
-            assert.deepStrictEqual(aux.dec2binArray(-1, 4), [1,1,1,1]);
-        });
-
-        it('should transform -2 to [1,1,1,0] (with 4 digits)', () => {
-            assert.deepStrictEqual(aux.dec2binArray(-2, 4), [1,1,1,0]);
-        });
-    });
-
     describe('clone()', () => {
         it('should clone primitive types (number,string,null,undefined)', () => {
             const DATA = [1,'text',null,undefined];
