@@ -1,9 +1,9 @@
 /*! math v2.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 
 /**
+ * @file
  * This file contains some basic math operations that are missing from the
  * standard Math library. It also offers vector and matrix calculus.
- * @package
  */
 
 /** Adds two numbers together. */
@@ -37,10 +37,11 @@ export function mod(x: number, y: number): number {
  * digits after the decimal point should remain. A negative precision will round
  * before the decimal point. */
 export function round(num: number, precision = 0): number {
-    let factor = 10 ** precision
-    return Math.round(num * factor) / factor
+    const factor = 10 ** precision;
+    return Math.round(num * factor) / factor;
 }
 
+/** Vectors are one-dimensional arrays of numbers. */
 export namespace Vector {
     /** TypeGuard for a vector. */
     export function isVector(vector: any): vector is number[] {
@@ -107,20 +108,22 @@ export namespace Vector {
     /** Rounds a vector to the desired precision. The precisions specifies how
      * many digits after the decimal point should remain. A negative precision
      * will round before the decimal point. */
-    export function round(vector: number[], precision: number): number[] {
-        return vector.map(x => noNameSpace.round(x, precision))
+    export function round(vector: number[], precision = 0): number[] {
+        return vector.map(x => noNameSpace.round(x, precision));
     }
 }
 
+/** Matrices are two-dimensional arrays of numbers. All rows have the same
+ * number of columns. */
 export namespace Matrix {
     /** TypeGuard for a matrix. */
     export function isMatrix(matrix: any): matrix is number[][] {
-        const len = matrix[0]?.length;
+        const len = matrix && matrix[0]?.length;
         return Array.isArray(matrix) && matrix.every(row => Vector.isVector(row))
             && matrix.every(row => row.length === len);
     }
 
-    /** Transposes a matrix. */
+    /** Transposes a matrix. So, the rows become the columns and vice versa. */
     export function transpose(matrix: number[][]): number[][] {
         return matrix[0].map((_, i) => matrix.map(row => row[i]));
     }
@@ -150,11 +153,11 @@ export namespace Matrix {
         return matrix.map(row => Vector.dot(row, vector));
     }
 
-    /** Rounds a number to the desired precision. The precisions specifies how
+    /** Rounds a matrix to the desired precision. The precisions specifies how
      * many digits after the decimal point should remain. A negative precision
      * will round before the decimal point. */
-    export function round(matrix: number[][], precision: number): number[][] {
-        return matrix.map(row => Vector.round(row, precision))
+    export function round(matrix: number[][], precision = 0): number[][] {
+        return matrix.map(row => Vector.round(row, precision));
     }
 }
 

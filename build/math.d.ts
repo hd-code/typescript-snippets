@@ -1,8 +1,8 @@
 /*! math v2.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
+ * @file
  * This file contains some basic math operations that are missing from the
  * standard Math library. It also offers vector and matrix calculus.
- * @package
  */
 /** Adds two numbers together. */
 export declare function add(x: number, y: number): number;
@@ -18,6 +18,7 @@ export declare function mod(x: number, y: number): number;
  * digits after the decimal point should remain. A negative precision will round
  * before the decimal point. */
 export declare function round(num: number, precision?: number): number;
+/** Vectors are one-dimensional arrays of numbers. */
 export declare namespace Vector {
     /** TypeGuard for a vector. */
     function isVector(vector: any): vector is number[];
@@ -44,12 +45,14 @@ export declare namespace Vector {
     /** Rounds a vector to the desired precision. The precisions specifies how
      * many digits after the decimal point should remain. A negative precision
      * will round before the decimal point. */
-    function round(vector: number[], precision: number): number[];
+    function round(vector: number[], precision?: number): number[];
 }
+/** Matrices are two-dimensional arrays of numbers. All rows have the same
+ * number of columns. */
 export declare namespace Matrix {
     /** TypeGuard for a matrix. */
     function isMatrix(matrix: any): matrix is number[][];
-    /** Transposes a matrix. */
+    /** Transposes a matrix. So, the rows become the columns and vice versa. */
     function transpose(matrix: number[][]): number[][];
     /** Adds two matrices element-wise. */
     function add(x: number[][], y: number[][]): number[][];
@@ -61,10 +64,10 @@ export declare namespace Matrix {
     function scale(scalar: number, matrix: number[][]): number[][];
     /** Multiplies a matrix with a vector (in that order). */
     function mulVector(matrix: number[][], vector: number[]): number[];
-    /** Rounds a number to the desired precision. The precisions specifies how
+    /** Rounds a matrix to the desired precision. The precisions specifies how
      * many digits after the decimal point should remain. A negative precision
      * will round before the decimal point. */
-    function round(matrix: number[][], precision: number): number[][];
+    function round(matrix: number[][], precision?: number): number[][];
 }
 /** Transforms a decimal number into a binary number. The returned binary number
  * is a string. Optionally, the number of digits the result should have can be

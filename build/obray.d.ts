@@ -1,7 +1,7 @@
-/*! aux v1.3.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! obray v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
  * @file
- * This file contains some auxiliary functions that have found no other place.
+ * This offers helpful functions to work on arrays and objects.
  */
 /**
  * Clones an object, array or primitive value. It creates shallow clones only.
@@ -32,6 +32,27 @@ export declare function deepClone<T>(original: T): T;
  * @param original The multi-dimensional array the should be reduced by one dimension.
  */
 export declare function flattenArray<T>(original: T[][]): T[];
+export declare function getPermutations<T>(array: T[], noDuplicates?: boolean): T[][];
+/**
+ * TypeGuard to check if a passed object contains the specified key.
+ *
+ * Also, you can check an array or a string if they have an entry at a specific
+ * index. Just pass the array as the object parameter and the index as the key
+ * to this function.
+ *
+ * Optional: You can pass a TypeGuard as a third argument to this function. If
+ * the given key is found, the value associated with that key is then
+ * type-checked by the TypeGuard.
+ */
+export declare function hasKey<T, U>(object: any, key: PropertyKey, typeGuard?: (k: any) => k is U): key is keyof T;
+/**
+ * TypeGuard to check if a value is an `array`.
+ *
+ * Optional: You can pass a typeGuard (`function`) as a second argument. This
+ * will perform a type check on each element of the array. If the type check
+ * fails on any element, the function will return false;
+ */
+export declare function isArray<T>(array: any, typeGuard?: (e: any) => e is T): array is T[];
 /**
  * Basically does the same as `[].some()`. So, it determines whether any element
  * in the array satisfies the given callback function. However, this
@@ -45,7 +66,11 @@ export declare function flattenArray<T>(original: T[][]): T[];
  */
 export declare function isInArray<T>(array: T[], callback: (e: T) => boolean): boolean;
 /**
- * Pauses the execution of an asynchronous function for a fixed duration.
- * @param milliseconds The duration the execution should be paused in milliseconds.
+ * TypeGuard to check if a value is an object. If the value is `null`, the type
+ * guard will reject the value. However, just an empty object (like this: `{}`)
+ * is valid. Arrays are also not accepted as valid objects. Use `isArray()`
+ * function in that case.
+ *
+ * If you want to check the object for specific keys, use `hasKey()`.
  */
-export declare function sleep(milliseconds: number): Promise<unknown>;
+export declare function isObject(object: any): object is object;
