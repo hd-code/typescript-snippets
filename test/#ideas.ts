@@ -2,7 +2,7 @@ import assert from 'assert';
 import { sleep } from '../src/#ideas';
 
 // -----------------------------------------------------------------------------
-
+/*
 describe('#ideas', () => {
     describe('sleep()', () => {
         async function test(milliseconds: number) {
@@ -37,4 +37,4 @@ describe('#ideas', () => {
             });
         });
     });
-});
+}); //*/

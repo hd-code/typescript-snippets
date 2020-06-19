@@ -207,32 +207,14 @@ describe('obray', () => {
             testData.forEach(({obj,key,func}) => assert(!obray.hasKey(obj,key,func as any)));
         });
 
-
-
-        it('should return true for class instances', () => {
-            class CTest { print() { console.log('hello world'); } };
-            const testData = [ new Date, new Error, new CTest ];
-            testData.forEach(input => assert(obray.isObject(input)));
+        it('should return false for any non object data types', () => {
+            const testKey = 'age';
+            const testData = [
+                undefined, 12, -1, 0.5, -3.44, NaN, '', 'hello', true, false,
+                [1,2,3], ['1','2','3'],
+            ];
+            testData.forEach(input => assert(!obray.hasKey(input, testKey)));
         });
-
-        it('should return false for null and arrays', () => {
-            const testData = [ null, [1,2,3], ['1','2','3'], [true], [3,3,3] ];
-            testData.forEach(input => assert(!obray.isObject(input)));
-        });
-
-        it('should return false for any basic data types', () => {
-            const testData = [ undefined, 12, -1, 0.5, -3.44, NaN, '', 'hello', true, false ];
-            testData.forEach(input => assert(!obray.isObject(input)));
-        });
-
-
-
-        // check(arr => tg.hasKey(arr, 1), ['string', 'arrayNum', 'arrayString', 'arrayArrayNum']);
-        // check(obj => tg.hasKey(obj, 'firstname'), ['object']);
-        // check(obj => tg.hasKey(obj, 'lastname'), ['object']);
-        // check(obj => tg.hasKey(obj, 'age'), ['object']);
-        // check(obj => tg.hasKey(obj, 'hobbies'), ['object']);
-        // check(obj => tg.hasKey(obj, 'FgtGatFzhsbZ778Hsgghz'), []);
     });
 
     describe('isArray()', () => {
@@ -333,6 +315,21 @@ describe('obray', () => {
         it('should return false for any basic data types', () => {
             const testData = [ undefined, 12, -1, 0.5, -3.44, NaN, '', 'hello', true, false ];
             testData.forEach(input => assert(!obray.isObject(input)));
+        });
+    });
+
+    it('splitEqual()', () => {
+        const testData = [
+            { arr: [1,2,3,4,5,6], bins: 3, expected: [[1,2],[3,4],[5,6]] },
+            { arr: [1,2,3,4,5], bins: 3, expected: [[1,2],[3,4],[5]] },
+            { arr: [1,2,3,4], bins: 3, expected: [[1,2],[3],[4]] },
+            { arr: [1,2,3,4], bins: 2, expected: [[1,2],[3,4]] },
+            { arr: [1,2,3,4,5,6,7,8,9,10], bins: 3, expected: [[1,2,3,4],[5,6,7],[8,9,10]] },
+            { arr: [1,2,3], bins: 4, expected: [[1],[2],[3],[]] },
+        ];
+        testData.forEach(({arr, bins, expected}, i) => {
+            const actual = obray.splitEqual(arr, bins);
+            assert.deepStrictEqual(actual, expected, 'at '+i);
         });
     });
 });

@@ -1,4 +1,4 @@
-/*! obray v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! obray v1.1.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 
 /**
  * @file
@@ -14,7 +14,6 @@
  * slower.
  *
  * _Attention_: Classes are not correctly cloned.
- * @param original Any object, array or primitive value to be cloned.
  */
 export function clone<T>(original: T): T {
     if (Array.isArray(original)) return (original as any).slice();
@@ -28,10 +27,8 @@ export function clone<T>(original: T): T {
  * original and the clone are completely independent from each other.
  * 
  * _Attention_: Classes are not correctly cloned.
- * @param original Any object, array or primitive value to be deep cloned.
  */
-// TODO: Find solution for Classes and Dates
-export function deepClone<T>(original: T): T {
+export function deepClone<T>(original: T): T { // TODO: Find solution for Classes and Dates
     if (Array.isArray(original)) {
         let result: any = [];
         for (let i = 0, ie = original.length; i < ie; i++) {
@@ -56,12 +53,15 @@ export function deepClone<T>(original: T): T {
  * array as `n - 1` dimensions.
  * 
  * This is a pure function, so the original array will not be altered.
- * @param original The multi-dimensional array the should be reduced by one dimension.
  */
-export function flattenArray<T>(original: T[][]): T[] {
-    return original.reduce((result, item) => result.concat(item), []);
+export function flattenArray<T>(array: T[][]): T[] {
+    return array.reduce((result, item) => result.concat(item), []);
 }
 
+/** Returns all possible permutations of the elements of an array. By setting
+ * the `noDuplicates` flag, permutations that occur several times are removed,
+ * so that the permutation just appears once. This can only happen if the
+ * original array contains the same element at several positions. */
 export function getPermutations<T>(array: T[], noDuplicates = false): T[][] {
     const permutations = permuteArray(array);
     return noDuplicates ? removeDuplicates(permutations) : permutations;
@@ -130,6 +130,25 @@ export function isInArray<T>(array: T[], callback: (e: T) => boolean): boolean {
  */
 export function isObject(object:any): object is object {
     return typeof object === 'object' && object !== null && !Array.isArray(object);
+}
+
+/** Distributes the elements of an array into bins of equal size. If the number
+ * of elements is not clearly dividable, the first bins will contain one more
+ * element then the rest. */
+export function splitEqual<T>(array:T[], bins: number): T[][] {
+    const numOfElements = array.length;
+    let index = 0;
+
+    let result: T[][] = [];
+    for (let i = 0; i < bins; i++) {
+        const elementsForBin = Math.ceil((numOfElements - index) / (bins - i));
+
+        result[i] = [];
+        for (let j = 0; j < elementsForBin; j++) {
+            result[i][j] = array[index++];
+        }
+    }
+    return result;
 }
 
 // -----------------------------------------------------------------------------
