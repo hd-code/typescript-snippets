@@ -1,4 +1,4 @@
-/*! math v2.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! math v2.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
  * @file
  * This file contains some basic math operations that are missing from the

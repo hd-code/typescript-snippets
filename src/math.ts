@@ -1,4 +1,4 @@
-/*! math v2.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! math v2.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 
 /**
  * @file
@@ -167,7 +167,7 @@ export namespace Matrix {
 export function dec2bin(n: number, digits?: number): string {
     const bin = (n >>> 0).toString(2);
     let zeros = '';
-    for (let i = 0; i < (digits ?? 0); i++) zeros += '0';
+    for (let i = 0, ie = (digits ?? 0); i < ie; i++) zeros += '0';
     return !digits ? bin : (zeros + bin).slice(-digits);
 }
 
