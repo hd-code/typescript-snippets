@@ -1,11 +1,10 @@
-/*! storage v0.0.1 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! storage v0.0.2 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /** StorageMap is used to represent a list of storage elements. It is a map
  * where the element's id is the key and the element itself is the value. */
 export declare type StorageMap<T> = {
     [id: string]: T;
 };
-/**
- * A Storage is used to save a list of elements. The elements are indexed by an
+/** A Storage is used to save a list of elements. The elements are indexed by an
  * id. The id can either be set manually or generated automatically. The id is
  * not necessarily part of the element.
  *
@@ -30,6 +29,16 @@ export interface Storage<T> {
     get: (id: string) => T | undefined;
     /** Returns all the elements in the storage together with their id as a map. */
     getAll: () => StorageMap<T>;
+    /** Replaces all elements in the storage with a modified version of
+     * themselves. The replace function defines the mapping from one original
+     * element to the modified version. The modified elements are then stored
+     * and returned.
+     *
+     * When the preview flag is set to true, the function will only return the
+     * modified versions of the elements. The original elements in the storage
+     * are not altered, yet. This is useful for checking and verifying that the
+     * replace function works as intended before actually doing the replacement. */
+    replace: (replaceFunc: (element: T) => T, preview?: boolean) => StorageMap<T>;
     /** Saves an element to the storage. A new random id is generated under
      * which the element is stored. The id is then returned. */
     save: (element: T) => string;
@@ -38,10 +47,10 @@ export interface Storage<T> {
      * returned or undefined if the key was not used before. */
     set: (id: string, element: T) => T | undefined;
 }
-/** This function creates a new cache storage. A cache storage only exists
- * during the lifetime of the application. It does not implement any kind of
- * automatic flushing. */
-export declare function CacheStorage<T>(): Storage<T>;
+/** This function creates a new base storage. A base storage only exists during
+ * the lifetime of the application. It can be used as a basis to implement more
+ * advanced storage providers. */
+export declare function BaseStorage<T>(initCache?: StorageMap<T>): Storage<T>;
 /** This function creates a new local storage. The local storage is dumped into
  * a simple json file. An arbitrary filepath (including the filename) can be
  * specified. The file is used to persist the storage. */

@@ -6,10 +6,12 @@ import * as path from 'path';
 
 // -----------------------------------------------------------------------------
 
+TestStorage('BaseStorage', storage.BaseStorage);
+
+// -----------------------------------------------------------------------------
+
 const tmpPath = path.join(__dirname, 'storage-ctxghtbsi.json');
 setTimeout(() => {fs.unlink(tmpPath, () => {})}, 100);
-
-TestStorage('CacheStorage', storage.CacheStorage);
 
 TestStorage('LocalStorage', () => {
     try {fs.unlinkSync(tmpPath)} catch (_) {}
@@ -128,6 +130,50 @@ function TestStorage(msg: string, InitStorage: () => storage.Storage<IPerson>) {
         it('getAll()', () => {
             const cache = initFilledStorage();
             assert.deepStrictEqual(cache.getAll(), filledStorage);
+        });
+
+        describe('replace()', () => {
+            function replacer(person: IPerson): IPerson {
+                const result = {...person};
+                result.age += 1;
+                return result;
+            }
+
+            function getModifiedStorage() {
+                let result: any = {};
+                for (const key in filledStorage) {
+                    result[key] = replacer(filledStorage[key]);
+                }
+                return result;
+            }
+
+            it('should not alter the elements, when replacer just returns the original element', () => {
+                const cache = initFilledStorage();
+                const modifiedReturn = cache.replace(p => p);
+                assert.deepStrictEqual(modifiedReturn, filledStorage, 'did not return original elements');
+                assert.deepStrictEqual(cache.getAll(), filledStorage, 'does not have original elements');
+            });
+
+            it('should correctly replace the elements, without preview flag', () => {
+                const cache = initFilledStorage();
+                const modifiedReturn = cache.replace(replacer);
+                assert.deepStrictEqual(modifiedReturn, getModifiedStorage(), 'did not return modified elements');
+                assert.deepStrictEqual(cache.getAll(), getModifiedStorage(), 'did not store modified elements');
+            });
+
+            it('should correctly replace the elements, with preview flag on false', () => {
+                const cache = initFilledStorage();
+                const modifiedReturn = cache.replace(replacer, false);
+                assert.deepStrictEqual(modifiedReturn, getModifiedStorage(), 'did not return modified elements');
+                assert.deepStrictEqual(cache.getAll(), getModifiedStorage(), 'did not store modified elements');
+            });
+
+            it('should only return modified elements, with preview flag on true', () => {
+                const cache = initFilledStorage();
+                const modifiedReturn = cache.replace(replacer, true);
+                assert.deepStrictEqual(modifiedReturn, getModifiedStorage(), 'did not return modified elements');
+                assert.deepStrictEqual(cache.getAll(), filledStorage, 'modified the elements in storage');
+            });
         });
 
         it('save()', () => {
