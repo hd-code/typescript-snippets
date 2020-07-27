@@ -1,8 +1,5 @@
 /*! storage v0.0.2 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 
-import * as fs from 'fs';
-import * as path from 'path';
-
 // -----------------------------------------------------------------------------
 
 /** StorageMap is used to represent a list of storage elements. It is a map
@@ -17,8 +14,7 @@ export type StorageMap<T> = {[id: string]: T};
  * storage system. This could be a cache that will not persist, file or
  * database-based implementations. */
 export interface Storage<T> {
-    /** Completely empties the storage. All previously stored items are
-     * returned. */
+    /** Completely empties the storage and returns all deleted items. */
     clear: () => StorageMap<T>;
 
     /** Deletes one element from the storage specified by its id. The deleted
@@ -40,7 +36,7 @@ export interface Storage<T> {
     getAll: () => StorageMap<T>;
 
     /** Replaces all elements in the storage with a modified version of
-     * themselves. The replace function defines the mapping from one original
+     * themselves. The replace function defines the mapping from the original
      * element to the modified version. The modified elements are then stored
      * and returned.
      * 
@@ -66,7 +62,7 @@ export interface Storage<T> {
  * the lifetime of the application. It can be used as a basis to implement more
  * advanced storage providers. */
 export function BaseStorage<T>(initCache?: StorageMap<T>): Storage<T> {
-    let cache = initCache ??  {};
+    let cache = initCache ?? {};
 
     return {
         clear: () => {
@@ -125,59 +121,6 @@ export function BaseStorage<T>(initCache?: StorageMap<T>): Storage<T> {
     };
 }
 
-/** This function creates a new local storage. The local storage is dumped into
- * a simple json file. An arbitrary filepath (including the filename) can be
- * specified. The file is used to persist the storage. */
-export function LocalStorage<T>(filepath?: string): Storage<T> {
-    const file = filepath ? path.resolve(filepath) : path.resolve(__dirname, defaultFileName);
-    let cache = initLocalStorage<T>(file);
-
-    const storage = BaseStorage(cache);
-
-    const dumpToFile = () => {
-        const data = storage.getAll();
-        saveToFile(file, data);
-    }
-
-    return {
-        clear:  () => {
-            const result = storage.clear();
-            dumpToFile();
-            return result;
-        },
-
-        delete: (id: string) => {
-            const result = storage.delete(id);
-            dumpToFile();
-            return result;
-        },
-
-        filter: storage.filter,
-
-        get: storage.get,
-
-        getAll: storage.getAll,
-
-        replace: (replaceFunc: (element: T) => T, preview?: boolean) => {
-            const result = storage.replace(replaceFunc, preview);
-            !preview && dumpToFile();
-            return result;
-        },
-
-        save: (element: T) => {
-            const result = storage.save(element);
-            dumpToFile();
-            return result;
-        },
-
-        set: (id: string, element: T) => {
-            const result = storage.set(id, element);
-            dumpToFile();
-            return result;
-        },
-    };
-}
-
 // -----------------------------------------------------------------------------
 
 const hexBase = 16;
@@ -194,27 +137,4 @@ function generateKey(): string {
 function generateHexDigit(): string {
     const number = Math.floor(Math.random() * hexBase);
     return number.toString(hexBase)[0];
-}
-
-// -----------------------------------------------------------------------------
-
-const defaultFileName = 'localstorage.json';
-
-function initLocalStorage<T>(filepath: string): StorageMap<T> {
-    try {
-        const raw = fs.readFileSync(filepath);
-        const parsed = JSON.parse(raw as any);
-        if (typeof parsed !== 'object' || !parsed) {
-            throw new Error('Invalid file content');
-        }
-        return parsed;
-    } catch (_) {
-        saveToFile(filepath, {});
-        return {};
-    }
-}
-
-function saveToFile<T>(filepath: string, _data: StorageMap<T>) {
-    const data = JSON.stringify(_data);
-    fs.writeFileSync(filepath, data);
 }

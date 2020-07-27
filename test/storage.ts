@@ -1,59 +1,9 @@
 import assert from 'assert';
 import * as storage from '../src/storage';
 
-import * as fs from 'fs';
-import * as path from 'path';
-
 // -----------------------------------------------------------------------------
 
-TestStorage('BaseStorage', storage.BaseStorage);
-
-// -----------------------------------------------------------------------------
-
-const tmpPath = path.join(__dirname, 'storage-ctxghtbsi.json');
-setTimeout(() => {fs.unlink(tmpPath, () => {})}, 100);
-
-TestStorage('LocalStorage', () => {
-    try {fs.unlinkSync(tmpPath)} catch (_) {}
-    return storage.LocalStorage(tmpPath);
-});
-
-// -----------------------------------------------------------------------------
-
-interface IPerson {
-    firstname: string;
-    lastname: string;
-    age: number;
-}
-
-const id1 = 'first';
-const person1: IPerson = {
-    firstname: 'John',
-    lastname: 'Doe',
-    age: 28,
-}
-
-const id2 = 'second';
-const person2: IPerson = {
-    firstname: 'Jane',
-    lastname: 'Doe',
-    age: 25,
-}
-
-const id3 = 'third';
-const person3: IPerson = {
-    firstname: 'Jim',
-    lastname: 'Doe',
-    age: 5,
-}
-
-const filledStorage: storage.StorageMap<IPerson> = {
-    [id1]: person1,
-    [id2]: person2,
-    [id3]: person3,
-};
-
-function TestStorage(msg: string, InitStorage: () => storage.Storage<IPerson>) {
+export function TestStorage(msg: string, InitStorage: () => storage.Storage<IPerson>) {
     const initFilledStorage = () =>  {
         const cache = InitStorage();
         cache.set(id1, person1);
@@ -181,16 +131,18 @@ function TestStorage(msg: string, InitStorage: () => storage.Storage<IPerson>) {
 
             const id1 = cache.save(person1);
             const id2 = cache.save(person2);
+            const id3 = cache.save(person3);
 
-            assert.strictEqual(id1.length, 16, 'id1 should have 16 digits');
-            assert(/[0-9abcdef]*/.test(id1), 'id1 should be a hex string');
+            const regexHex16 = /[0-9abcdef]{16}/;
 
-            assert.strictEqual(id2.length, 16, 'id2 should have 16 digits');
-            assert(/[0-9abcdef]*/.test(id2), 'id2 should be a hex string');
+            assert(regexHex16.test(id1), 'id1 should be a 16 digit hex string');
+            assert(regexHex16.test(id2), 'id2 should be a 16 digit hex string');
+            assert(regexHex16.test(id3), 'id3 should be a 16 digit hex string');
 
             const expected = {
                 [id1]: person1,
                 [id2]: person2,
+                [id3]: person3,
             };
             const actual = cache.getAll();
 
@@ -215,3 +167,42 @@ function TestStorage(msg: string, InitStorage: () => storage.Storage<IPerson>) {
         });
     });
 }
+
+// -----------------------------------------------------------------------------
+
+TestStorage('BaseStorage', storage.BaseStorage);
+
+// -----------------------------------------------------------------------------
+
+interface IPerson {
+    firstname: string;
+    lastname: string;
+    age: number;
+}
+
+const id1 = 'first';
+const person1: IPerson = {
+    firstname: 'John',
+    lastname: 'Doe',
+    age: 28,
+}
+
+const id2 = 'second';
+const person2: IPerson = {
+    firstname: 'Jane',
+    lastname: 'Doe',
+    age: 25,
+}
+
+const id3 = 'third';
+const person3: IPerson = {
+    firstname: 'Jim',
+    lastname: 'Doe',
+    age: 5,
+}
+
+const filledStorage: storage.StorageMap<IPerson> = {
+    [id1]: person1,
+    [id2]: person2,
+    [id3]: person3,
+};
