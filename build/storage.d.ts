@@ -1,4 +1,4 @@
-/*! storage v0.0.2 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! storage v0.1.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /** StorageMap is used to represent a list of storage elements. It is a map
  * where the element's id is the key and the element itself is the value. */
 export declare type StorageMap<T> = {
@@ -12,8 +12,7 @@ export declare type StorageMap<T> = {
  * storage system. This could be a cache that will not persist, file or
  * database-based implementations. */
 export interface Storage<T> {
-    /** Completely empties the storage. All previously stored items are
-     * returned. */
+    /** Completely empties the storage and returns all deleted items. */
     clear: () => StorageMap<T>;
     /** Deletes one element from the storage specified by its id. The deleted
      * element is then returned. If there is no element to delete, undefined is
@@ -30,7 +29,7 @@ export interface Storage<T> {
     /** Returns all the elements in the storage together with their id as a map. */
     getAll: () => StorageMap<T>;
     /** Replaces all elements in the storage with a modified version of
-     * themselves. The replace function defines the mapping from one original
+     * themselves. The replace function defines the mapping from the original
      * element to the modified version. The modified elements are then stored
      * and returned.
      *
@@ -51,7 +50,3 @@ export interface Storage<T> {
  * the lifetime of the application. It can be used as a basis to implement more
  * advanced storage providers. */
 export declare function BaseStorage<T>(initCache?: StorageMap<T>): Storage<T>;
-/** This function creates a new local storage. The local storage is dumped into
- * a simple json file. An arbitrary filepath (including the filename) can be
- * specified. The file is used to persist the storage. */
-export declare function LocalStorage<T>(filepath?: string): Storage<T>;
