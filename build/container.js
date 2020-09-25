@@ -1,0 +1,1 @@
+"use strict";function BaseContainer(e){let t=e,r=[];return{update:e=>(t=e(t),(()=>{for(let e=0,n=r.length;e<n;e++)r[e](t)})(),t),retrieve:()=>t,subscribe:e=>{r.push(e)},unsubscribe:e=>{return r.length>(r=r.filter(t=>t!==e)).length}}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.BaseContainer=void 0,exports.BaseContainer=BaseContainer;
