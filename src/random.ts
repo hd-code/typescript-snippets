@@ -1,48 +1,110 @@
-/*! random v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! random v2.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 
-/** 
- * In JavaScript the Math.random() function is not seedable. So you
- * cannot have repeatable scripts with native JS. Therefore, this is a
- * implementation of the Lehmer random number generator. A rather simple but
- * effective random number generator. And it is seeadable. 
+/**
+ * @file
+ * The JavaScript Math.random() function is not seedable. This package provides
+ * an implementation of the Lehmer random number generator. The generator is
+ * seedable, but will use a random seed when none was set.
  * 
- * Import or require to start using it:
- * ```ts
- * import Random from 'random';
- * Random.setSeed(5);
- * ...
- * ```
- * or
- * ```js
- * const Random = require('random');
- * Random.setSeed(2);
- * ...
- * ```
- */
-namespace Random {
-    /** Set the seed for the random number generator. It should be a positive whole
-     * number. Other numbers work as well, but are set to a default seed. */
-    export function setSeed(seed: number) {
-        val = (1 <= seed && seed < mod) ? Math.floor(seed) : mod - 1;
+* Make sure to set the seed only once in your application, ideally on startup.
+*/
+
+// -----------------------------------------------------------------------------
+
+/** Returns a random number between 0 (included) and 1 (not included). */
+export function getFloat(): number;
+/** Returns a random number between 0 and `max` (both included). */
+export function getFloat(max: number): number;
+/** Returns a random number between `min` and `max` (both included). */
+export function getFloat(min: number, max: number): number;
+
+export function getFloat(arg1?: number, arg2?: number): number {
+    let min = 0, max = 1;
+
+    if (arg2 === undefined) {
+        max = arg1 || max;
+    } else {
+        max = arg2;
+        min = arg1 || min;
     }
 
-    /** Returns a random number between 0 and 1 (both not included). */
-    export function get(): number {
-        return getNext() / mod;
-    }
+    const diff = max - min;
+    const rand = (getNext() - 1) / mod;
 
-    /**
-     * Returns a random integer between 0 and `max` (both included).
-     * 
-     * Negative `max` values will be transformed to positive values and 
-     * fractional `max` values will be rounded down (floor).
-     */
-    export function getInt(max: number): number {
-        return Math.floor(get() * (Math.floor(Math.abs(max)) + 1));
-    }
+    return rand * diff + min;
 }
 
-export default Random;
+// -----------------------------------------------------------------------------
+
+/** The maximum integer that is returned by the `getInt()` function. */
+export const MAX_INT = 2147483647 - 1;
+
+// -----------------------------------------------------------------------------
+
+/** Returns an integer between 0 and `MAX_INT` (both included). */
+export function getInt(): number;
+/** Returns an integer between 0 and `max` (both included).
+ * 
+ * _Note:_ Decimals will be ignored.
+ */
+export function getInt(max: number): number;
+/** Returns an integer between `min` and `max` (both included).
+ *
+ * _Note:_ Decimals will be ignored.
+ */
+export function getInt(min: number, max: number): number;
+
+export function getInt(arg1?: number, arg2?: number): number {
+    let min = 0, max = 0, rand = getNext() - 1;
+
+    if (arg1 === undefined) {
+        if (arg2 === undefined) {
+            return rand;
+        } else {
+            max = toInt(arg2);
+        }
+    } else {
+        if (arg2 === undefined) {
+            max = toInt(arg1);
+        } else {
+            min = toInt(arg1);
+            max = toInt(arg2);
+        }
+    }
+
+    const diff = max - min;
+    const mod = Math.abs(diff) + 1;
+
+    const result = rand % mod;
+
+    return (diff > 0 ? 1 : -1) * result + min;
+}
+
+// -----------------------------------------------------------------------------
+
+/** Sets the seed for the random number generator to 0. */
+export function setSeed(): void;
+
+/** Sets the seed for the random number generator.
+ * 
+ * _Note:_ Decimals will be ignored.
+ */
+export function setSeed(seed: number): void;
+
+export function setSeed(seed?: number) {
+    if (!seed) {
+        val = mod;
+        return;
+    }
+
+    val = Math.ceil(Math.abs(seed)) % mod;
+}
+
+// -----------------------------------------------------------------------------
+
+function toInt(number: number): number {
+    return number > 0 ? Math.floor(number) : Math.ceil(number);
+}
 
 // -----------------------------------------------------------------------------
 // Lehmer random number generator

@@ -1,35 +1,36 @@
-/*! random v1.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
+/*! random v2.0.0 from hd-snippets-js | MIT | © Hannes Dröse https://github.com/hd-code/hd-snippets-js */
 /**
- * In JavaScript the Math.random() function is not seedable. So you
- * cannot have repeatable scripts with native JS. Therefore, this is a
- * implementation of the Lehmer random number generator. A rather simple but
- * effective random number generator. And it is seeadable.
+ * @file
+ * The JavaScript Math.random() function is not seedable. This package provides
+ * an implementation of the Lehmer random number generator. The generator is
+ * seedable, but will use a random seed when none was set.
  *
- * Import or require to start using it:
- * ```ts
- * import Random from 'random';
- * Random.setSeed(5);
- * ...
- * ```
- * or
- * ```js
- * const Random = require('random');
- * Random.setSeed(2);
- * ...
- * ```
+* Make sure to set the seed only once in your application, ideally on startup.
+*/
+/** Returns a random number between 0 (included) and 1 (not included). */
+export declare function getFloat(): number;
+/** Returns a random number between 0 and `max` (both included). */
+export declare function getFloat(max: number): number;
+/** Returns a random number between `min` and `max` (both included). */
+export declare function getFloat(min: number, max: number): number;
+/** The maximum integer that is returned by the `getInt()` function. */
+export declare const MAX_INT: number;
+/** Returns an integer between 0 and `MAX_INT` (both included). */
+export declare function getInt(): number;
+/** Returns an integer between 0 and `max` (both included).
+ *
+ * _Note:_ Decimals will be ignored.
  */
-declare namespace Random {
-    /** Set the seed for the random number generator. It should be a positive whole
-     * number. Other numbers work as well, but are set to a default seed. */
-    function setSeed(seed: number): void;
-    /** Returns a random number between 0 and 1 (both not included). */
-    function get(): number;
-    /**
-     * Returns a random integer between 0 and `max` (both included).
-     *
-     * Negative `max` values will be transformed to positive values and
-     * fractional `max` values will be rounded down (floor).
-     */
-    function getInt(max: number): number;
-}
-export default Random;
+export declare function getInt(max: number): number;
+/** Returns an integer between `min` and `max` (both included).
+ *
+ * _Note:_ Decimals will be ignored.
+ */
+export declare function getInt(min: number, max: number): number;
+/** Sets the seed for the random number generator to 0. */
+export declare function setSeed(): void;
+/** Sets the seed for the random number generator.
+ *
+ * _Note:_ Decimals will be ignored.
+ */
+export declare function setSeed(seed: number): void;
