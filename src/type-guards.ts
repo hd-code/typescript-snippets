@@ -31,7 +31,7 @@ export function isString(str: unknown): str is string {
 // -----------------------------------------------------------------------------
 
 export function isArray<T>(arr: unknown, typeGuard?: (el: unknown) => el is T): arr is T[] {
-    if (!Array.isArray(arr)) {
+    if (!(arr instanceof Array)) {
         return false;
     }
 
