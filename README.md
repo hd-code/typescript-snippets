@@ -1,19 +1,24 @@
-# hd-snippets-js
+# JS Snippets
 
-This repo just contains a collection of very helpful JS functions that I use again and again in several projects. There are browser as well as node.js snippets.
+This repo just contains a collection of very helpful JS functions and snippets that I use again and again in several projects.
 
 ## Structure
 
-* `build` contains the transpiled JS code.
-* `src` contains all the snippets source code.
+* `build` contains the transpiled JavaScript code.
+* `src` contains all the snippets source code in TypeScript.
 * `test` contains tests for all the code snippets.
-
-### TODOs:
-
-[x] setup test environment
-[ ] switch all to typescript
-[ ] write tests for all in src
 
 ## Development
 
-Make sure to update the version number in `package.json` and run `npm run build` before committing changes. That way `build` will always contain the latest build versions.
+All files in `src` should start with this line:
+
+```ts
+/*! <name> <version> | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+```
+
+* `<name>` is the name of the package, it usually corresponds with the filename
+* `<version>` is the version number in classical semver format (e.g `v1.2.3`)
+
+Make sure to update the version number after changing a snippet.
+
+Always run `npm run build` before committing changes. That way `build` will always contain the latest build versions.
