@@ -21,4 +21,4 @@ All files in `src` should start with this line:
 
 Make sure to update the version number after changing a snippet.
 
-Always run `npm run build` before committing changes. That way `build` will always contain the latest build versions.
+Always run `npm run deploy` before committing changes. That will run the linter as well as all tests and then build and minify the source code into the `build` directory.
