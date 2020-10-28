@@ -1,10 +1,7 @@
 {
-  "name": "hd-snippets-js",
+  "name": "js-snippets",
   "version": "0.0.1",
   "private": true,
-  "files": [
-    "build"
-  ],
   "scripts": {
     "build": "npm run clear && tsc && npm run minify",
     "clear": "rm -rf ./build",
@@ -13,11 +10,5 @@
     "test": "mocha -r ts-node/register 'test/**/*.ts'"
   },
   "devDependencies": {
-    "@types/mocha": "^7.0.2",
-    "@types/node": "^12.12.53",
-    "mocha": "^7.2.0",
-    "ts-node": "^8.10.2",
-    "typescript": "^3.9.7",
-    "uglify-es": "^3.3.9"
   }
 }
