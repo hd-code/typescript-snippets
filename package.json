@@ -5,11 +5,11 @@
   "scripts": {
     "build": "npm run clear && tsc && npm run minify",
     "clear": "rm -rf ./build/*",
-    "deploy": "npm run lint && npm test && npm run build",
+    "deploy": "npm run lint && npm test -- -R min && npm run build",
     "lint": "eslint --fix src test",
     "minify": "for i in $(find build -name *.js); do uglifyjs $i -o $i -mc --comments '/^!/'; done;",
     "start": "npm run deploy",
-    "test": "mocha -R min -r ts-node/register 'test/**/*.ts'"
+    "test": "mocha -r ts-node/register 'test/**/*.ts'"
   },
   "devDependencies": {
     "@types/mocha": "^8.0.3",
