@@ -104,27 +104,27 @@ describe('vector', () => {
         });
     });
 
-    xdescribe(median.name, () => {
+    describe(median.name, () => {
         [
             {
-                name: 'should avg normal vector',
+                name: 'should return middle element when odd length',
                 input: [1,2,3],
                 expected: 2
             },
             {
-                name: 'should avg vector with decimals',
-                input: [0.5, 2, 5.2],
-                expected: 7.7 / 3
+                name: 'should return avg of middle elements when even length',
+                input: [1,2,3,4],
+                expected: 2.5
             },
             {
-                name: 'should avg vector with negative numbers',
-                input: [1,-2,3],
-                expected: 2 / 3
-            },
-            {
-                name: 'should return 0, when vector is empty',
+                name: 'should return 0 when no elements',
                 input: [],
                 expected: 0
+            },
+            {
+                name: 'should return median when unordered',
+                input: [1,9,2,8,3,7,4,6,5],
+                expected: 5
             },
         ].forEach(({name, input, expected}) => {
             it(name, () => {
