@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import { describe } from 'mocha';
-import { isUndefined, isNull, isBool, isInteger, isNumber, isString, isArray, isObject, hasKey } from '../src/type-guards';
+import { hasKey, isArray, isBool, isInteger, isNull, isNumber, isObject, isString, isUndefined } from '../src/type-guards';
 
 // -----------------------------------------------------------------------------
 
