@@ -4,11 +4,22 @@
   "private": true,
   "scripts": {
     "build": "npm run clear && tsc && npm run minify",
-    "clear": "rm -rf ./build",
-    "minify": "for i in $(find build -name *.js); do uglifyjs $i -o $i -mc; done;",
-    "start": "npm test",
+    "clear": "rm -rf build/*",
+    "deploy": "npm run lint && npm test -- -R min && npm run build",
+    "lint": "eslint --fix src test",
+    "minify": "for i in $(find build -name *.js); do uglifyjs $i -o $i -mc --comments '/^!/'; done;",
+    "start": "npm run deploy",
     "test": "mocha -r ts-node/register 'test/**/*.ts'"
   },
   "devDependencies": {
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^12.19.4",
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "eslint": "^7.13.0",
+    "mocha": "^8.2.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5",
+    "uglify-es": "^3.3.9"
   }
 }

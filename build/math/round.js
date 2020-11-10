@@ -1,0 +1,2 @@
+"use strict";
+/*! round 0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */function round(t,e=0){if(t instanceof Array){const r=[];for(let n=0,o=t.length;n<o;n++)r.push(round(t[n],e));return r}const r=Math.pow(10,e);return Math.round(t*r)/r}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=round;
