@@ -84,13 +84,13 @@ export function getInt(arg1?: number, arg2?: number): number {
 // -----------------------------------------------------------------------------
 
 /** Sets the seed for the random number generator to 0. */
-// export function setSeed(): void;
+export function setSeed(): void;
 
-// /** Sets the seed for the random number generator.
-//  * 
-//  * _Note:_ Decimals will be ignored.
-//  */
-// export function setSeed(seed: number): void;
+/** Sets the seed for the random number generator.
+ * 
+ * _Note:_ Decimals will be ignored.
+ */
+export function setSeed(seed: number): void;
 
 export function setSeed(seed?: number): void {
     if (!seed) {

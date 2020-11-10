@@ -4,7 +4,7 @@ import { parse, serialize } from '../src/csv';
 // -----------------------------------------------------------------------------
 
 describe('csv', () => {
-    describe(serialize.name + '()', () => {
+    describe(serialize.name, () => {
         [
             {
                 name: 'should correctly serialize array with objects with primitive types',
@@ -62,15 +62,13 @@ describe('csv', () => {
                 ],
                 output: 'id,func,default\n1,,\n2,,0'
             },
-        ].forEach(({name,input,output}) => {
-            it(name, () => {
-                const actual = serialize(input as any); // eslint-disable-line
-                assert.strictEqual(actual, output);
-            });
-        });
+        ].forEach(({name,input,output}) => it(name, () => {
+            const actual = serialize(input as any); // eslint-disable-line
+            assert.strictEqual(actual, output);
+        }));
     });
 
-    describe(parse.name + '()', () => {
+    describe(parse.name, () => {
         [
             {
                 name: 'should correctly parse a CSV string with plain types',
@@ -100,11 +98,9 @@ describe('csv', () => {
                     { page: 'Start', description: 'Ready\nSteady\nGo!' },
                 ]
             },
-        ].forEach(({name,input,output}) => {
-            it(name, () => {
-                const actual = parse(input);
-                assert.deepStrictEqual(actual, output);
-            });
-        });
+        ].forEach(({name,input,output}) => it(name, () => {
+            const actual = parse(input);
+            assert.deepStrictEqual(actual, output);
+        }));
     });
 });

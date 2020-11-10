@@ -36,12 +36,10 @@ describe('vector', () => {
                 input: undefined,
                 expected: false
             },
-        ].forEach(({name, input, expected}) => {
-            it(name, () => {
-                const actual = isVector(input);
-                assert.strictEqual(actual, expected);
-            });
-        });
+        ].forEach(({name, input, expected}) => it(name, () => {
+            const actual = isVector(input);
+            assert.strictEqual(actual, expected);
+        }));
     });
 
     describe(sum.name, () => {
@@ -66,12 +64,10 @@ describe('vector', () => {
                 input: [],
                 expected: 0
             },
-        ].forEach(({name, input, expected}) => {
-            it(name, () => {
-                const actual = sum(input);
-                assert.strictEqual(actual, expected);
-            });
-        });
+        ].forEach(({name, input, expected}) => it(name, () => {
+            const actual = sum(input);
+            assert.strictEqual(actual, expected);
+        }));
     });
 
     describe(avg.name, () => {
@@ -96,12 +92,10 @@ describe('vector', () => {
                 input: [],
                 expected: 0
             },
-        ].forEach(({name, input, expected}) => {
-            it(name, () => {
-                const actual = avg(input);
-                assert.strictEqual(actual, expected);
-            });
-        });
+        ].forEach(({name, input, expected}) => it(name, () => {
+            const actual = avg(input);
+            assert.strictEqual(actual, expected);
+        }));
     });
 
     describe(median.name, () => {
@@ -126,12 +120,10 @@ describe('vector', () => {
                 input: [1,9,2,8,3,7,4,6,5],
                 expected: 5
             },
-        ].forEach(({name, input, expected}) => {
-            it(name, () => {
-                const actual = median(input);
-                assert.strictEqual(actual, expected);
-            });
-        });
+        ].forEach(({name, input, expected}) => it(name, () => {
+            const actual = median(input);
+            assert.strictEqual(actual, expected);
+        }));
     });
 
     xdescribe(mag.name, () => {
@@ -151,12 +143,10 @@ describe('vector', () => {
                 input: [ Math.sin(5 * Math.PI / 4), Math.sin(5 * Math.PI / 4) ],
                 expected: 1
             },
-        ].forEach(({name, input, expected}) => {
-            it(name, () => {
-                const actual = mag(input);
-                assert.strictEqual(actual, expected);
-            });
-        });
+        ].forEach(({name, input, expected}) => it(name, () => {
+            const actual = mag(input);
+            assert.strictEqual(actual, expected);
+        }));
     });
 
     // TODO: add more

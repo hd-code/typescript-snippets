@@ -1,9 +1,9 @@
 import * as assert from 'assert';
-import { round } from '../../src/math/round';
+import round from '../../src/math/round';
 
 // -----------------------------------------------------------------------------
 
-describe('round', () => {
+describe('math/round', () => {
     const precisions = [ undefined, 0, 2, -2 ];
     const cases = [
         { number: 0, expected: [0,0,0,0] },

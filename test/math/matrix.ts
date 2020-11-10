@@ -4,7 +4,7 @@ import { isMatrix } from '../../src/math/matrix';
 // -----------------------------------------------------------------------------
 
 describe('math/matrix', () => {
-    describe.only(isMatrix.name, () => {
+    describe(isMatrix.name, () => {
         [
             {
                 name: '0x0 matrix',

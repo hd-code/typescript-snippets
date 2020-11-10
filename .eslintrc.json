@@ -26,6 +26,7 @@
     "no-else-return": ["warn"],
     "no-multi-spaces": ["warn"],
     "no-multiple-empty-lines": ["warn", { "max": 1 }],
-    "no-trailing-spaces": ["warn", { "ignoreComments": true }]
+    "no-trailing-spaces": ["warn", { "ignoreComments": true }],
+    "sort-imports": ["warn"]
   }
 }

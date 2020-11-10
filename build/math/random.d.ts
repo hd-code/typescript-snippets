@@ -28,4 +28,9 @@ export declare function getInt(max: number): number;
  */
 export declare function getInt(min: number, max: number): number;
 /** Sets the seed for the random number generator to 0. */
-export declare function setSeed(seed?: number): void;
+export declare function setSeed(): void;
+/** Sets the seed for the random number generator.
+ *
+ * _Note:_ Decimals will be ignored.
+ */
+export declare function setSeed(seed: number): void;

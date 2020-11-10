@@ -1,3 +1,7 @@
+/*! matrix v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+
+// -----------------------------------------------------------------------------
+
 /** TypeGuard for a matrix. */
 export function isMatrix(matrix: unknown): matrix is number[][] {
     if (!(matrix instanceof Array)) {
@@ -33,9 +37,9 @@ export function isMatrix(matrix: unknown): matrix is number[][] {
 // -----------------------------------------------------------------------------
 
 // TODO:
-export function det(matrix: number[][]): number {
-    return 0;
-}
+// export function det(matrix: number[][]): number {
+//     return 0;
+// }
 
 export function flatten(matrix: number[][]): number[] {
     const result = [];
@@ -119,7 +123,7 @@ export function mul(left: number[][], right: number[][]): number[][] {
 }
 
 /** Multiplies two matrices element-wise. */
-export function dotMul(x: number[][], y: number[][]): number[][] {
+export function mulElements(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }

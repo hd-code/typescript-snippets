@@ -1,0 +1,2 @@
+"use strict";
+/*! clone v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */function clone(e){return e instanceof Array?e.slice():null!==e&&"object"==typeof e?Object.assign({},e):e}function deepClone(e){if(e instanceof Array){const n=[];for(let o=0,t=e.length;o<t;o++)n[o]=deepClone(e[o]);return n}if(null!==e&&"object"==typeof e){const n={};for(const o in e)n[o]=deepClone(e[o]);return n}return e}Object.defineProperty(exports,"__esModule",{value:!0}),exports.deepClone=exports.clone=void 0,exports.clone=clone,exports.deepClone=deepClone;
