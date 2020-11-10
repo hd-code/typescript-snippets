@@ -4,8 +4,12 @@ export function isMatrix(matrix: unknown): matrix is number[][] {
         return false;
     }
 
-    const elementsPerRow: number|undefined = matrix?.[0]?.[0]?.length;
-    if (!elementsPerRow) {
+    if (matrix.length === 0) {
+        return true;
+    }
+
+    const elementsPerRow: number|undefined = matrix[0]?.length;
+    if (elementsPerRow === undefined) {
         return false;
     }
 
