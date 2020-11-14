@@ -5,13 +5,18 @@
 /** Transforms a decimal number into a binary number. The returned binary number
  * is a string. Optionally, the number of digits the result should have can be
  * specified. */
-export function toBinary(n: number, digits = 0): string {
-    const bin = (n >>> 0).toString(2);
-    let zeros = '';
-    for (let i = 0, ie = digits; i < ie; i++) {
-        zeros += '0';
+export function toBinary(n: number, digits?: number): string {
+    if (digits !== undefined && digits < 1) {
+        return '';
     }
-    return !digits ? bin : (zeros + bin).slice(-digits);
+    let result = (n >>> 0).toString(2);
+    if (digits === undefined) {
+        return result;
+    }
+    while (result.length < digits) {
+        result = '0' + result;
+    }
+    return result.slice(-digits);
 }
 
 /** Transforms a decimal number into a binary number. The returned binary number
