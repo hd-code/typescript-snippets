@@ -3,9 +3,21 @@
 // -----------------------------------------------------------------------------
 
 /** Transforms a decimal number into a binary number. The returned binary number
+ * is an array of numbers. Optionally, the number of digits the result should
+ * have can be specified. */
+export function toBinary(n: number, digits?: number): number[] {
+    const bin = toBinaryString(n, digits);
+    const result = [];
+    for (let i = 0, ie = bin.length; i < ie; i++) {
+        result.push(parseInt(bin[i]));
+    }
+    return result;
+}
+
+/** Transforms a decimal number into a binary number. The returned binary number
  * is a string. Optionally, the number of digits the result should have can be
  * specified. */
-export function toBinary(n: number, digits?: number): string {
+export function toBinaryString(n: number, digits?: number): string {
     if (digits !== undefined && digits < 1) {
         return '';
     }
@@ -17,16 +29,4 @@ export function toBinary(n: number, digits?: number): string {
         result = '0' + result;
     }
     return result.slice(-digits);
-}
-
-/** Transforms a decimal number into a binary number. The returned binary number
- * is an array of numbers. Optionally, the number of digits the result should
- * have can be specified. */
-export function toBinaryString(n: number, digits?: number): number[] {
-    const bin = toBinary(n, digits);
-    const result = [];
-    for (let i = 0, ie = bin.length; i < ie; i++) {
-        result.push(parseInt(bin[i]));
-    }
-    return result;
 }

@@ -92,7 +92,7 @@ export function mul(x: number[], y: number[]): number[] {
 
 /** Calculates the dot product of two vectors. */
 export function dot(x: number[], y: number[]): number {
-    if (x.length !== y.length) {
+    if (x.length !== y.length || x.length === 0 || y.length === 0) {
         return NaN;
     }
     let result = 0;

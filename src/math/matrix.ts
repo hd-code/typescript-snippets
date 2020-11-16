@@ -104,26 +104,8 @@ export function sub(x: number[][], y: number[][]): number[][] {
     return result;
 }
 
-/** Multiplies two matrices. */
-export function mul(left: number[][], right: number[][]): number[][] {
-    const result: number[][] = [];
-    for (let i = 0, ie = left.length; i < ie; i++) {
-        result.push([]);
-        for (let j = 0, je = right[0].length; j < je; j++) {
-            result[i].push(0);
-            for (let k = 0, ke = left[i].length; k < ke; k++) {
-                if (right[k][j] === undefined) {
-                    return [];
-                }
-                result[i][j] += left[i][k] * right[k][j];
-            }
-        }
-    }
-    return result;
-}
-
-/** Multiplies two matrices element-wise. */
-export function mulElements(x: number[][], y: number[][]): number[][] {
+/** Multiplies two matrices element-wise. For matrix-product see {@link dot} */
+export function mul(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
@@ -135,6 +117,24 @@ export function mulElements(x: number[][], y: number[][]): number[][] {
         result.push([]);
         for (let j = 0, je = x[i].length; j < je; j++) {
             result[i].push(x[i][j] * y[i][j]);
+        }
+    }
+    return result;
+}
+
+/** Calculates the matrix-product of both matrices. */
+export function dot(left: number[][], right: number[][]): number[][] {
+    const result: number[][] = [];
+    for (let i = 0, ie = left.length; i < ie; i++) {
+        result.push([]);
+        for (let j = 0, je = right[0].length; j < je; j++) {
+            result[i].push(0);
+            for (let k = 0, ke = left[i].length; k < ke; k++) {
+                if (right[k][j] === undefined) {
+                    return [];
+                }
+                result[i][j] += left[i][k] * right[k][j];
+            }
         }
     }
     return result;

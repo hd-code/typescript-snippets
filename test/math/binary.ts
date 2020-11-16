@@ -20,17 +20,17 @@ describe('math/binary', () => {
         { input: [ 2, 3.7 ], expStr: '010', expArr: [0,1,0] },
     ];
 
-    describe(toBinary.name, () => cases.forEach(({input,expStr}) => {
-        it(input[0] + ' with ' + input[1] + ' digits => ' + expStr, () => {
+    describe(toBinary.name, () => cases.forEach(({input,expArr}) => {
+        it(input[0] + ' with ' + input[1] + ' digits => (' + expArr + ')', () => {
             const actual = toBinary(input[0], input[1]);
-            assert.strictEqual(actual, expStr);
+            assert.deepStrictEqual(actual, expArr);
         });
     }));
 
-    describe(toBinary.name, () => cases.forEach(({input,expArr}) => {
-        it(input[0] + ' with ' + input[1] + ' digits => (' + expArr + ')', () => {
+    describe(toBinaryString.name, () => cases.forEach(({input,expStr}) => {
+        it(input[0] + ' with ' + input[1] + ' digits => ' + expStr, () => {
             const actual = toBinaryString(input[0], input[1]);
-            assert.deepStrictEqual(actual, expArr);
+            assert.strictEqual(actual, expStr);
         });
     }));
 });
