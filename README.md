@@ -4,8 +4,8 @@ This repo contains a collection of very helpful JS functions and snippets that I
 
 ## Structure
 
-- `dist/` holds the compiled and minified code for distribution and TypeScript declaration files. This is generated automatically during a build process.
-- `src/` holds all the source code, which will be compiled to `dist/`
+- `build/` holds the compiled and minified code for distribution and TypeScript declaration files. This is generated automatically during a build process.
+- `src/` holds all the source code, which will be compiled to `build/`
 - `test/` holds automatic test scripts for the code in `src/`
 
 ## Development
@@ -35,7 +35,7 @@ Make sure to update the version number after changing a snippet.
 
 ### Helpful commands
 
-- `npm run build` will compile and minify the project to `dist/`
-- `npm run deploy` will lint the project, run all tests and if all goes well compile and minify the project to `dist/`
+- `npm run build` will compile and minify the project to `build/`
+- `npm run deploy` will lint the project, run all tests and if all goes well compile and minify the project to `build/`
 - `npm run lint` will check and fix to some degree the syntax of the TypeScript files in `src/` and `test/`
 - `npm test` will run all tests in `test/` and log the results
