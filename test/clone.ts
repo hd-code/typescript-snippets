@@ -4,7 +4,7 @@ import { clone, deepClone } from '../src/clone';
 // -----------------------------------------------------------------------------
 
 describe('clone', () => {
-    describe(clone.name, () => {
+    describe(clone.name + '()', () => {
         it('should clone primitive types (number,string,null,undefined)', () => {
             const testData = [1,'text',null,undefined];
             testData.forEach(data => assert.strictEqual(clone(data), data));
@@ -70,7 +70,7 @@ describe('clone', () => {
         });
     });
 
-    describe(deepClone.name, () => {
+    describe(deepClone.name + '()', () => {
         it('should clone primitive types (number,string,null,undefined)', () => {
             const testData = [1,'text',null,undefined];
             testData.forEach(data => assert.strictEqual(deepClone(data), data));

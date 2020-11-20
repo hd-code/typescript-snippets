@@ -1,4 +1,4 @@
-/*! type-guards v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! type-guards v0.0.2 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
 export declare function isUndefined(value: unknown): value is undefined;
 export declare function isNull(value: unknown): value is null;
 export declare function isBool(bool: unknown): bool is boolean;

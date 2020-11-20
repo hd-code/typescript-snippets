@@ -3,18 +3,18 @@ import round from '../../src/math/round';
 
 // -----------------------------------------------------------------------------
 
-describe('math/round', () => {
-    const precisions = [ undefined, 0, 2, -2 ];
-    const cases = [
-        { number: 0, expected: [0,0,0,0] },
-        { number: 3, expected: [ 3, 3, 3, 0] },
-        { number:-3, expected: [-3,-3,-3,-0] },
-        { number: 123.456, expected: [ 123, 123, 123.46, 100] },
-        { number:-123.456, expected: [-123,-123,-123.46,-100] },
-        { number: 654.321, expected: [ 654, 654, 654.32, 700] },
-        { number:-654.321, expected: [-654,-654,-654.32,-700] },
-    ];
+const precisions = [ undefined, 0, 2, -2 ];
+const cases = [
+    { number: 0, expected: [0,0,0,0] },
+    { number: 3, expected: [ 3, 3, 3, 0] },
+    { number:-3, expected: [-3,-3,-3,-0] },
+    { number: 123.456, expected: [ 123, 123, 123.46, 100] },
+    { number:-123.456, expected: [-123,-123,-123.46,-100] },
+    { number: 654.321, expected: [ 654, 654, 654.32, 700] },
+    { number:-654.321, expected: [-654,-654,-654.32,-700] },
+];
 
+describe('math/round', () => {
     describe('number', () => {
         cases.forEach(({number, expected}) => {
             describe(number+'', () => {

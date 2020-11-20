@@ -1,43 +1,31 @@
 import * as assert from 'assert';
 import { add, avg, dot, isVector, mag, median, mul, scale, sub, sum } from '../../src/math/vector';
+
 import round from '../../src/math/round';
 
 // -----------------------------------------------------------------------------
 
 describe('vector', () => {
     describe(isVector.name, () => {
-        [
-            {
-                name: 'should return true for a normal vector',
-                input: [1, 2, 3],
-                expected: true
-            },
-            {
-                name: 'should return true for an empty vector',
-                input: [],
-                expected: true
-            },
-            {
-                name: 'should return false, when not all elements are numbers',
-                input: [1, '2', 3],
-                expected: false
-            },
-            {
-                name: 'should return false, when not an array',
-                input: '1,2,3',
-                expected: false
-            },
-            {
-                name: 'should return false, when null',
-                input: null,
-                expected: false
-            },
-            {
-                name: 'should return false, when no input',
-                input: undefined,
-                expected: false
-            },
-        ].forEach(({ name, input, expected }) => it(name, () => {
+        [{
+            name: 'normal vector', expected: true,
+            input: [1, 2, 3]
+        }, {
+            name: 'empty vector', expected: true,
+            input: []
+        }, {
+            name: 'not all elements are numbers', expected: false,
+            input: [1, '2', 3]
+        }, {
+            name: 'string', expected: false,
+            input: '1,2,3'
+        }, {
+            name: 'null', expected: false,
+            input: null
+        }, {
+            name: 'no input', expected: false,
+            input: undefined
+        }].forEach(({name,input,expected}) => it(name + ' – expect: ' + expected, () => {
             const actual = isVector(input);
             assert.strictEqual(actual, expected);
         }));

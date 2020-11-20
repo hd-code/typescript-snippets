@@ -3,35 +3,35 @@ import { hasKey, isArray, isBool, isInteger, isNull, isNumber, isObject, isStrin
 
 // -----------------------------------------------------------------------------
 
-describe('TypeGuards', () => {
-    type CaseKey = keyof typeof cases;
-    const cases = {
-        undefined: undefined,
-        null: null,
-        true: true,
-        false: false,
-        string: 'string',
-        emptyString: '',
-        zero: 0,
-        integer: 2,
-        integerNegative: -2,
-        number: 3.45,
-        numberNegative: -3.45,
-        arrayNumbers: [1, 2, 3],
-        arrayStrings: ['1', '2', '3'],
-        arrayMixed: [1, '2', 3],
-        object: { name: 'John Doe', age: 42 },
-    };
-    function checkCases<T>(typeGuard: (val: unknown) => val is T, trueCases: CaseKey[]) {
-        for (const key in cases) {
-            it(key, () => {
-                const expected = trueCases.includes(key as CaseKey);
-                const actual = typeGuard(cases[key as CaseKey]);
-                assert.strictEqual(actual, expected);
-            });
-        }
+type CaseKey = keyof typeof cases;
+const cases = {
+    undefined: undefined,
+    null: null,
+    true: true,
+    false: false,
+    string: 'string',
+    emptyString: '',
+    zero: 0,
+    integer: 2,
+    integerNegative: -2,
+    number: 3.45,
+    numberNegative: -3.45,
+    arrayNumbers: [1, 2, 3],
+    arrayStrings: ['1', '2', '3'],
+    arrayMixed: [1, '2', 3],
+    object: { name: 'John Doe', age: 42 },
+};
+function checkCases<T>(typeGuard: (val: unknown) => val is T, trueCases: CaseKey[]) {
+    for (const key in cases) {
+        const expected = trueCases.includes(key as CaseKey);
+        it(key + ' – expect: ' + expected, () => {
+            const actual = typeGuard(cases[key as CaseKey]);
+            assert.strictEqual(actual, expected);
+        });
     }
+}
 
+describe('TypeGuards', () => {
     describe(isUndefined.name, () => checkCases(isUndefined, ['undefined']));
 
     describe(isNull.name, () => checkCases(isNull, ['null']));
@@ -43,6 +43,8 @@ describe('TypeGuards', () => {
     describe(isNumber.name, () => checkCases(isNumber, ['zero','integer','integerNegative','number','numberNegative']));
 
     describe(isString.name, () => checkCases(isString, ['string','emptyString']));
+
+    describe(isObject.name, () => checkCases(isObject, ['object']));
 
     describe(isArray.name, () => {
         describe('without type guard', () => checkCases(isArray, ['arrayNumbers','arrayStrings','arrayMixed']));
@@ -59,45 +61,45 @@ describe('TypeGuards', () => {
         });
     });
 
-    describe(isObject.name, () => checkCases(isObject, ['object']));
-
     describe(hasKey.name, () => {
-        [
-            {
-                name: 'return true when object has key',
-                input: [{name: 'John'}, 'name'], expected: true
-            },
-            {
-                name: 'return false when object does not have key',
-                input: [{name: 'John'}, 'age'], expected: false
-            },
-            {
-                name: 'return true when object has key and matching type guard',
-                input: [{name: 'John'}, 'name', isString], expected: true
-            },
-            {
-                name: 'return false when object has key but type guard fails',
-                input: [{name: 'John'}, 'name', isNumber], expected: false
-            },
-            {
-                name: 'return false when object does not have key, regardless the type guard',
-                input: [{name: 'John'}, 'age', isString], expected: false
-            },
-        ].forEach(({name, input, expected}) => it(name, () => {
-            const actual = hasKey(input[0], input[1] as string, input[2] as any); // eslint-disable-line
-            assert.strictEqual(actual, expected);
-        }));
+        [{
+            name: 'object has key', expected: true,
+            obj: {name: 'John'}, key: 'name'
+        }, {
+            name: 'object does not have key', expected: false,
+            obj: {name: 'John'}, key: 'age'
+        }, {
+            name: 'object has key and type guard matches', expected: true,
+            obj: {name: 'John'}, key: 'name', typeGuard: isString
+        }, {
+            name: 'object has key but type guard fails', expected: false,
+            obj: {name: 'John'}, key: 'name', typeGuard: isNumber
+        }, {
+            name: 'object has key with falsy value (empty string)', expected: true,
+            obj: {name: ''}, key: 'name'
+        }, {
+            name: 'object has key with falsy value (0)', expected: true,
+            obj: {name: 0}, key: 'name'
+        }, {
+            name: 'object has key with falsy value (null)', expected: true,
+            obj: {name: null}, key: 'name'
+        }, {
+            name: 'object has key with falsy value (undefined)', expected: true,
+            obj: {name: undefined}, key: 'name'
+        }].forEach(({name,expected,obj,key,typeGuard}) => {
+            it(name + ' – expect: ' + expected, () => {
+                const actual = hasKey(obj, key, typeGuard);
+                assert.strictEqual(actual, expected);
+            });
+        });
 
-        describe('should return false for none objects', () => {
-            for (const key in cases) {
-                if (key === 'object') {
-                    continue;
-                }
-                it(key, () => {
+        for (const key in cases) {
+            if (key !== 'object') {
+                it(key + ' – expect: false', () => {
                     const actual = hasKey(cases[key as CaseKey], '');
                     assert.strictEqual(actual, false);
                 });
             }
-        });
+        }
     });
 });
