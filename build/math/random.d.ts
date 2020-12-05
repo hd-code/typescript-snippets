@@ -1,4 +1,4 @@
-/*! random v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! random v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
 /**
  * @file
  * The JavaScript Math.random() function is not seedable. This package provides
@@ -7,7 +7,7 @@
  *
 * Make sure to set the seed only once in your application, ideally on startup.
 */
-/** Returns a random number between 0 (included) and 1 (not included). */
+/** Returns a random number between 0 and 1 (both included). */
 export declare function getFloat(): number;
 /** Returns a random number between 0 and `max` (both included). */
 export declare function getFloat(max: number): number;

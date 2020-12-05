@@ -1,4 +1,4 @@
-/*! matrix v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! matrix v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
 
 // -----------------------------------------------------------------------------
 
@@ -41,6 +41,7 @@ export function isMatrix(matrix: unknown): matrix is number[][] {
 //     return 0;
 // }
 
+/** Transforms a matrix to a vector by chaining all rows together in series. */
 export function flatten(matrix: number[][]): number[] {
     const result = [];
     for (let i = 0, ie = matrix.length; i < ie; i++) {
@@ -53,17 +54,7 @@ export function flatten(matrix: number[][]): number[] {
 
 /** Transposes a matrix. So, the rows become the columns and vice versa. */
 export function transpose(matrix: number[][]): number[][] {
-    const result: number[][] = [];
-    for (let j = 0, je = matrix[0].length; j < je; j++) {
-        result.push([]);
-        for (let i = 0, ie = matrix.length; i < ie; i++) {
-            if (matrix[i][j] === undefined) {
-                return [];
-            }
-            result[j].push(matrix[i][j]);
-        }
-    }
-    return result;
+    return !matrix?.[0] ? [] : matrix[0].map((_, i) => matrix.map(row => row[i]));
 }
 
 // -----------------------------------------------------------------------------
@@ -73,17 +64,7 @@ export function add(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    const result: number[][] = [];
-    for (let i = 0, ie = x.length; i < ie; i++) {
-        if (x[i].length !== y[i].length) {
-            return [];
-        }
-        result.push([]);
-        for (let j = 0, je = x[i].length; j < je; j++) {
-            result[i].push(x[i][j] + y[i][j]);
-        }
-    }
-    return result;
+    return x.map((_, i) => addVector(x[i], y[i]));
 }
 
 /** Subtract matrix y from matrix x element-wise. */
@@ -91,17 +72,7 @@ export function sub(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    const result: number[][] = [];
-    for (let i = 0, ie = x.length; i < ie; i++) {
-        if (x[i].length !== y[i].length) {
-            return [];
-        }
-        result.push([]);
-        for (let j = 0, je = x[i].length; j < je; j++) {
-            result[i].push(x[i][j] - y[i][j]);
-        }
-    }
-    return result;
+    return x.map((_, i) => subVector(x[i], y[i]));
 }
 
 /** Multiplies two matrices element-wise. For matrix-product see {@link dot} */
@@ -109,47 +80,22 @@ export function mul(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    const result: number[][] = [];
-    for (let i = 0, ie = x.length; i < ie; i++) {
-        if (x[i].length !== y[i].length) {
-            return [];
-        }
-        result.push([]);
-        for (let j = 0, je = x[i].length; j < je; j++) {
-            result[i].push(x[i][j] * y[i][j]);
-        }
-    }
-    return result;
+    return x.map((_, i) => mulVectors(x[i], y[i]));
 }
 
 /** Calculates the matrix-product of both matrices. */
 export function dot(left: number[][], right: number[][]): number[][] {
-    const result: number[][] = [];
-    for (let i = 0, ie = left.length; i < ie; i++) {
-        result.push([]);
-        for (let j = 0, je = right[0].length; j < je; j++) {
-            result[i].push(0);
-            for (let k = 0, ke = left[i].length; k < ke; k++) {
-                if (right[k][j] === undefined) {
-                    return [];
-                }
-                result[i][j] += left[i][k] * right[k][j];
-            }
-        }
-    }
-    return result;
+    const transposed = transpose(right);
+    return left.map(lRow => transposed.map(rRow => dotVector(lRow, rRow)));
 }
 
 // -----------------------------------------------------------------------------
 
 /** Scales a matrix by multiplying each element with the scalar value. */
 export function scale(scalar: number, matrix: number[][]): number[][] {
-    const result: number[][] = [];
+    const result = [];
     for (let i = 0, ie = matrix.length; i < ie; i++) {
-        result.push([]);
-        for (let j = 0, je = matrix[i].length; j < je; j++) {
-            result[i].push(scalar * matrix[i][j]);
-        }
+        result.push(scaleVector(scalar, matrix[i]));
     }
     return result;
 }
@@ -162,10 +108,61 @@ export function mulVector(matrix: number[][], vector: number[]): number[] {
         if (row.length !== vector.length) {
             return [];
         }
-        result.push(0);
-        for (let j = 0, je = row.length; j < je; j++) {
-            result[i] += row[j] * vector[j];
-        }
+        result.push(dotVector(row, vector));
+    }
+    return result;
+}
+
+// -----------------------------------------------------------------------------
+
+function addVector(x: number[], y: number[]): number[] {
+    if (x.length !== y.length) {
+        return [];
+    }
+    const result = [];
+    for (let i = 0, ie = x.length; i < ie; i++) {
+        result.push(x[i] + y[i]);
+    }
+    return result;
+}
+
+function subVector(x: number[], y: number[]): number[] {
+    if (x.length !== y.length) {
+        return [];
+    }
+    const result = [];
+    for (let i = 0, ie = x.length; i < ie; i++) {
+        result.push(x[i] - y[i]);
+    }
+    return result;
+}
+
+function mulVectors(x: number[], y: number[]): number[] {
+    if (x.length !== y.length) {
+        return [];
+    }
+    const result = [];
+    for (let i = 0, ie = x.length; i < ie; i++) {
+        result.push(x[i] * y[i]);
+    }
+    return result;
+}
+
+function dotVector(x: number[], y: number[]): number {
+    if (x.length !== y.length || x.length === 0 || y.length === 0) {
+        return NaN;
+    }
+    let result = 0;
+    for (let i = 0, ie = x.length; i < ie; i++) {
+        result += x[i] * y[i];
+    }
+    return result;
+}
+
+function scaleVector(scalar: number, vector: number[]): number[] {
+    const result = [];
+    for (let i = 0, ie = vector.length; i < ie; i++) {
+        result.push(scalar * vector[i]);
     }
     return result;
 }

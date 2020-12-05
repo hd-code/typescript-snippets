@@ -1,6 +1,7 @@
-/*! matrix v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! matrix v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
 /** TypeGuard for a matrix. */
 export declare function isMatrix(matrix: unknown): matrix is number[][];
+/** Transforms a matrix to a vector by chaining all rows together in series. */
 export declare function flatten(matrix: number[][]): number[];
 /** Transposes a matrix. So, the rows become the columns and vice versa. */
 export declare function transpose(matrix: number[][]): number[][];

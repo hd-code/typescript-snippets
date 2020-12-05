@@ -1,3 +1,7 @@
+/*! files v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+
+// -----------------------------------------------------------------------------
+
 /** Saves a string of data to a file. */
 export function downloadFile(data: string, filename?: string): Promise<void> {
     return new Promise((resolve, reject) => {

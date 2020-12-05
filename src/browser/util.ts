@@ -1,12 +1,16 @@
+/*! browser-util v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+
+// -----------------------------------------------------------------------------
+
 type ElFunc = (element: Element, index: number) => void;
 
 export function $(selector: string, fn?: ElFunc): NodeListOf<Element>;
-export function $(element: Element, selector: string, fn?: ElFunc): NodeListOf<Element>;
+export function $(root: Element, selector: string, fn?: ElFunc): NodeListOf<Element>;
 
-export function $(_prim: Element | string, _sec?: ElFunc | string, _ter?: ElFunc): NodeListOf<Element> {
-    const root = typeof _prim !== 'string' ? _prim as Element : document;
-    const selector = typeof _prim === 'string' ? _prim : _sec as string;
-    const fn = typeof _sec === 'string' ? _ter : _sec as ElFunc | undefined;
+export function $(arg1: Element | string, arg2?: ElFunc | string, arg3?: ElFunc): NodeListOf<Element> {
+    const root = typeof arg1 !== 'string' ? arg1 as Element : document;
+    const selector = typeof arg1 === 'string' ? arg1 : arg2 as string;
+    const fn = typeof arg2 === 'string' ? arg3 : arg2 as ElFunc | undefined;
 
     const elements = root.querySelectorAll(selector);
     if (fn) {

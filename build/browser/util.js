@@ -1,1 +1,2 @@
+/*! browser-util v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
 export function $(t,e,n){const o="string"!=typeof t?t:document,l="string"==typeof t?t:e,s="string"==typeof e?n:e,i=o.querySelectorAll(l);if(s)for(let t=0,e=i.length;t<e;t++)s(i[t],t);return i};export function hide(t){t.style.display="none"};export function show(t){t.style.display=""};export function toggle(t){"none"===t.style.display?t.style.display="":t.style.display="none"};

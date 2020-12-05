@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { LocalStorage } from '../src/storage-local';
-import { TestStorage } from './storage';
+import { LocalStorage } from './storage-local';
+import { TestStorage } from './storage.test';
 
 // -----------------------------------------------------------------------------
 

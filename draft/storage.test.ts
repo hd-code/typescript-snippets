@@ -1,5 +1,5 @@
 import assert from 'assert';
-import * as storage from '../src/storage';
+import * as storage from './storage';
 
 // -----------------------------------------------------------------------------
 

@@ -1,8 +1,9 @@
-/*! vector v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! vector v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
 /** TypeGuard for a vector. */
 export declare function isVector(vector: unknown): vector is number[];
 /** Calculates the sum of all elements in a vector. */
 export declare function sum(vector: number[]): number;
+export declare function sumAlt(vector: number[]): number;
 /** Calculates the average (mean) of all elements in a vector. */
 export declare function avg(vector: number[]): number;
 /** Calculates the median of all elements in a vector. */
@@ -17,6 +18,7 @@ export declare function sub(x: number[], y: number[]): number[];
 export declare function mul(x: number[], y: number[]): number[];
 /** Calculates the dot product of two vectors. */
 export declare function dot(x: number[], y: number[]): number;
+export declare function dotAlt(x: number[], y: number[]): number;
 /** Scales a vector by multiplying each element with the scalar value. */
 export declare function scale(scalar: number, vector: number[]): number[];
 /** Multiplies a vector with a matrix (in that order). */

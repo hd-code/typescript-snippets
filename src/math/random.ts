@@ -1,4 +1,4 @@
-/*! random v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! random v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
 
 /**
  * @file
@@ -11,7 +11,7 @@
 
 // -----------------------------------------------------------------------------
 
-/** Returns a random number between 0 (included) and 1 (not included). */
+/** Returns a random number between 0 and 1 (both included). */
 export function getFloat(): number;
 /** Returns a random number between 0 and `max` (both included). */
 export function getFloat(max: number): number;
@@ -29,7 +29,7 @@ export function getFloat(arg1?: number, arg2?: number): number {
     }
 
     const diff = max - min;
-    const rand = (getNext() - 1) / mod;
+    const rand = (getNext() - 1) / (mod - 2);
 
     return rand * diff + min;
 }

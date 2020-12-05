@@ -1,4 +1,4 @@
-/*! vector v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! vector v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
 
 // -----------------------------------------------------------------------------
 
@@ -24,6 +24,10 @@ export function sum(vector: number[]): number {
         result += vector[i];
     }
     return result;
+}
+
+export function sumAlt(vector: number[]): number {
+    return vector.reduce((sum, value) => sum + value, 0);
 }
 
 /** Calculates the average (mean) of all elements in a vector. */
@@ -102,13 +106,17 @@ export function dot(x: number[], y: number[]): number {
     return result;
 }
 
+export function dotAlt(x: number[], y: number[]): number {
+    return x.reduce((sum, _, i) => sum + x[i] * y[i]);
+}
+
 // -----------------------------------------------------------------------------
 
 /** Scales a vector by multiplying each element with the scalar value. */
 export function scale(scalar: number, vector: number[]): number[] {
     const result = [];
     for (let i = 0, ie = vector.length; i < ie; i++) {
-        result.push(vector[i] * scalar);
+        result.push(scalar * vector[i]);
     }
     return result;
 }
@@ -118,14 +126,12 @@ export function mulMatrix(vector: number[], matrix: number[][]): number[] {
     if (vector.length !== matrix.length) {
         return [];
     }
-    const result = [];
-    for (let j = 0, je = matrix[0].length; j < je; j++) {
-        for (let i = 0, ie = vector.length; i < ie; i++) {
-            if (matrix[i][j] === undefined) {
-                return [];
-            }
-            result.push(vector[i] * matrix[i][j]);
-        }
-    }
-    return result;
+    const transposed = transpose(matrix);
+    return transposed.map(row => dot(vector, row));
+}
+
+// -----------------------------------------------------------------------------
+
+function transpose(matrix: number[][]): number[][] {
+    return matrix[0].map((_, i) => matrix.map(row => row[i]));
 }
