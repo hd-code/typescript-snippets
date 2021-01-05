@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { MAX_INT, getFloat, getInt, setSeed } from '../../src/math/random';
+import { MAX_INT, getFloat, getInt, setSeed } from '../src/random';
 
 // -----------------------------------------------------------------------------
 

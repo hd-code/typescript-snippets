@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { toBinary, toBinaryString } from '../../src/math/binary';
+import { toBinary, toBinaryString } from '../src/binary';
 
 // -----------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ const cases = [
     { input: [ 2, 3.7 ], expStr: '010', expArr: [0,1,0] },
 ];
 
-describe('math/binary', () => {
+describe('binary', () => {
     describe(toBinary.name, () => cases.forEach(({input,expArr}) => {
         it(input[0] + ' with ' + input[1] + ' digits => (' + expArr + ')', () => {
             const actual = toBinary(input[0], input[1]);

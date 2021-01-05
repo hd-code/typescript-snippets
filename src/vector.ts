@@ -26,10 +26,6 @@ export function sum(vector: number[]): number {
     return result;
 }
 
-export function sumAlt(vector: number[]): number {
-    return vector.reduce((sum, value) => sum + value, 0);
-}
-
 /** Calculates the average (mean) of all elements in a vector. */
 export function avg(vector: number[]): number {
     if (vector.length === 0) {
@@ -104,10 +100,6 @@ export function dot(x: number[], y: number[]): number {
         result += x[i] * y[i];
     }
     return result;
-}
-
-export function dotAlt(x: number[], y: number[]): number {
-    return x.reduce((sum, _, i) => sum + x[i] * y[i]);
 }
 
 // -----------------------------------------------------------------------------

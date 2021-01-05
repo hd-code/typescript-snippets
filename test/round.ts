@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import round from '../../src/math/round';
+import round from '../src/round';
 
 // -----------------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 import * as assert from 'assert';
-import { add, avg, dot, isVector, mag, median, mul, scale, sub, sum } from '../../src/math/vector';
+import { add, avg, dot, isVector, mag, median, mul, scale, sub, sum } from '../src/vector';
 
-import round from '../../src/math/round';
+import round from '../src/round';
 
 // -----------------------------------------------------------------------------
 
