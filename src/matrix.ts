@@ -12,19 +12,19 @@ export function isMatrix(matrix: unknown): matrix is number[][] {
         return true;
     }
 
-    const elementsPerRow: number|undefined = matrix[0]?.length;
+    const elementsPerRow = (matrix[0] as number[] | undefined)?.length;
     if (elementsPerRow === undefined) {
         return false;
     }
 
     for (let i = 0, ie = matrix.length; i < ie; i++) {
-        const row = matrix[i];
+        const row = matrix[i] as number[] | unknown;
         if (!(row instanceof Array) || elementsPerRow !== row.length) {
             return false;
         }
 
         for (let j = 0, je = row.length; j < je; j++) {
-            const element = row[j];
+            const element = row[j] as number | unknown;
             if (typeof element !== 'number') {
                 return false;
             }

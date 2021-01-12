@@ -14,7 +14,7 @@
  */
 export function clone<T>(original: T): T {
     if (original instanceof Array) {
-        return (original as any).slice(); // eslint-disable-line
+        return original.slice() as any; // eslint-disable-line
     }
 
     if (original !== null && typeof original === 'object') {
@@ -35,7 +35,7 @@ export function deepClone<T>(original: T): T { // TODO: Find solution for Classe
     if (original instanceof Array) {
         const result = [];
         for (let i = 0, ie = original.length; i < ie; i++) {
-            result[i] = deepClone(original[i]);
+            result.push(deepClone(original[i]));
         }
         return result as any; // eslint-disable-line
     }

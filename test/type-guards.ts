@@ -26,6 +26,7 @@ const cases = {
 function checkCases<T>(typeGuard: (val: unknown) => val is T, trueCases: CaseKey[]) {
     for (const key in cases) {
         const expected = trueCases.includes(key as CaseKey);
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
         it(key + ' – expect: ' + expected, () => {
             const actual = typeGuard(cases[key as CaseKey]);
             assert.strictEqual(actual, expected);
@@ -90,6 +91,7 @@ describe('TypeGuards', () => {
             name: 'object has key with falsy value (undefined)', expected: true,
             obj: {name: undefined}, key: 'name',
         }].forEach(({name,expected,obj,key,typeGuard}) => {
+            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
             it(name + ' – expect: ' + expected, () => {
                 const actual = hasKey(obj, key, typeGuard);
                 assert.strictEqual(actual, expected);

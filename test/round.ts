@@ -17,9 +17,9 @@ const cases = [
 describe('math/round', () => {
     describe('number', () => {
         cases.forEach(({number, expected}) => {
-            describe(number+'', () => {
+            describe(number.toString(), () => {
                 precisions.forEach((precision, i) => {
-                    it('with ' + (precision ?? 'standard') + ' precision', () => {
+                    it(`with ${precision ?? 'standard'} precision`, () => {
                         const actual = round(number, precision);
                         assert.strictEqual(actual, expected[i]);
                     });
@@ -33,7 +33,7 @@ describe('math/round', () => {
         const input = indices.map(i => cases[i].number);
 
         precisions.forEach((precision, precI) => {
-            it('with ' + (precision ?? 'standard') + ' precision', () => {
+            it(`with ${precision ?? 'standard'} precision`, () => {
                 const expected = indices.map(i => cases[i].expected[precI]);
                 const actual = round(input, precision);
 
@@ -47,7 +47,7 @@ describe('math/round', () => {
         const input = indices.map(row => row.map(i => cases[i].number));
 
         precisions.forEach((precision, precI) => {
-            it('with ' + (precision ?? 'standard') + ' precision', () => {
+            it(`with ${precision ?? 'standard'} precision`, () => {
                 const expected = indices.map(row => row.map(i => cases[i].expected[precI]));
                 const actual = round(input, precision);
 

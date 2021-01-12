@@ -72,7 +72,7 @@ function stringifyEntry<T>(entry: T): string {
         return escape(JSON.stringify(entry));
     }
 
-    return escape('' + entry);
+    return escape('' + entry); // eslint-disable-line @typescript-eslint/restrict-plus-operands
 }
 
 function escape(string: string): string {

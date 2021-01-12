@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+
 import * as assert from 'assert';
 import { add, avg, dot, isVector, mag, median, mul, scale, sub, sum } from '../src/vector';
 

@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "npm run clear && tsc && npm run minify",
+    "build": "npm run clear && tsc -p tsconfig.build.json && npm run minify",
     "clear": "rm -rf build/*",
-    "deploy": "npm run lint && npm test -- -R min -p && npm run build",
+    "deploy": "npm run lint && npm test && npm run build",
     "lint": "eslint src test",
     "lint-fix": "npm run lint -- --fix",
     "minify": "for i in $(find build -name *.js); do uglifyjs $i -o $i -mc --comments '/^!/'; done;",

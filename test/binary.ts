@@ -21,14 +21,14 @@ const cases = [
 
 describe('binary', () => {
     describe(toBinary.name, () => cases.forEach(({input,expArr}) => {
-        it(input[0] + ' with ' + input[1] + ' digits => (' + expArr + ')', () => {
+        it(`${input[0]} with ${input[1]} digits => (${expArr.toString()})`, () => {
             const actual = toBinary(input[0], input[1]);
             assert.deepStrictEqual(actual, expArr);
         });
     }));
 
     describe(toBinaryString.name, () => cases.forEach(({input,expStr}) => {
-        it(input[0] + ' with ' + input[1] + ' digits => ' + expStr, () => {
+        it(`${input[0]} with ${input[1]} digits => ${expStr}`, () => {
             const actual = toBinaryString(input[0], input[1]);
             assert.strictEqual(actual, expStr);
         });
