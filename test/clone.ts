@@ -34,13 +34,13 @@ describe('clone', () => {
             assert.notDeepStrictEqual(actual, testData);
         });
 
-        it('should clone complex object with string, number, array, object, function – nested elements are not independant', () => {
+        it('should clone complex object – nested elements are not independant', () => {
             const testData = {
                 name: 'John Doe',
                 age: 42,
                 hobbies: ['poker','baccarat'],
                 phone: { company: 'Apple', model: 'iPhone SE' },
-                greet: () => 'Hello World'
+                greet: () => 'Hello World',
             };
             const actual = clone(testData);
             assert.deepStrictEqual(actual, testData);
@@ -100,13 +100,13 @@ describe('clone', () => {
             assert.notDeepStrictEqual(actual, testData);
         });
 
-        it('should clone complex object with string, number, array, object, function – objects should be independent now', () => {
+        it('should clone complex object – objects should be independent now', () => {
             const testData = {
                 name: 'John Doe',
                 age: 42,
                 hobbies: ['poker','baccarat'],
                 phone: { company: 'Apple', model: 'iPhone SE' },
-                greet: () => 'Hello World'
+                greet: () => 'Hello World',
             };
             const actual = deepClone(testData);
             assert.deepStrictEqual(actual, testData);

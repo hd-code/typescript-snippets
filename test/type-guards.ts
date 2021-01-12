@@ -1,5 +1,7 @@
 import * as assert from 'assert';
-import { hasKey, isArray, isBool, isInteger, isNull, isNumber, isObject, isString, isUndefined } from '../src/type-guards';
+import {
+    hasKey, isArray, isBool, isInteger, isNull, isNumber, isObject, isString, isUndefined,
+} from '../src/type-guards';
 
 // -----------------------------------------------------------------------------
 
@@ -53,6 +55,7 @@ describe('TypeGuards', () => {
             [
                 { name: 'all elements match guard', value: cases.arrayNumbers, typeGuard: isNumber, expected: true },
                 { name: 'no elements match guard', value: cases.arrayStrings, typeGuard: isNumber, expected: false },
+                // eslint-disable-next-line max-len
                 { name: 'some elements do not match guard', value: cases.arrayMixed, typeGuard: isNumber, expected: false },
             ].forEach(({name,value,typeGuard,expected}) => it(name, () => {
                 const actual = isArray(value, typeGuard);
@@ -64,28 +67,28 @@ describe('TypeGuards', () => {
     describe(hasKey.name, () => {
         [{
             name: 'object has key', expected: true,
-            obj: {name: 'John'}, key: 'name'
+            obj: {name: 'John'}, key: 'name',
         }, {
             name: 'object does not have key', expected: false,
-            obj: {name: 'John'}, key: 'age'
+            obj: {name: 'John'}, key: 'age',
         }, {
             name: 'object has key and type guard matches', expected: true,
-            obj: {name: 'John'}, key: 'name', typeGuard: isString
+            obj: {name: 'John'}, key: 'name', typeGuard: isString,
         }, {
             name: 'object has key but type guard fails', expected: false,
-            obj: {name: 'John'}, key: 'name', typeGuard: isNumber
+            obj: {name: 'John'}, key: 'name', typeGuard: isNumber,
         }, {
             name: 'object has key with falsy value (empty string)', expected: true,
-            obj: {name: ''}, key: 'name'
+            obj: {name: ''}, key: 'name',
         }, {
             name: 'object has key with falsy value (0)', expected: true,
-            obj: {name: 0}, key: 'name'
+            obj: {name: 0}, key: 'name',
         }, {
             name: 'object has key with falsy value (null)', expected: true,
-            obj: {name: null}, key: 'name'
+            obj: {name: null}, key: 'name',
         }, {
             name: 'object has key with falsy value (undefined)', expected: true,
-            obj: {name: undefined}, key: 'name'
+            obj: {name: undefined}, key: 'name',
         }].forEach(({name,expected,obj,key,typeGuard}) => {
             it(name + ' – expect: ' + expected, () => {
                 const actual = hasKey(obj, key, typeGuard);

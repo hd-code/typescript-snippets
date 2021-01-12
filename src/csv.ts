@@ -131,10 +131,10 @@ function parseObject<T>(keys: (keyof T)[], values: string[]): T {
 
 function parseValue<T>(value: string): T {
     switch (value) {
-    case '': return undefined as unknown as T;
-    case 'null': return null as unknown as T;
-    case 'false': return false as unknown as T;
-    case 'true': return true as unknown as T;
+        case '': return undefined as unknown as T;
+        case 'null': return null as unknown as T;
+        case 'false': return false as unknown as T;
+        case 'true': return true as unknown as T;
     }
 
     const num = +value;

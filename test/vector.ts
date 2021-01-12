@@ -9,22 +9,22 @@ describe('vector', () => {
     describe(isVector.name, () => {
         [{
             name: 'normal vector', expected: true,
-            input: [1, 2, 3]
+            input: [1, 2, 3],
         }, {
             name: 'empty vector', expected: true,
-            input: []
+            input: [],
         }, {
             name: 'not all elements are numbers', expected: false,
-            input: [1, '2', 3]
+            input: [1, '2', 3],
         }, {
             name: 'string', expected: false,
-            input: '1,2,3'
+            input: '1,2,3',
         }, {
             name: 'null', expected: false,
-            input: null
+            input: null,
         }, {
             name: 'no input', expected: false,
-            input: undefined
+            input: undefined,
         }].forEach(({name,input,expected}) => it(name + ' – expect: ' + expected, () => {
             const actual = isVector(input);
             assert.strictEqual(actual, expected);
