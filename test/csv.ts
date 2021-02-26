@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { parse, serialize } from '../src/csv';
+import { parse, serialize } from '../ts/csv';
 
 // -----------------------------------------------------------------------------
 

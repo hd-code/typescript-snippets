@@ -3,7 +3,7 @@
     "forceConsistentCasingInFileNames": true,
     "target": "es6",
     
-    // linter checks
+    // linterts/*ks
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,

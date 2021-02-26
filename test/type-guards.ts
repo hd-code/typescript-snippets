@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 // eslint-disable-next-line max-len
-import { hasKey, isArray, isBool, isInteger, isNull, isNumber, isObject, isString, isUndefined } from '../src/type-guards';
+import { hasKey, isArray, isBool, isInteger, isNull, isNumber, isObject, isString, isUndefined } from '../ts/type-guards';
 
 // -----------------------------------------------------------------------------
 

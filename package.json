@@ -5,11 +5,11 @@
   "scripts": {
     "build": "npm run clear && tsc -p tsconfig.build.json && npm run minify",
     "check": "tsc --noEmit",
-    "clear": "rm -rf build/*",
+    "clear": "rm -rf js/*",
     "deploy": "npm run check && npm run lint && npm test && npm run build",
-    "lint": "eslint src test",
+    "lint": "eslint ts test",
     "lint-fix": "npm run lint -- --fix",
-    "minify": "for i in $(find build -name *.js); do uglifyjs $i -o $i -mc --comments '/^!/'; done;",
+    "minify": "for i in $(find js -name *.js); do uglifyjs $i -o $i -mc --comments '/^!/'; done;",
     "start": "npm run deploy",
     "test": "mocha -r ts-node/register 'test/**/*.ts'"
   },

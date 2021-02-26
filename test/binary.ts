@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { toBinary, toBinaryString } from '../src/binary';
+import { toBinary, toBinaryString } from '../ts/binary';
 
 // -----------------------------------------------------------------------------
 

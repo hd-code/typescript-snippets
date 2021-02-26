@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { clone, deepClone } from '../src/clone';
+import { clone, deepClone } from '../ts/clone';
 
 // -----------------------------------------------------------------------------
 

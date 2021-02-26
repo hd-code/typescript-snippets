@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import round from '../src/round';
+import round from '../ts/round';
 
 // -----------------------------------------------------------------------------
 

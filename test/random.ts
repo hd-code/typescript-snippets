@@ -1,6 +1,6 @@
 import * as assert from 'assert';
-import { MAX_INT, getFloat, getInt, setSeed } from '../src/random';
-import { isInteger } from '../src/type-guards';
+import { MAX_INT, getFloat, getInt, setSeed } from '../ts/random';
+import { isInteger } from '../ts/type-guards';
 
 // -----------------------------------------------------------------------------
 
