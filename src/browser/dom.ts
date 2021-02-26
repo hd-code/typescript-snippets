@@ -1,4 +1,4 @@
-/*! browser-util v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! browser-util v0.0.2 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 
 // -----------------------------------------------------------------------------
 
@@ -13,11 +13,11 @@ export function $(arg1: Element | string, arg2?: ElFunc | string, arg3?: ElFunc)
     const fn = typeof arg2 === 'string' ? arg3 : arg2;
 
     const elements = root.querySelectorAll(selector);
+
     if (fn) {
-        for (let i = 0, ie = elements.length; i < ie; i++) {
-            fn(elements[i], i);
-        }
+        elements.forEach(fn);
     }
+
     return elements;
 }
 

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-
 import * as assert from 'assert';
 import { add, dot, flatten, isMatrix, mul, mulVector, scale, sub, transpose } from '../src/matrix';
 

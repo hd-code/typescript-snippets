@@ -58,7 +58,7 @@ describe('csv', () => {
             ],
             expected: 'id,func,default\n1,,\n2,,0',
         }].forEach(({name,input,expected}) => it(name, () => {
-            const actual = serialize(input as any); // eslint-disable-line
+            const actual = serialize(input as any); // eslint-disable-line @typescript-eslint/no-explicit-any
             assert.strictEqual(actual, expected);
         }));
     });

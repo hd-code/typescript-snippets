@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-
 import * as assert from 'assert';
 import { add, avg, dot, isVector, mag, median, mul, scale, sub, sum } from '../src/vector';
 
@@ -93,7 +91,7 @@ describe('vector', () => {
             { input: [[],[1,2]], expected: [] },
             { input: [[],[]], expected: [] },
         ].forEach(({ input, expected }) => it('(' + input[0] + ') + (' + input[1] + ') => (' + expected + ')', () => {
-            const actual = add(input[0], input[1]);
+            const actual = add(input[0] as number[], input[1] as number[]);
             assert.deepStrictEqual(actual, expected);
         }));
     });
@@ -110,7 +108,7 @@ describe('vector', () => {
             { input: [[],[1,2]], expected: [] },
             { input: [[],[]], expected: [] },
         ].forEach(({ input, expected }) => it('(' + input[0] + ') - (' + input[1] + ') => (' + expected + ')', () => {
-            const actual = sub(input[0], input[1]);
+            const actual = sub(input[0] as number[], input[1] as number[]);
             assert.deepStrictEqual(round(actual, 5), expected);
         }));
     });
@@ -127,7 +125,7 @@ describe('vector', () => {
             { input: [[],[1,2]], expected: [] },
             { input: [[],[]], expected: [] },
         ].forEach(({ input, expected }) => it('(' + input[0] + ') * (' + input[1] + ') => (' + expected + ')', () => {
-            const actual = mul(input[0], input[1]);
+            const actual = mul(input[0] as number[], input[1] as number[]);
             assert.deepStrictEqual(round(actual, 5), expected);
         }));
     });
@@ -144,7 +142,7 @@ describe('vector', () => {
             { input: [[],[1,2]], expected: NaN },
             { input: [[],[]], expected: NaN },
         ].forEach(({ input, expected }) => it('(' + input[0] + ') . (' + input[1] + ') => ' + expected, () => {
-            const actual = dot(input[0], input[1]);
+            const actual = dot(input[0] as number[], input[1] as number[]);
             assert.strictEqual(round(actual, 5), expected);
         }));
     });

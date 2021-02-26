@@ -1,4 +1,4 @@
-/*! round 0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! round 0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 
 /** Rounds a number, vector, matrix or tensor to the desired precision. The
  * precisions specifies how many digits after the decimal point should remain.

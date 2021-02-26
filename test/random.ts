@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import { MAX_INT, getFloat, getInt, setSeed } from '../src/random';
+import { isInteger } from '../src/type-guards';
 
 // -----------------------------------------------------------------------------
 
@@ -21,7 +22,7 @@ describe('math/random', () => {
         ].forEach(({name,args,expected}) => it(name, () => {
             const actuals = [];
             for (let i = 0; i < numberOfTries; i++) {
-                actuals.push(getFloat(args[0] as any, args[1] as any)); // eslint-disable-line
+                actuals.push(getFloat(args[0] as number, args[1] as number));
             }
 
             const smallest = Math.min(...actuals);
@@ -57,8 +58,8 @@ describe('math/random', () => {
         ].forEach(({name,args,expected}) => it(name, () => {
             const actuals = [];
             for (let i = 0; i < numberOfTries; i++) {
-                actuals.push(getInt(args[0] as any, args[1] as any)); // eslint-disable-line
-                assert.ok(Math.floor(actuals[i]) === actuals[i], 'did not return an integer');
+                actuals.push(getInt(args[0] as number, args[1] as number));
+                assert.ok(actuals.every(isInteger), 'did not return an integer');
             }
 
             const smallest = Math.min(...actuals);

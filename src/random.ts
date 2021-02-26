@@ -1,4 +1,4 @@
-/*! random v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! random v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 
 /**
  * @file

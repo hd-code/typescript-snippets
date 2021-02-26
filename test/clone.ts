@@ -22,7 +22,7 @@ describe('clone', () => {
             const testData = [[1,2],[3,4]];
             const actual = clone(testData);
             assert.deepStrictEqual(actual, testData);
-            actual[0][0] = 0;
+            (actual[0] as number[])[0] = 0;
             assert.deepStrictEqual(actual, testData);
         });
 
@@ -88,7 +88,7 @@ describe('clone', () => {
             const testData = [[1,2],[3,4]];
             const actual = deepClone(testData);
             assert.deepStrictEqual(actual, testData);
-            actual[0][0] = 0;
+            (actual[0] as number[])[0] = 0;
             assert.notDeepStrictEqual(actual, testData);
         });
 

@@ -1,11 +1,12 @@
-# JS Snippets
+# Web Snippets
 
-This repo contains a collection of very helpful JS functions and snippets that I use again and again in several projects.
+This repo contains a collection of helpful code snippets for the web (TypeScript, Javascript, CSS).
 
 ## Structure
 
-- `build/` holds the compiled and minified code for distribution and TypeScript declaration files. This is generated automatically during a build process.
-- `src/` holds all the source code, which will be compiled to `build/`
+- `build/` holds the compiled and minified JS code for distribution and TypeScript declaration files. This is generated automatically during a build process.
+- `src/` holds the TypeScript code snippets, which will be compiled to `build/`
+- `styles/` holds a basic collection of CSS files, which can be used as a base for a new web project
 - `test/` holds automatic test scripts for the code in `src/`
 
 ## Development
@@ -23,7 +24,7 @@ npm install
 All files in `src` should start with this line:
 
 ```ts
-/*! <name> <version> | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! <name> <version> | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 ```
 
 - `<name>` is the name of the package, it usually corresponds with the filename
@@ -35,7 +36,9 @@ Make sure to update the version number after changing a snippet.
 
 ### Helpful commands
 
-- `npm run build` will compile and minify the project to `build/`
-- `npm run deploy` will lint the project, run all tests and if all goes well compile and minify the project to `build/`
-- `npm run lint` will check and fix to some degree the syntax of the TypeScript files in `src/` and `test/`
+- `npm run build` will compile and minify the TypeScript snippets to `build/`
+- `npm run check` will typecheck the TypeScript snippets with the TypeScript compiler
+- `npm run lint` will check the syntax of the TypeScript files in `src/` and `test/`
+- `npm run lint-fix` will resolve some of the linter errors – use carefully
+- `npm run deploy` will check and lint the TypeScript snippets, run all tests and, if all goes well, compile and minify the project to `build/`
 - `npm test` will run all tests in `test/` and log the results

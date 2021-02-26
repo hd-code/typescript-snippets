@@ -1,4 +1,6 @@
-/*! matrix v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! matrix v0.1.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+
+import * as Vector from './vector';
 
 // -----------------------------------------------------------------------------
 
@@ -45,8 +47,9 @@ export function isMatrix(matrix: unknown): matrix is number[][] {
 export function flatten(matrix: number[][]): number[] {
     const result = [];
     for (let i = 0, ie = matrix.length; i < ie; i++) {
-        for (let j = 0, je = matrix[i].length; j < je; j++) {
-            result.push(matrix[i][j]);
+        const row = matrix[i] ?? [];
+        for (let j = 0, je = row.length; j < je; j++) {
+            result.push(row[j] as number);
         }
     }
     return result;
@@ -54,7 +57,7 @@ export function flatten(matrix: number[][]): number[] {
 
 /** Transposes a matrix. So, the rows become the columns and vice versa. */
 export function transpose(matrix: number[][]): number[][] {
-    return !matrix?.[0] ? [] : matrix[0].map((_, i) => matrix.map(row => row[i]));
+    return matrix[0]?.map((_, i) => matrix.map(row => row[i] as number)) ?? [];
 }
 
 // -----------------------------------------------------------------------------
@@ -64,7 +67,7 @@ export function add(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    return x.map((_, i) => addVector(x[i], y[i]));
+    return x.map((_, i) => Vector.add(x[i] as number[], y[i] as number[]));
 }
 
 /** Subtract matrix y from matrix x element-wise. */
@@ -72,7 +75,7 @@ export function sub(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    return x.map((_, i) => subVector(x[i], y[i]));
+    return x.map((_, i) => Vector.sub(x[i] as number[], y[i] as number[]));
 }
 
 /** Multiplies two matrices element-wise. For matrix-product see {@link dot} */
@@ -80,89 +83,31 @@ export function mul(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    return x.map((_, i) => mulVectors(x[i], y[i]));
+    return x.map((_, i) => Vector.mul(x[i] as number[], y[i] as number[]));
 }
 
 /** Calculates the matrix-product of both matrices. */
 export function dot(left: number[][], right: number[][]): number[][] {
     const transposed = transpose(right);
-    return left.map(lRow => transposed.map(rRow => dotVector(lRow, rRow)));
+    return left.map(lRow => transposed.map(rRow => Vector.dot(lRow, rRow)));
 }
 
 // -----------------------------------------------------------------------------
 
 /** Scales a matrix by multiplying each element with the scalar value. */
 export function scale(scalar: number, matrix: number[][]): number[][] {
-    const result = [];
-    for (let i = 0, ie = matrix.length; i < ie; i++) {
-        result.push(scaleVector(scalar, matrix[i]));
-    }
-    return result;
+    return matrix.map(row => Vector.scale(scalar, row));
 }
 
 /** Multiplies a matrix with a vector (in that order). */
 export function mulVector(matrix: number[][], vector: number[]): number[] {
     const result = [];
     for (let i = 0, ie = matrix.length; i < ie; i++) {
-        const row = matrix[i];
+        const row = matrix[i] as number[];
         if (row.length !== vector.length) {
             return [];
         }
-        result.push(dotVector(row, vector));
-    }
-    return result;
-}
-
-// -----------------------------------------------------------------------------
-
-function addVector(x: number[], y: number[]): number[] {
-    if (x.length !== y.length) {
-        return [];
-    }
-    const result = [];
-    for (let i = 0, ie = x.length; i < ie; i++) {
-        result.push(x[i] + y[i]);
-    }
-    return result;
-}
-
-function subVector(x: number[], y: number[]): number[] {
-    if (x.length !== y.length) {
-        return [];
-    }
-    const result = [];
-    for (let i = 0, ie = x.length; i < ie; i++) {
-        result.push(x[i] - y[i]);
-    }
-    return result;
-}
-
-function mulVectors(x: number[], y: number[]): number[] {
-    if (x.length !== y.length) {
-        return [];
-    }
-    const result = [];
-    for (let i = 0, ie = x.length; i < ie; i++) {
-        result.push(x[i] * y[i]);
-    }
-    return result;
-}
-
-function dotVector(x: number[], y: number[]): number {
-    if (x.length !== y.length || x.length === 0 || y.length === 0) {
-        return NaN;
-    }
-    let result = 0;
-    for (let i = 0, ie = x.length; i < ie; i++) {
-        result += x[i] * y[i];
-    }
-    return result;
-}
-
-function scaleVector(scalar: number, vector: number[]): number[] {
-    const result = [];
-    for (let i = 0, ie = vector.length; i < ie; i++) {
-        result.push(scalar * vector[i]);
+        result.push(Vector.dot(row, vector));
     }
     return result;
 }

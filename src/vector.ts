@@ -1,4 +1,4 @@
-/*! vector v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! vector v0.1.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 
 // -----------------------------------------------------------------------------
 
@@ -19,11 +19,7 @@ export function isVector(vector: unknown): vector is number[] {
 
 /** Calculates the sum of all elements in a vector. */
 export function sum(vector: number[]): number {
-    let result = 0;
-    for (let i = 0, ie = vector.length; i < ie; i++) {
-        result += vector[i];
-    }
-    return result;
+    return vector.reduce(plus, 0);
 }
 
 /** Calculates the average (mean) of all elements in a vector. */
@@ -44,7 +40,7 @@ export function median(_vector: number[]): number {
     vector.sort();
 
     const half = Math.floor(vector.length / 2);
-    return vector.length % 2 ? vector[half] : (vector[half - 1] + vector[half]) / 2.0;
+    return vector.length % 2 ? vector[half] as number : ((vector[half - 1] as number) + (vector[half] as number)) / 2.0;
 }
 
 /** Calculates the magnitude of a vector. */
@@ -61,7 +57,7 @@ export function add(x: number[], y: number[]): number[] {
     }
     const result = [];
     for (let i = 0, ie = x.length; i < ie; i++) {
-        result.push(x[i] + y[i]);
+        result.push((x[i] as number) + (y[i] as number));
     }
     return result;
 }
@@ -73,7 +69,7 @@ export function sub(x: number[], y: number[]): number[] {
     }
     const result = [];
     for (let i = 0, ie = x.length; i < ie; i++) {
-        result.push(x[i] - y[i]);
+        result.push((x[i] as number) - (y[i] as number));
     }
     return result;
 }
@@ -83,11 +79,7 @@ export function mul(x: number[], y: number[]): number[] {
     if (x.length !== y.length) {
         return [];
     }
-    const result = [];
-    for (let i = 0, ie = x.length; i < ie; i++) {
-        result.push(x[i] * y[i]);
-    }
-    return result;
+    return x.map((_,i) => (x[i] as number) * (y[i] as number));
 }
 
 /** Calculates the dot product of two vectors. */
@@ -97,7 +89,7 @@ export function dot(x: number[], y: number[]): number {
     }
     let result = 0;
     for (let i = 0, ie = x.length; i < ie; i++) {
-        result += x[i] * y[i];
+        result += (x[i] as number) * (y[i] as number);
     }
     return result;
 }
@@ -106,11 +98,7 @@ export function dot(x: number[], y: number[]): number {
 
 /** Scales a vector by multiplying each element with the scalar value. */
 export function scale(scalar: number, vector: number[]): number[] {
-    const result = [];
-    for (let i = 0, ie = vector.length; i < ie; i++) {
-        result.push(scalar * vector[i]);
-    }
-    return result;
+    return vector.map(value => scalar * value);
 }
 
 /** Multiplies a vector with a matrix (in that order). */
@@ -124,6 +112,10 @@ export function mulMatrix(vector: number[], matrix: number[][]): number[] {
 
 // -----------------------------------------------------------------------------
 
+function plus(x: number, y: number): number {
+    return x + y;
+}
+
 function transpose(matrix: number[][]): number[][] {
-    return matrix[0].map((_, i) => matrix.map(row => row[i]));
+    return matrix[0]?.map((_, i) => matrix.map(row => row[i] as number)) ?? [];
 }

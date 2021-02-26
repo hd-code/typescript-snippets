@@ -1,4 +1,4 @@
-/*! files v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! files v0.0.2 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 
 // -----------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ export function openFile(): Promise<string> {
             if (!files || files.length === 0) {
                 return;
             }
-            fileReader.readAsText(files[0]);
+            fileReader.readAsText(files[0] as File);
         });
         input.click();
         input.remove();

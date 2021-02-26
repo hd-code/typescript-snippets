@@ -1,4 +1,4 @@
-/*! vector v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! vector v0.1.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 /** TypeGuard for a vector. */
 export declare function isVector(vector: unknown): vector is number[];
 /** Calculates the sum of all elements in a vector. */

@@ -28,31 +28,31 @@ describe('math/round', () => {
         });
     });
 
-    describe('vector', () => {
-        const indices = [3,4,6];
-        const input = indices.map(i => cases[i].number);
+    // describe('vector', () => {
+    //     const indices = [3,4,6];
+    //     const input = indices.map(i => cases[i].number);
 
-        precisions.forEach((precision, precI) => {
-            it(`with ${precision ?? 'standard'} precision`, () => {
-                const expected = indices.map(i => cases[i].expected[precI]);
-                const actual = round(input, precision);
+    //     precisions.forEach((precision, precI) => {
+    //         it(`with ${precision ?? 'standard'} precision`, () => {
+    //             const expected = indices.map(i => cases[i].expected[precI]);
+    //             const actual = round(input, precision);
 
-                assert.deepStrictEqual(actual, expected);
-            });
-        });
-    });
+    //             assert.deepStrictEqual(actual, expected);
+    //         });
+    //     });
+    // });
 
-    describe('matrix', () => {
-        const indices = [[0,1,2],[3,4,6]];
-        const input = indices.map(row => row.map(i => cases[i].number));
+    // describe('matrix', () => {
+    //     const indices = [[0,1,2],[3,4,6]];
+    //     const input = indices.map(row => row.map(i => cases[i].number));
 
-        precisions.forEach((precision, precI) => {
-            it(`with ${precision ?? 'standard'} precision`, () => {
-                const expected = indices.map(row => row.map(i => cases[i].expected[precI]));
-                const actual = round(input, precision);
+    //     precisions.forEach((precision, precI) => {
+    //         it(`with ${precision ?? 'standard'} precision`, () => {
+    //             const expected = indices.map(row => row.map(i => cases[i].expected[precI]));
+    //             const actual = round(input, precision);
 
-                assert.deepStrictEqual(actual, expected);
-            });
-        });
-    });
+    //             assert.deepStrictEqual(actual, expected);
+    //         });
+    //     });
+    // });
 });

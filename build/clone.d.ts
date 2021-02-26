@@ -1,4 +1,4 @@
-/*! clone v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! clone v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 /**
  * Clones an object, array or primitive value. It creates shallow clones only.
  * So, nested arrays or objects are copied only by reference. Changes to the

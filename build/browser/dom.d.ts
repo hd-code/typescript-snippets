@@ -1,4 +1,4 @@
-/*! browser-util v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! browser-util v0.0.2 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 declare type ElFunc = (element: Element, index: number) => void;
 export declare function $(selector: string, fn?: ElFunc): NodeListOf<Element>;
 export declare function $(root: Element, selector: string, fn?: ElFunc): NodeListOf<Element>;

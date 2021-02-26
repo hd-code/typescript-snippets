@@ -1,4 +1,4 @@
-/*! clone v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! clone v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 
 // -----------------------------------------------------------------------------
 
@@ -14,7 +14,7 @@
  */
 export function clone<T>(original: T): T {
     if (original instanceof Array) {
-        return original.slice() as any; // eslint-disable-line
+        return original.slice() as unknown as T;
     }
 
     if (original !== null && typeof original === 'object') {
@@ -37,7 +37,7 @@ export function deepClone<T>(original: T): T { // TODO: Find solution for Classe
         for (let i = 0, ie = original.length; i < ie; i++) {
             result.push(deepClone(original[i]));
         }
-        return result as any; // eslint-disable-line
+        return result as unknown as T;
     }
 
     if (original !== null && typeof original === 'object') {

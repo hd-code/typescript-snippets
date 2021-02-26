@@ -1,4 +1,4 @@
-/*! csv v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! csv v0.0.2 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 
 /**
  * @fileoverview
@@ -12,7 +12,7 @@
 export function serialize<T>(data: T[]): string {
     const keys = extractKeys(data);
     const rows = makeRows(data, keys);
-    return stringifyRows<any>([keys, ...rows]); // eslint-disable-line
+    return stringifyRows<any>([keys, ...rows]); // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 /** Converts a csv string back to an array of objects. */
@@ -37,20 +37,11 @@ function extractKeys<T>(data: T[]): (keyof T)[] {
 }
 
 function makeRows<T>(data: T[], keys: (keyof T)[]): T[keyof T][][] {
-    const result = [];
-    for (let i = 0, ie = data.length; i < ie; i++) {
-        result[i] = makeRow(data[i], keys);
-    }
-    return result;
+    return data.map(d => makeRow(d, keys));
 }
 
 function makeRow<T>(row: T, keys: (keyof T)[]): T[keyof T][] {
-    const result = [];
-    for (let i = 0, ie = keys.length; i < ie; i++) {
-        const key = keys[i];
-        result[i] = row[key];
-    }
-    return result;
+    return keys.map(key => row[key]);
 }
 
 function stringifyRows<T>(dataLines: T[][]): string {
@@ -72,7 +63,7 @@ function stringifyEntry<T>(entry: T): string {
         return escape(JSON.stringify(entry));
     }
 
-    return escape('' + entry); // eslint-disable-line @typescript-eslint/restrict-plus-operands
+    return escape('' + entry);
 }
 
 function escape(string: string): string {
@@ -97,13 +88,7 @@ function extractRows(csv: string): string[][] {
     if (!rows) {
         return [['invalid file']];
     }
-
-    const result = [];
-    for (let i = 0, ie = rows.length; i < ie; i++) {
-        result.push(extractRow(rows[i]));
-    }
-
-    return result;
+    return rows.map(extractRow);
 }
 
 function extractRow(row: string): string[] {
@@ -112,20 +97,17 @@ function extractRow(row: string): string[] {
 }
 
 function parseObjects<T>(keys: (keyof T)[], rows: string[][]): T[] {
-    const result = [];
-    for (let i = 0, ie = rows.length; i < ie; i++) {
-        result.push(parseObject(keys, rows[i]));
-    }
-    return result;
+    return rows.map(row => parseObject(keys, row));
 }
 
 function parseObject<T>(keys: (keyof T)[], values: string[]): T {
     const result = {} as T;
-    for (let i = 0, ie = keys.length; i < ie; i++) {
-        if (values[i] !== undefined) {
-            result[keys[i]] = parseValue(values[i]);
+    keys.forEach((key, index) => {
+        const value = values[index];
+        if (value !== undefined) {
+            result[key] = parseValue(value);
         }
-    }
+    });
     return result;
 }
 

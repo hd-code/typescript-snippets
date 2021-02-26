@@ -1,2 +1,2 @@
-/*! round 0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! round 0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 export default function round(n,t=0){if(n instanceof Array){const r=[];for(let o=0,u=n.length;o<u;o++)r.push(round(n[o],t));return r}const r=Math.pow(10,t);return Math.round(n*r)/r};

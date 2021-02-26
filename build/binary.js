@@ -1,2 +1,2 @@
-/*! binary v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
-export function toBinary(t,r){const n=toBinaryString(t,r),i=[];for(let t=0,r=n.length;t<r;t++)i.push(parseInt(n[t]));return i};export function toBinaryString(t,r){if(void 0!==r&&r<1)return"";let n=(t>>>0).toString(2);if(void 0===r)return n;for(;n.length<r;)n="0"+n;return n.slice(-r)};
+/*! binary v0.0.2 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+export function toBinary(t,r){return toBinaryString(t,r).split("").map(t=>parseInt(t))};export function toBinaryString(t,r){if(void 0!==r&&r<1)return"";let n=(t>>>0).toString(2);if(void 0===r)return n;for(;n.length<r;)n="0"+n;return n.slice(-r)};

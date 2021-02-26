@@ -1,0 +1,109 @@
+/******************************************************************************* 
+Website's Theme
+- defines colors, typography, utilities and special elements
+- this file needs to be edited the most to match the specific project
+- try to stick to the atomic css principle as much as possible
+    - create utility classes with basic style settings and combine them in html
+    - set global styles only for elements that have very few children
+- any "dirty" hacks should be placed in shame.css file
+*******************************************************************************/
+
+/* Colors ------------------------------------------------------------------- */
+
+.bg-main, .bg-main-focus:focus, .bg-main-hover:hover { background-color: #ddd }
+
+.bg-primary, .bg-primary-focus:focus, .bg-primary-hover:hover { color: #00a }
+.bg-secondary, .bg-secondary-focus:focus, .bg-secondary-hover:hover { color: #06a }
+.bg-neutral, .bg-neutral-focus:focus, .bg-neutral-hover:hover { color: #fff }
+
+.bg-error, .bg-error-focus:focus, .bg-error-hover:hover { background-color: #800 }
+.bg-warn, .bg-warn-focus:focus, .bg-warn-hover:hover { background-color: #880 }
+.bg-success, .bg-success-focus:focus, .bg-success-hover:hover { background-color: #080 }
+
+.c-primary, .c-primary-focus:focus, .c-primary-hover:hover { color: #00a }
+.c-secondary, .c-secondary-focus:focus, .c-secondary-hover:hover { color: #06a }
+.c-neutral, .c-neutral-focus:focus, .c-neutral-hover:hover { color: #000 }
+.c-contrast, .c-contrast-focus:focus, .c-contrast-hover:hover { color: #fff }
+
+.c-error, .c-error-focus:focus, .c-error-hover:hover { color: #800 }
+.c-warn, .c-warn-focus:focus, .c-warn-hover:hover { color: #a80 }
+.c-success, .c-success-focus:focus, .c-success-hover:hover { color: #070 }
+
+/* Typography --------------------------------------------------------------- */
+
+.font-1 { font-family: Helvetica, sans-serif }
+.font-2 { font-family: Times, serif }
+
+.text-block * + * { margin-top: .5em }
+
+/* Util --------------------------------------------------------------------- */
+
+.border { border: 1px solid currentColor }
+.circle { border-radius: 50% }
+.rounded { border-radius: .5em }
+
+.gutter {
+    margin-right: -1em;
+    margin-bottom: -1em;
+}
+.gutter > * {
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.box-shadow { box-shadow: 0 0 .5em #000 }
+.text-shadow { text-shadow: .1em .1em #000 }
+
+/* Elements ----------------------------------------------------------------- */
+
+.button, button, [type=submit], [type=reset], [type=button] {
+    background-color: #00a;
+    border-radius: .5em;
+    color: #fff;
+    padding: 5em;
+}
+.button:focus, button:focus, [type=submit]:focus, [type=reset]:focus, [type=button]:focus,
+.button:hover, button:hover, [type=submit]:hover, [type=reset]:hover, [type=button]:hover {
+    opacity: .8;
+}
+
+.headline,
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 { font-family: Helvetica, sans-serif; text-align: center }
+.h1, h1 { font-size: 2.5em }
+.h2, h2 { font-size: 2.0em }
+.h3, h3 { font-size: 1.5em }
+.h4, h4 { font-size: 1.2em }
+
+.hr, hr {
+    border-top: 1px solid currentColor;
+    height: 0;
+    margin: .5em auto;
+    width: 90%;
+}
+
+.lh-base { line-height: 1.2 }
+
+.link, a {
+    color: #060;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+.link:focus, a:focus,
+.link:hover, a:hover { opacity: .8 }
+
+.list, ul:not(.reset) {
+    padding-left: 1.5em;
+    position: relative;
+}
+.list > *::before, ul:not(.reset) > li::before {
+    content: '-';
+    position: absolute;
+    left: .5em;
+}
+
+.list-numbered, ol:not(.reset) {
+    list-style-type: decimal;
+    padding-left: 1.5em;
+}

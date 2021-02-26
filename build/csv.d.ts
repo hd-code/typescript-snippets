@@ -1,4 +1,4 @@
-/*! csv v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/js-snippets */
+/*! csv v0.0.2 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 /**
  * @fileoverview
  * This file gives the possibility to transform arrays of objects to csv strings
