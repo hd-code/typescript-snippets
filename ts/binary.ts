@@ -6,7 +6,9 @@
  * is an array of numbers. Optionally, the number of digits the result should
  * have can be specified. */
 export function toBinary(number: number, digits?: number): number[] {
-    return toBinaryString(number, digits).split('').map(digit => parseInt(digit));
+    return toBinaryString(number, digits)
+        .split('')
+        .map(digit => parseInt(digit));
 }
 
 /** Transforms a decimal number into a binary number. The returned binary number

@@ -33,7 +33,7 @@ export function openFile(): Promise<string> {
             return;
         }
 
-        const fileReader = new FileReader;
+        const fileReader = new FileReader();
         fileReader.onload = () => {
             let data = '';
             if (fileReader.result instanceof ArrayBuffer) {

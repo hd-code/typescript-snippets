@@ -19,26 +19,28 @@ describe('math/random', () => {
             { name: 'negative min and max', args: [-20, -10], expected: { from: -20, til: -10 } },
             { name: 'negative min and max wrong order', args: [-10, -20], expected: { from: -20, til: -10 } },
             { name: 'no min but max', args: [undefined, 10], expected: { from: 0, til: 10 } },
-        ].forEach(({name,args,expected}) => it(name, () => {
-            const actuals = [];
-            for (let i = 0; i < numberOfTries; i++) {
-                actuals.push(getFloat(args[0] as number, args[1] as number));
-            }
+        ].forEach(({ name, args, expected }) =>
+            it(name, () => {
+                const actuals = [];
+                for (let i = 0; i < numberOfTries; i++) {
+                    actuals.push(getFloat(args[0] as number, args[1] as number));
+                }
 
-            const smallest = Math.min(...actuals);
-            const largest = Math.max(...actuals);
+                const smallest = Math.min(...actuals);
+                const largest = Math.max(...actuals);
 
-            assert.ok(smallest >= expected.from, 'some value were too small');
-            assert.ok(smallest < expected.til, 'some value were too large');
-            assert.ok(largest >= expected.from, 'some value were too small');
-            assert.ok(largest < expected.til, 'some value were too large');
+                assert.ok(smallest >= expected.from, 'some value were too small');
+                assert.ok(smallest < expected.til, 'some value were too large');
+                assert.ok(largest >= expected.from, 'some value were too small');
+                assert.ok(largest < expected.til, 'some value were too large');
 
-            const actDiff = largest - smallest;
-            const expDiff = expected.til - expected.from;
+                const actDiff = largest - smallest;
+                const expDiff = expected.til - expected.from;
 
-            assert.ok(actDiff <= expDiff, 'values have a bigger spread then allowed');
-            assert.ok(actDiff > expDiff * minSpreadCoverage, 'values do not span the whole range');
-        }));
+                assert.ok(actDiff <= expDiff, 'values have a bigger spread then allowed');
+                assert.ok(actDiff > expDiff * minSpreadCoverage, 'values do not span the whole range');
+            }),
+        );
     });
 
     describe(getInt.name, () => {
@@ -55,27 +57,29 @@ describe('math/random', () => {
             { name: 'negative real min and max', args: [-20.5, -10.2], expected: { from: -20, til: -10 } },
             { name: 'negative min and max wrong order', args: [-10, -20], expected: { from: -20, til: -10 } },
             { name: 'no min but max', args: [undefined, 10], expected: { from: 0, til: 10 } },
-        ].forEach(({name,args,expected}) => it(name, () => {
-            const actuals = [];
-            for (let i = 0; i < numberOfTries; i++) {
-                actuals.push(getInt(args[0] as number, args[1] as number));
-                assert.ok(actuals.every(isInteger), 'did not return an integer');
-            }
+        ].forEach(({ name, args, expected }) =>
+            it(name, () => {
+                const actuals = [];
+                for (let i = 0; i < numberOfTries; i++) {
+                    actuals.push(getInt(args[0] as number, args[1] as number));
+                    assert.ok(actuals.every(isInteger), 'did not return an integer');
+                }
 
-            const smallest = Math.min(...actuals);
-            const largest = Math.max(...actuals);
+                const smallest = Math.min(...actuals);
+                const largest = Math.max(...actuals);
 
-            assert.ok(smallest >= expected.from, 'smallest value was too small');
-            assert.ok(smallest <= expected.til, 'smallest value was too large');
-            assert.ok(largest >= expected.from, 'largest value was too small');
-            assert.ok(largest <= expected.til, 'largest value was too large');
+                assert.ok(smallest >= expected.from, 'smallest value was too small');
+                assert.ok(smallest <= expected.til, 'smallest value was too large');
+                assert.ok(largest >= expected.from, 'largest value was too small');
+                assert.ok(largest <= expected.til, 'largest value was too large');
 
-            const actDiff = largest - smallest;
-            const expDiff = expected.til - expected.from;
+                const actDiff = largest - smallest;
+                const expDiff = expected.til - expected.from;
 
-            assert.ok(actDiff <= expDiff, 'values have a bigger spread then allowed');
-            assert.ok(actDiff > expDiff * minSpreadCoverage, 'values do not span the whole range');
-        }));
+                assert.ok(actDiff <= expDiff, 'values have a bigger spread then allowed');
+                assert.ok(actDiff > expDiff * minSpreadCoverage, 'values do not span the whole range');
+            }),
+        );
     });
 
     describe(setSeed.name, () => {
@@ -97,16 +101,18 @@ describe('math/random', () => {
             { name: 'negative seed', seed: -23 },
             { name: 'very large seed', seed: 999999999999999999 },
             { name: 'very large negative seed', seed: -999999999999999999 },
-        ].forEach(({name,seed}) => it(name, () => {
-            setSeed(seed as number);
-            const expected = generateValues();
-
-            for (let i = 0; i < numOfTries; i++) {
+        ].forEach(({ name, seed }) =>
+            it(name, () => {
                 setSeed(seed as number);
-                const actual = generateValues();
-                assert.deepStrictEqual(actual, expected, 'did not generate the same values');
-            }
-        }));
+                const expected = generateValues();
+
+                for (let i = 0; i < numOfTries; i++) {
+                    setSeed(seed as number);
+                    const actual = generateValues();
+                    assert.deepStrictEqual(actual, expected, 'did not generate the same values');
+                }
+            }),
+        );
 
         it('should generate different values for 0 and 1', () => {
             setSeed(0);

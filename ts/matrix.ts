@@ -20,14 +20,13 @@ export function isMatrix(matrix: unknown): matrix is number[][] {
     }
 
     for (let i = 0, ie = matrix.length; i < ie; i++) {
-        const row = matrix[i] as number[] | unknown;
+        const row = matrix[i];
         if (!(row instanceof Array) || elementsPerRow !== row.length) {
             return false;
         }
 
         for (let j = 0, je = row.length; j < je; j++) {
-            const element = row[j] as number | unknown;
-            if (typeof element !== 'number') {
+            if (typeof row[j] !== 'number') {
                 return false;
             }
         }
@@ -49,7 +48,7 @@ export function flatten(matrix: number[][]): number[] {
     for (let i = 0, ie = matrix.length; i < ie; i++) {
         const row = matrix[i] ?? [];
         for (let j = 0, je = row.length; j < je; j++) {
-            result.push(row[j] as number);
+            result.push(row[j]);
         }
     }
     return result;
@@ -57,7 +56,7 @@ export function flatten(matrix: number[][]): number[] {
 
 /** Transposes a matrix. So, the rows become the columns and vice versa. */
 export function transpose(matrix: number[][]): number[][] {
-    return matrix[0]?.map((_, i) => matrix.map(row => row[i] as number)) ?? [];
+    return matrix[0]?.map((_, i) => matrix.map(row => row[i])) ?? [];
 }
 
 // -----------------------------------------------------------------------------
@@ -67,7 +66,7 @@ export function add(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    return x.map((_, i) => Vector.add(x[i] as number[], y[i] as number[]));
+    return x.map((_, i) => Vector.add(x[i], y[i]));
 }
 
 /** Subtract matrix y from matrix x element-wise. */
@@ -75,7 +74,7 @@ export function sub(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    return x.map((_, i) => Vector.sub(x[i] as number[], y[i] as number[]));
+    return x.map((_, i) => Vector.sub(x[i], y[i]));
 }
 
 /** Multiplies two matrices element-wise. For matrix-product see {@link dot} */
@@ -83,7 +82,7 @@ export function mul(x: number[][], y: number[][]): number[][] {
     if (x.length !== y.length) {
         return [];
     }
-    return x.map((_, i) => Vector.mul(x[i] as number[], y[i] as number[]));
+    return x.map((_, i) => Vector.mul(x[i], y[i]));
 }
 
 /** Calculates the matrix-product of both matrices. */
@@ -103,7 +102,7 @@ export function scale(scalar: number, matrix: number[][]): number[][] {
 export function mulVector(matrix: number[][], vector: number[]): number[] {
     const result = [];
     for (let i = 0, ie = matrix.length; i < ie; i++) {
-        const row = matrix[i] as number[];
+        const row = matrix[i];
         if (row.length !== vector.length) {
             return [];
         }

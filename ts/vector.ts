@@ -1,4 +1,4 @@
-/*! vector v0.1.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+/*! vector v0.2.0 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
 
 // -----------------------------------------------------------------------------
 
@@ -17,11 +17,6 @@ export function isVector(vector: unknown): vector is number[] {
 
 // -----------------------------------------------------------------------------
 
-/** Calculates the sum of all elements in a vector. */
-export function sum(vector: number[]): number {
-    return vector.reduce(plus, 0);
-}
-
 /** Calculates the average (mean) of all elements in a vector. */
 export function avg(vector: number[]): number {
     if (vector.length === 0) {
@@ -30,22 +25,56 @@ export function avg(vector: number[]): number {
     return sum(vector) / vector.length;
 }
 
-/** Calculates the median of all elements in a vector. */
-export function median(_vector: number[]): number {
-    if (_vector.length === 0) {
-        return 0;
-    }
-
-    const vector = [..._vector];
-    vector.sort();
-
-    const half = Math.floor(vector.length / 2);
-    return vector.length % 2 ? vector[half] as number : ((vector[half - 1] as number) + (vector[half] as number)) / 2.0;
-}
-
 /** Calculates the magnitude of a vector. */
 export function mag(vector: number[]): number {
     return Math.sqrt(dot(vector, vector));
+}
+
+/** Calculates the median of all elements in a vector. */
+export function median(vector: number[]): number {
+    switch (vector.length) {
+        case 0:
+            return 0;
+        case 1:
+            return vector[0];
+    }
+
+    const numOfValues = vector.length;
+
+    if (numOfValues % 2 == 1) {
+        return quickselect(vector, numOfValues / 2);
+    }
+
+    return (quickselect(vector, numOfValues / 2 - 1) + quickselect(vector, numOfValues / 2)) / 2;
+}
+
+/** Returns the value at the given index, if the vector was sorted. */
+export function quickselect(vector: number[], _index: number): number {
+    switch (vector.length) {
+        case 0:
+            return 0;
+        case 1:
+            return vector[0];
+    }
+    const index = Math.min(Math.max(0, Math.floor(_index)), vector.length - 1);
+
+    const pivot = vector[Math.floor(Math.random() * vector.length)];
+    const { numOfLower, numOfPivs } = countValues(vector, pivot);
+
+    if (index < numOfLower) {
+        const lows = vector.filter(value => value < pivot);
+        return quickselect(lows, index);
+    }
+    if (index < numOfLower + numOfPivs) {
+        return pivot;
+    }
+    const highs = vector.filter(value => value > pivot);
+    return quickselect(highs, index - numOfLower - numOfPivs);
+}
+
+/** Calculates the sum of all elements in a vector. */
+export function sum(vector: number[]): number {
+    return vector.reduce(plus, 0);
 }
 
 // -----------------------------------------------------------------------------
@@ -79,7 +108,7 @@ export function mul(x: number[], y: number[]): number[] {
     if (x.length !== y.length) {
         return [];
     }
-    return x.map((_,i) => (x[i] as number) * (y[i] as number));
+    return x.map((_, i) => (x[i] as number) * (y[i] as number));
 }
 
 /** Calculates the dot product of two vectors. */
@@ -111,6 +140,22 @@ export function mulMatrix(vector: number[], matrix: number[][]): number[] {
 }
 
 // -----------------------------------------------------------------------------
+
+function countValues(vector: number[], pivot: number) {
+    let numOfLower = 0,
+        numOfPivs = 0,
+        numOfUpper = 0;
+    for (let i = 0, ie = vector.length; i < ie; i++) {
+        if (vector[i] < pivot) {
+            numOfLower++;
+        } else if (vector[i] === pivot) {
+            numOfPivs++;
+        } else {
+            numOfUpper++;
+        }
+    }
+    return { numOfLower, numOfPivs, numOfUpper };
+}
 
 function plus(x: number, y: number): number {
     return x + y;

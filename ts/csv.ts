@@ -24,7 +24,7 @@ export function parse<T>(csv: string): T[] {
 // --- serialize ---------------------------------------------------------------
 
 function extractKeys<T>(data: T[]): (keyof T)[] {
-    const keys: {[key: string]: true} = {};
+    const keys: { [key: string]: true } = {};
     for (let i = 0, ie = data.length; i < ie; i++) {
         const row = data[i];
         for (const key in row) {
@@ -67,9 +67,7 @@ function stringifyEntry<T>(entry: T): string {
 }
 
 function escape(string: string): string {
-    return hasToBeEscaped(string)
-        ? '"' + string.replace(/"/g, '""') + '"'
-        : string;
+    return hasToBeEscaped(string) ? '"' + string.replace(/"/g, '""') + '"' : string;
 }
 
 function hasToBeEscaped(string: string): boolean {
@@ -113,22 +111,26 @@ function parseObject<T>(keys: (keyof T)[], values: string[]): T {
 
 function parseValue<T>(value: string): T {
     switch (value) {
-        case '': return undefined as unknown as T;
-        case 'null': return null as unknown as T;
-        case 'false': return false as unknown as T;
-        case 'true': return true as unknown as T;
+        case '':
+            return (undefined as unknown) as T;
+        case 'null':
+            return (null as unknown) as T;
+        case 'false':
+            return (false as unknown) as T;
+        case 'true':
+            return (true as unknown) as T;
     }
 
     const num = +value;
     if (!isNaN(num)) {
-        return num as unknown as T;
+        return (num as unknown) as T;
     }
 
     if (isEscaped(value)) {
-        return unescape(value) as unknown as T;
+        return (unescape(value) as unknown) as T;
     }
 
-    return value as unknown as T;
+    return (value as unknown) as T;
 }
 
 function isEscaped(string: string): boolean {

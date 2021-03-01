@@ -5,8 +5,8 @@
  * an implementation of the Lehmer random number generator. The generator is
  * seedable, but will use a random seed when none was set.
  *
-* Make sure to set the seed only once in your application, ideally on startup.
-*/
+ * Make sure to set the seed only once in your application, ideally on startup.
+ */
 /** Returns a random number between 0 and 1 (both included). */
 export declare function getFloat(): number;
 /** Returns a random number between 0 and `max` (both included). */

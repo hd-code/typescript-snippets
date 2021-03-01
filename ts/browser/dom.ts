@@ -9,7 +9,7 @@ export function $(root: Element, selector: string, fn?: ElFunc): NodeListOf<Elem
 
 export function $(arg1: Element | string, arg2?: ElFunc | string, arg3?: ElFunc): NodeListOf<Element> {
     const root = typeof arg1 !== 'string' ? arg1 : document;
-    const selector = typeof arg1 === 'string' ? arg1 : arg2 as string;
+    const selector = typeof arg1 === 'string' ? arg1 : (arg2 as string);
     const fn = typeof arg2 === 'string' ? arg3 : arg2;
 
     const elements = root.querySelectorAll(selector);
