@@ -4,8 +4,6 @@ This repo contains a collection of helpful code snippets for the web (TypeScript
 
 ## General
 
-All Javascript snippets are generated from the corresponding TypeScript snippet. So, do not edit the snippets in `js/`.
-
 All files should start with this line:
 
 ```ts
@@ -16,6 +14,10 @@ All files should start with this line:
 - `<version>` is the version number in classical semver format (e.g `v1.2.3`)
 
 Make sure to update the version number after changing a snippet.
+
+## Javascript Snippets
+
+All Javascript snippets are generated from the corresponding TypeScript snippets in `ts/`. So, do not edit the files in `js/`.
 
 ## TypeScript Snippets
 
@@ -29,7 +31,7 @@ npm install
 
 ### Testing
 
-All TypeScript snippets should be tested thoroughly. Tests are placed in `test/` and are executed by the Mocha framework.
+All TypeScript snippets should be tested thoroughly. Tests are placed in `test/` and are executed with <https://jestjs.io/>.
 
 ### Compile to Javascript
 
