@@ -7,20 +7,17 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
   "rules": {
     "curly": ["error", "all"],
     "no-else-return": "error",
     "sort-imports": ["warn", {"ignoreDeclarationSort": true}],
-    "@typescript-eslint/naming-convention": "error"
+    "@typescript-eslint/naming-convention": "error",
+    "prettier/prettier": "warn"
   }
 }

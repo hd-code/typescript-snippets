@@ -76,7 +76,7 @@ describe('math/matrix', () => {
         );
     });
 
-    it('det – not implemented yet');
+    it.todo('det');
 
     describe(flatten.name, () => {
         [
@@ -143,104 +143,102 @@ describe('math/matrix', () => {
         });
     });
 
-    it(add.name);
+    it.todo(add.name);
 
-    it(sub.name);
+    it.todo(sub.name);
 
-    it(mul.name);
+    it.todo(mul.name);
 
-    it(dot.name);
+    it.todo(dot.name);
 
     describe(scale.name, () => {
-        [
-            {
-                scalar: 0,
-                matrix: [
+        it.each([
+            [
+                0,
+                [
                     [1, 2],
                     [3, 4],
                     [5, 6],
                 ],
-                expected: [
+                [
                     [0, 0],
                     [0, 0],
                     [0, 0],
                 ],
-            },
-            {
-                scalar: 0.5,
-                matrix: [
+            ],
+            [
+                0.5,
+                [
                     [1, 2],
                     [3, 4],
                     [5, 6],
                 ],
-                expected: [
+                [
                     [0.5, 1],
                     [1.5, 2],
                     [2.5, 3],
                 ],
-            },
-            {
-                scalar: 1,
-                matrix: [
+            ],
+            [
+                1,
+                [
                     [1, 2],
                     [3, 4],
                     [5, 6],
                 ],
-                expected: [
+                [
                     [1, 2],
                     [3, 4],
                     [5, 6],
                 ],
-            },
-            {
-                scalar: -0.5,
-                matrix: [
+            ],
+            [
+                -0.5,
+                [
                     [1, 2],
                     [3, 4],
                     [5, 6],
                 ],
-                expected: [
+                [
                     [-0.5, -1],
                     [-1.5, -2],
                     [-2.5, -3],
                 ],
-            },
-            {
-                scalar: 3,
-                matrix: [
+            ],
+            [
+                3,
+                [
                     [1, 2],
                     [3, 4],
                     [5, 6],
                 ],
-                expected: [
+                [
                     [3, 6],
                     [9, 12],
                     [15, 18],
                 ],
-            },
-            {
-                scalar: 2,
-                matrix: [
+            ],
+            [
+                2,
+                [
                     [1, 2, 3],
                     [4, 5, 6],
                 ],
-                expected: [
+                [
                     [2, 4, 6],
                     [8, 10, 12],
                 ],
-            },
-            { scalar: -3, matrix: [[1, 2, 3, 4, 5, 6]], expected: [[-3, -6, -9, -12, -15, -18]] },
-            { scalar: 0, matrix: [], expected: [] },
-            { scalar: 1, matrix: [], expected: [] },
-            { scalar: 0.5, matrix: [], expected: [] },
-            { scalar: 0, matrix: [[], []], expected: [[], []] },
-            { scalar: 1, matrix: [[], []], expected: [[], []] },
-            { scalar: 0.5, matrix: [[], []], expected: [[], []] },
-        ].forEach(({ scalar, matrix, expected }) => {
-            it(scalar + ' * ' + JSON.stringify(matrix) + ' = ' + JSON.stringify(expected), () => {
-                const actual = scale(scalar, matrix);
-                assert.deepStrictEqual(actual, expected);
-            });
+            ],
+            [-3, [[1, 2, 3, 4, 5, 6]], [[-3, -6, -9, -12, -15, -18]]],
+            [0, [], []],
+            [1, [], []],
+            [0.5, [], []],
+            [0, [[], []], [[], []]],
+            [1, [[], []], [[], []]],
+            [0.5, [[], []], [[], []]],
+        ])('%d * %j = %j', (scalar, matrix, expected) => {
+            const actual = scale(scalar, matrix);
+            expect(actual).toEqual(expected);
         });
     });
 

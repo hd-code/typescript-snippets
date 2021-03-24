@@ -3,6 +3,7 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "js",
+    "target": "es6",
   },
-  "include": ["ts"]
+  "include": ["ts"],
 }

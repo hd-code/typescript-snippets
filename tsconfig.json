@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "target": "es6",
-    
+    "moduleResolution": "node",
+
     // strict checks
+    "alwaysStrict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strict": true,
@@ -12,5 +13,5 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
   },
-  "exclude": ["draft"]
+  "exclude": ["draft"],
 }
