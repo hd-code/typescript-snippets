@@ -1,5 +1,4 @@
-import * as assert from 'assert';
-import round from '../ts/round';
+import round from 'round';
 
 // -----------------------------------------------------------------------------
 
@@ -21,7 +20,7 @@ describe('math/round', () => {
                 precisions.forEach((precision, i) => {
                     it(`with ${precision ?? 'standard'} precision`, () => {
                         const actual = round(number, precision);
-                        assert.strictEqual(actual, expected[i]);
+                        expect(actual).toBe(expected[i]);
                     });
                 });
             });

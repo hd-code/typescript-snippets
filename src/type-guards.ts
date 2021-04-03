@@ -1,4 +1,4 @@
-/*! type-guards v0.0.4 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+/*! type-guards v0.0.4 | MIT | https://github.com/hd-code/web-snippets */
 
 /**
  * @file

@@ -1,5 +1,4 @@
-import * as assert from 'assert';
-import { toBinary, toBinaryString } from '../ts/binary';
+import { toBinary, toBinaryString } from 'binary';
 
 // -----------------------------------------------------------------------------
 
@@ -24,7 +23,7 @@ describe('binary', () => {
         cases.forEach(({ input, expArr }) => {
             it(`${input[0]} with ${input[1]} digits => (${expArr.toString()})`, () => {
                 const actual = toBinary(input[0] as number, input[1]);
-                assert.deepStrictEqual(actual, expArr);
+                expect(actual).toEqual(expArr);
             });
         }),
     );
@@ -33,7 +32,7 @@ describe('binary', () => {
         cases.forEach(({ input, expStr }) => {
             it(`${input[0]} with ${input[1]} digits => ${expStr}`, () => {
                 const actual = toBinaryString(input[0] as number, input[1]);
-                assert.strictEqual(actual, expStr);
+                expect(actual).toBe(expStr);
             });
         }),
     );

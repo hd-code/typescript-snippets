@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { add, dot, flatten, isMatrix, mul, mulVector, scale, sub, transpose } from '../ts/matrix';
+import { add, dot, flatten, isMatrix, mul, mulVector, scale, sub, transpose } from 'matrix';
 
 // -----------------------------------------------------------------------------
 

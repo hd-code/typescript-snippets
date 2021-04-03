@@ -1,4 +1,4 @@
-/*! random v0.1.0 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+/*! random v0.1.0 | MIT | https://github.com/hd-code/web-snippets */
 /**
  * @file
  * The JavaScript Math.random() function is not seedable. This package provides

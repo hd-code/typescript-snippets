@@ -1,4 +1,4 @@
-import { parse, serialize } from '../ts/csv';
+import { parse, serialize } from 'csv';
 
 // -----------------------------------------------------------------------------
 

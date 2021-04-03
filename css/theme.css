@@ -35,12 +35,30 @@ Website's Theme
 .font-2 { font-family: Times, serif }
 
 .text-block * + * { margin-top: .5em }
+.text-border { text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000 }
 
 /* Util --------------------------------------------------------------------- */
 
-.border { border: 1px solid currentColor }
+.border { border-style: solid; border-width: 1px }
+.no-border { border: 0 }
+
 .circle { border-radius: 50% }
 .rounded { border-radius: .5em }
+.square {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 100%;
+    width: 100%;
+}
+
+.cover {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
+.cover-screen {
+    position: fixed;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
 
 .gutter {
     margin-right: -1em;
@@ -53,6 +71,15 @@ Website's Theme
 
 .box-shadow { box-shadow: 0 0 .5em #000 }
 .text-shadow { text-shadow: .1em .1em #000 }
+
+.overlay { position: relative }
+.overlay::after {
+    background-color: #0004;
+    border-radius: inherit;
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
 
 /* Elements ----------------------------------------------------------------- */
 
@@ -81,8 +108,6 @@ h1, h2, h3, h4, h5, h6 { font-family: Helvetica, sans-serif; text-align: center 
     margin: .5em auto;
     width: 90%;
 }
-
-.lh-base { line-height: 1.2 }
 
 .link, a {
     color: #060;

@@ -1,4 +1,4 @@
-/*! csv v0.0.2 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+/*! csv v0.0.2 | MIT | https://github.com/hd-code/web-snippets */
 
 /**
  * @fileoverview

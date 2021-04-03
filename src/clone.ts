@@ -1,4 +1,4 @@
-/*! clone v0.0.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+/*! clone v0.0.1 | MIT | https://github.com/hd-code/web-snippets */
 
 // -----------------------------------------------------------------------------
 

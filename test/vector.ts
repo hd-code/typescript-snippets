@@ -1,79 +1,47 @@
-import * as assert from 'assert';
-import { add, avg, dot, isVector, mag, median, mul, quickselect, scale, sub, sum } from '../ts/vector';
-
-import round from '../ts/round';
+import { add, avg, dot, isVector, mag, median, mul, quickselect, scale, sub, sum } from 'vector';
+import round from 'round';
 
 // -----------------------------------------------------------------------------
 
 describe('vector', () => {
     describe(isVector.name, () => {
-        [
-            {
-                name: 'normal vector',
-                expected: true,
-                input: [1, 2, 3],
-            },
-            {
-                name: 'empty vector',
-                expected: true,
-                input: [],
-            },
-            {
-                name: 'not all elements are numbers',
-                expected: false,
-                input: [1, '2', 3],
-            },
-            {
-                name: 'string',
-                expected: false,
-                input: '1,2,3',
-            },
-            {
-                name: 'null',
-                expected: false,
-                input: null,
-            },
-            {
-                name: 'no input',
-                expected: false,
-                input: undefined,
-            },
-        ].forEach(({ name, input, expected }) =>
-            it(name + ' – expect: ' + expected, () => {
-                const actual = isVector(input);
-                assert.strictEqual(actual, expected);
-            }),
-        );
+        it.each([
+            [[1, 2, 3], true],
+            [[], true],
+            [[1, '2', 3], false],
+            ['1,2,3', false],
+            [null, false],
+            [undefined, false],
+        ])('%j => %j', (input, expected) => {
+            const actual = isVector(input);
+            expect(actual).toBe(expected);
+        });
     });
 
     // -------------------------------------------------------------------------
 
     describe(avg.name, () => {
-        [
-            { input: [1, 2, 3], expected: 2 },
-            { input: [0.5, 2, 5.2], expected: 7.7 / 3 },
-            { input: [1, -2, 3], expected: 2 / 3 },
-            { input: [], expected: 0 },
-        ].forEach(({ input, expected }) =>
-            it('(' + input + ') => ' + expected, () => {
-                const actual = avg(input);
-                assert.strictEqual(actual, expected);
-            }),
-        );
+        it.each([
+            [[1, 2, 3], 2],
+            [[0.5, 2, 5.2], 7.7 / 3],
+            [[1, -2, 3], 2 / 3],
+            [[], 0],
+        ])('%j => %j', (input, expected) => {
+            const actual = avg(input);
+            expect(actual).toBe(expected);
+        });
     });
 
     describe(mag.name, () => {
-        [
-            { input: [1, 2, 3], expected: Math.sqrt(1 + 4 + 9) },
-            { input: [0.5, 2, 5.2], expected: Math.sqrt(0.25 + 4 + 27.04) },
-            { input: [1, -2, 3], expected: Math.sqrt(1 + 4 + 9) },
-            { input: [], expected: NaN },
-        ].forEach(({ input, expected }) =>
-            it('(' + input + ') => ' + expected, () => {
-                const actual = mag(input);
-                assert.strictEqual(round(actual, 12), round(expected, 12));
-            }),
-        );
+        it.each([
+            [[1, 2, 3], Math.sqrt(1 + 4 + 9)],
+            [[0.5, 2, 5.2], Math.sqrt(0.25 + 4 + 27.04)],
+            [[1, -2, 3], Math.sqrt(1 + 4 + 9)],
+            [[], NaN],
+        ])('%j => %j', (input, expected) => {
+            const actual = mag(input);
+            expect(round(actual, 12)).toBe(round(expected, 12));
+        });
     });
 
     describe(median.name, () => {
@@ -91,7 +59,7 @@ describe('vector', () => {
         ].forEach(({ input, expected }) =>
             it('(' + input + ') => ' + expected, () => {
                 const actual = median(input);
-                assert.strictEqual(actual, expected);
+                expect(actual).toBe(expected);
             }),
         );
     });
@@ -127,23 +95,21 @@ describe('vector', () => {
         ].forEach(({ vector, index, expected }) =>
             it(`select ${index} from (${vector}) => ${expected}`, () => {
                 const actual = quickselect(vector, index);
-                assert.strictEqual(actual, expected);
+                expect(actual).toBe(expected);
             }),
         );
     });
 
     describe(sum.name, () => {
-        [
-            { input: [1, 2, 3], expected: 6 },
-            { input: [0.5, 2, 5.2], expected: 7.7 },
-            { input: [1, -2, 3], expected: 2 },
-            { input: [], expected: 0 },
-        ].forEach(({ input, expected }) =>
-            it('(' + input + ') => ' + expected, () => {
-                const actual = sum(input);
-                assert.strictEqual(actual, expected);
-            }),
-        );
+        it.each([
+            [[1, 2, 3], 6],
+            [[0.5, 2, 5.2], 7.7],
+            [[1, -2, 3], 2],
+            [[], 0],
+        ])('%j => %j', (input, expected) => {
+            const actual = sum(input);
+            expect(actual).toBe(expected);
+        });
     });
 
     // -------------------------------------------------------------------------
@@ -186,7 +152,7 @@ describe('vector', () => {
         ].forEach(({ input, expected }) =>
             it('(' + input[0] + ') + (' + input[1] + ') => (' + expected + ')', () => {
                 const actual = add(input[0] as number[], input[1] as number[]);
-                assert.deepStrictEqual(actual, expected);
+                expect(actual).toEqual(expected);
             }),
         );
     });
@@ -229,7 +195,7 @@ describe('vector', () => {
         ].forEach(({ input, expected }) =>
             it('(' + input[0] + ') - (' + input[1] + ') => (' + expected + ')', () => {
                 const actual = sub(input[0] as number[], input[1] as number[]);
-                assert.deepStrictEqual(round(actual, 5), expected);
+                expect(round(actual, 5)).toEqual(expected);
             }),
         );
     });
@@ -272,7 +238,7 @@ describe('vector', () => {
         ].forEach(({ input, expected }) =>
             it('(' + input[0] + ') * (' + input[1] + ') => (' + expected + ')', () => {
                 const actual = mul(input[0] as number[], input[1] as number[]);
-                assert.deepStrictEqual(round(actual, 5), expected);
+                expect(round(actual, 5)).toEqual(expected);
             }),
         );
     });
@@ -315,7 +281,7 @@ describe('vector', () => {
         ].forEach(({ input, expected }) =>
             it('(' + input[0] + ') . (' + input[1] + ') => ' + expected, () => {
                 const actual = dot(input[0] as number[], input[1] as number[]);
-                assert.strictEqual(round(actual, 5), expected);
+                expect(round(actual, 5)).toEqual(expected);
             }),
         );
     });
@@ -334,7 +300,7 @@ describe('vector', () => {
         ].forEach(({ input, expected }) =>
             it(input[0] + ' * (' + input[1] + ') => (' + expected + ')', () => {
                 const actual = scale(input[0] as number, input[1] as number[]);
-                assert.deepStrictEqual(actual, expected);
+                expect(actual).toEqual(expected);
             }),
         );
     });

@@ -1,4 +1,4 @@
-/*! vector v0.2.0 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+/*! vector v0.2.0 | MIT | https://github.com/hd-code/web-snippets */
 
 // -----------------------------------------------------------------------------
 

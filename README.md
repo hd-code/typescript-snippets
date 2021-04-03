@@ -1,25 +1,31 @@
 # Web Snippets
 
-This repo contains a collection of helpful code snippets for the web (TypeScript, Javascript, CSS).
+This repo contains a collection of helpful code snippets for web development (TypeScript, Javascript, CSS).
 
-## General
+## CSS Snippets
+
+The files in `css/` form a good style basis for any new project. They follow the atomic css principle.
+
+## Javascript Snippets
+
+All Javascript snippets are generated from the corresponding TypeScript snippets in `src/`. So, do not edit the files in `js/`.
+
+## TypeScript Snippets
+
+The `src/` directory holds helpful utility scripts for a bunch of different tasks.
+
+### General
 
 All files should start with this line:
 
 ```ts
-/*! <name> <version> | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+/*! <name> <version> | MIT | https://github.com/hd-code/web-snippets */
 ```
 
 - `<name>` is the name of the package, it usually corresponds with the filename
 - `<version>` is the version number in classical semver format (e.g `v1.2.3`)
 
 Make sure to update the version number after changing a snippet.
-
-## Javascript Snippets
-
-All Javascript snippets are generated from the corresponding TypeScript snippets in `ts/`. So, do not edit the files in `js/`.
-
-## TypeScript Snippets
 
 ### Preparation
 

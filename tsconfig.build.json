@@ -5,5 +5,5 @@
     "outDir": "js",
     "target": "es6",
   },
-  "include": ["ts"],
+  "include": ["src"],
 }

@@ -1,4 +1,4 @@
-/*! matrix v0.1.1 | MIT | © Hannes Dröse https://github.com/hd-code/web-snippets */
+/*! matrix v0.1.1 | MIT | https://github.com/hd-code/web-snippets */
 /** TypeGuard for a matrix. */
 export declare function isMatrix(matrix: unknown): matrix is number[][];
 /** Transforms a matrix to a vector by chaining all rows together in series. */
