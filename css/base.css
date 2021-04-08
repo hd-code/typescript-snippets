@@ -1,29 +1,36 @@
 /******************************************************************************* 
 Base CSS Settings
 - should be the very first file to be loaded
-- strips all base styles to have a clean slate to start with
+- strips some base styles to have a clean slate to start with
 - sets some practical defaults for easier styling
+- fixes some browser inconsistencies
 *******************************************************************************/
 
-* {
+/* Reset */
+
+*,
+*::after,
+*::before {
     box-sizing: inherit;
+    font-family: inherit;
     font-size: 1em;
     margin: 0;
     padding: 0;
 }
+
+/* Base Settings */
+
 html {
     box-sizing: border-box;
     height: 100%;
-    scroll-behavior: smooth;
-    width: 100%;
 }
 
-button,input,select,textarea {
-    font: inherit;
-    color: inherit;
+code,
+kbd,
+pre
+samp {
+    font-family: monospace, monospace;
 }
-
-code,kbd,pre,samp { font-family: monospace, monospace }
 
 img {
     height: auto;
@@ -31,18 +38,56 @@ img {
     vertical-align: bottom;
 }
 
-ol,ul { list-style: none }
+ol[class],
+ul[class] {
+    list-style: none;
+}
+ol:not([class]),
+ul:not([class]) {
+    padding-left: 1.5em;
+}
 
-small,sub,sup { font-size: 0.75em }
-sub,sup {
+small {
+    font-size: .8em;
+}
+
+sub,
+sup {
+    font-size: .75em;
     line-height: 0;
     position: relative;
     vertical-align: baseline;
 }
-sub { bottom: -0.25em }
-sup { top: -0.5em }
+sub {
+    bottom: -0.25em;
+}
+sup {
+    top: -0.5em;
+}
 
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+/* Browser Fixes */
+
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+    -webkit-appearance: button;
+}
+
+[type=search] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+}
+[type=search]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
 }
