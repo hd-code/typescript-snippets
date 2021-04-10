@@ -14,6 +14,7 @@
 
         #test-page { display: flex; border: 1px solid currentColor }
         #test-page > nav { border: 1px solid currentColor; max-width: 300px; width: 25%; padding: 1em }
+        #test-page > nav > ul { transition: margin-top .1s }
         #test-page > main { flex: 1; }
         #test-page > main > section { border: 1px solid currentColor; padding: 1em }
         #test-page > main > section > :first-child { font-size: 1.5em; margin-bottom: .3em }
@@ -29,6 +30,7 @@
     <div id="test-page">
         <nav>
             <ul>
+                <li><a href="#">Top of Page</a></li>
                 <li><a href="#heading">Heading</a></li>
                 <li><a href="#paragraph">Paragraph</a></li>
                 <hr>
@@ -118,9 +120,9 @@
                 <button type="submit">Button type=submit</button>
                 <button type="reset">Button type=reset</button>
                 <br>
-                <input type="button" value="Input type=button>" />
-                <input type="submit" value="Input type=submit>" />
-                <input type="reset" value="Input type=reset>" />
+                <input type="button" value="Input type=button" />
+                <input type="submit" value="Input type=submit" />
+                <input type="reset" value="Input type=reset" />
             </section>
 
             <section id="input">
@@ -578,5 +580,22 @@ p q r s t u v w x y z { | } ~</pre>
             </p>
         </footer>
     </div>
+
+    <script>
+        var updateDelay = 5;
+
+        var nav = document.querySelector("#test-page nav")
+        var navList = document.querySelector("#test-page nav ul");
+        function positionNavList() {
+            var offset = Math.min(0, nav.getBoundingClientRect().top);
+            navList.style.marginTop = Math.floor(-offset) + "px";
+        }
+
+        var timeoutHandle = setTimeout(positionNavList, updateDelay);
+        window.addEventListener("scroll", function() {
+            clearInterval(timeoutHandle);
+            timeoutHandle = setTimeout(positionNavList, updateDelay);
+        })
+    </script>
 </body>
 </html>

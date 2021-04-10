@@ -1,156 +1,36 @@
 /******************************************************************************* 
-Atomic helper classes for responsive layout, spacing, text and other utilities.
+Atomic Helper Classes
+- utility classes for doing one small atomic design task
+- there are classes for box model, flexbox, text and other utilities
+- this file probably needs not to be altered
 *******************************************************************************/
 
-/* Flexbox ------------------------------------------------------------------ */
+/* Box Model ---------------------------------------------------------------- */
 
-/* Flex Container */
-
-.flex { display: flex }
-
-.flex.col { flex-direction: column }
-.flex.col-reverse { flex-direction: column-reverse }
-.flex.row { flex-direction: row }
-.flex.row-reverse { flex-direction: row-reverse }
-
-.flex.no-wrap { flex-wrap: nowrap }
-.flex.wrap { flex-wrap: wrap }
-
-.flex.left { justify-content: flex-start }
-.flex.center { justify-content: center }
-.flex.right { justify-content: flex-end }
-.flex.justify { justify-content: space-between }
-
-.flex.top { align-items: flex-start }
-.flex.middle { align-items: center }
-.flex.bottom { align-items: flex-end }
-.flex.stretch { align-items: stretch }
-
-/* Flex Child */
-
-.flex > .top { align-self: flex-start }
-.flex > .middle { align-self: center }
-.flex > .bottom { align-self: flex-end }
-.flex > .stretch { align-self: stretch }
-
-.no-grow,
-.grow-0 { flex: 0 }
-.grow,
-.grow-1 { flex: 1 }
-.grow-2 { flex: 2 }
-.grow-3 { flex: 3 }
-.grow-4 { flex: 4 }
-
-.no-shrink,
-.shrink-0 { flex-shrink: 0 }
-.shrink,
-.shrink-1 { flex-shrink: 1 }
-.shrink-2 { flex-shrink: 2 }
-.shrink-3 { flex-shrink: 3 }
-.shrink-4 { flex-shrink: 4 }
-
-.order-0 { order: 0 }
-.order-1 { order: 1 }
-.order-2 { order: 2 }
-.order-3 { order: 3 }
-.order-4 { order: 4 }
-
-/* Layout ------------------------------------------------------------------- */
+/* height & width */
 
 .hw-100, .h-100 { height: 100% }
-.hw-75, .h-75 { height: 75% }
-.hw-66, .h-66 { height: 66.67% }
-.hw-50, .h-50 { height: 50% }
-.hw-33, .h-33 { height: 33.33% }
-.hw-25, .h-25 { height: 25% }
-.hw-12, .h-12 { height: 12.5% }
-
 .hw-100, .w-100 { width: 100% }
+
+.hw-75, .h-75 { height: 75% }
 .hw-75, .w-75 { width: 75% }
+
+.hw-66, .h-66 { height: 66.67% }
 .hw-66, .w-66 { width: 66.67% }
+
+.hw-50, .h-50 { height: 50% }
 .hw-50, .w-50 { width: 50% }
+
+.hw-33, .h-33 { height: 33.33% }
 .hw-33, .w-33 { width: 33.33% }
+
+.hw-25, .h-25 { height: 25% }
 .hw-25, .w-25 { width: 25% }
+
+.hw-12, .h-12 { height: 12.5% }
 .hw-12, .w-12 { width: 12.5% }
 
-/* Responsive --------------------------------------------------------------- */
-
-.container {
-    padding-left: 1em;
-    padding-right: 1em;
-}
-
-.hide { display: none }
-
-@media (min-width: 760px) {
-    .container {
-        padding-left:  calc((100% - 750px) / 2);
-        padding-right: calc((100% - 750px) / 2);
-    }
-
-    .hide-m { display: none }
-
-    .order-0-m { order: 0 }
-    .order-1-m { order: 1 }
-    .order-2-m { order: 2 }
-    .order-3-m { order: 3 }
-    .order-4-m { order: 4 }
-
-    .hw-100-m, .h-100-m { height: 100% }
-    .hw-75-m, .h-75-m { height: 75% }
-    .hw-66-m, .h-66-m { height: 66.67% }
-    .hw-50-m, .h-50-m { height: 50% }
-    .hw-33-m, .h-33-m { height: 33.33% }
-    .hw-25-m, .h-25-m { height: 25% }
-    .hw-12-m, .h-12-m { height: 12.5% }
-
-    .hw-100-m, .w-100-m { width: 100% }
-    .hw-75-m, .w-75-m { width: 75% }
-    .hw-66-m, .w-66-m { width: 66.67% }
-    .hw-50-m, .w-50-m { width: 50% }
-    .hw-33-m, .w-33-m { width: 33.33% }
-    .hw-25-m, .w-25-m { width: 25% }
-    .hw-12-m, .w-12-m { width: 12.5% }
-}
-@media (max-width: 761px) {
-    .show-m { display: none }
-}
-
-@media (min-width: 1200px) {
-    .container {
-        padding-left:  calc((100% - 1180px) / 2);
-        padding-right: calc((100% - 1180px) / 2);
-    }
-
-    .hide-l { display: none }
-
-    .order-0-l { order: 0 }
-    .order-1-l { order: 1 }
-    .order-2-l { order: 2 }
-    .order-3-l { order: 3 }
-    .order-4-l { order: 4 }
-
-    .hw-100-l, .h-100-l { height: 100% }
-    .hw-75-l, .h-75-l { height: 75% }
-    .hw-66-l, .h-66-l { height: 66.67% }
-    .hw-50-l, .h-50-l { height: 50% }
-    .hw-33-l, .h-33-l { height: 33.33% }
-    .hw-25-l, .h-25-l { height: 25% }
-    .hw-12-l, .h-12-l { height: 12.5% }
-
-    .hw-100-l, .w-100-l { width: 100% }
-    .hw-75-l, .w-75-l { width: 75% }
-    .hw-66-l, .w-66-l { width: 66.67% }
-    .hw-50-l, .w-50-l { width: 50% }
-    .hw-33-l, .w-33-l { width: 33.33% }
-    .hw-25-l, .w-25-l { width: 25% }
-    .hw-12-l, .w-12-l { width: 12.5% }
-}
-@media (max-width: 1201px) {
-    .show-l { display: none }
-}
-
-/* Spacing ------------------------------------------------------------------ */
+/* padding */
 
 .p-0, .px-0, .pl-0 { padding-left: 0 }
 .p-0, .px-0, .pr-0 { padding-right: 0 }
@@ -182,6 +62,13 @@ Atomic helper classes for responsive layout, spacing, text and other utilities.
 .p-4, .py-4, .pt-4 { padding-top: 2em }
 .p-4, .py-4, .pb-4 { padding-bottom: 2em }
 
+/* margin */
+
+.m-auto, .mx-auto, .ml-auto, .center { margin-left: auto }
+.m-auto, .mx-auto, .mr-auto, .center { margin-right: auto }
+.m-auto, .my-auto, .mt-auto { margin-top: auto }
+.m-auto, .my-auto, .mb-auto { margin-bottom: auto }
+
 .m-0, .mx-0, .ml-0 { margin-left: 0 }
 .m-0, .mx-0, .mr-0 { margin-right: 0 }
 .m-0, .my-0, .mt-0 { margin-top: 0 }
@@ -212,6 +99,61 @@ Atomic helper classes for responsive layout, spacing, text and other utilities.
 .m-4, .my-4, .mt-4 { margin-top: 2em }
 .m-4, .my-4, .mb-4 { margin-bottom: 2em }
 
+/* Flexbox ------------------------------------------------------------------ */
+
+/* Flex Container */
+
+.flex { display: flex }
+
+.flex-col { flex-direction: column }
+.flex-col-reverse { flex-direction: column-reverse }
+.flex-row { flex-direction: row } /* default */
+.flex-row-reverse { flex-direction: row-reverse }
+
+.flex-nowrap { flex-wrap: nowrap } /* default */
+.flex-wrap { flex-wrap: wrap }
+
+.flex-left { justify-content: flex-start } /* default */
+.flex-center { justify-content: center }
+.flex-right { justify-content: flex-end }
+.flex-justify { justify-content: space-between }
+
+.flex-top { align-items: flex-start }
+.flex-middle { align-items: center }
+.flex-bottom { align-items: flex-end }
+.flex-stretch { align-items: stretch } /* default */
+
+/* Flex Child */
+
+.self-top { align-self: flex-start }
+.self-middle { align-self: center }
+.self-bottom { align-self: flex-end }
+.self-stretch { align-self: stretch }
+
+.no-grow,
+.grow-0 { flex: 0 }
+.grow,
+.grow-1 { flex: 1 }
+.grow-2 { flex: 2 }
+.grow-3 { flex: 3 }
+.grow-4 { flex: 4 }
+
+.no-shrink,
+.shrink-0 { flex-shrink: 0 }
+.shrink,
+.shrink-1 { flex-shrink: 1 }
+.shrink-2 { flex-shrink: 2 }
+.shrink-3 { flex-shrink: 3 }
+.shrink-4 { flex-shrink: 4 }
+
+.flex-base-content { flex-basis: content }
+
+.order-0 { order: 0 }
+.order-1 { order: 1 }
+.order-2 { order: 2 }
+.order-3 { order: 3 }
+.order-4 { order: 4 }
+
 /* Text --------------------------------------------------------------------- */
 
 .fz-300 { font-size: 3em }
@@ -239,6 +181,7 @@ Atomic helper classes for responsive layout, spacing, text and other utilities.
 .text-right { text-align: right }
 .text-justify { text-align: justify }
 
+.no-wrap { white-space: nowrap }
 .one-line {
     overflow-x: hidden;
     text-overflow: ellipsis;
