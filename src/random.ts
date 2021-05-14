@@ -19,20 +19,20 @@ export function getFloat(max: number): number;
 export function getFloat(min: number, max: number): number;
 
 export function getFloat(arg1?: number, arg2?: number): number {
-    let min = 0,
-        max = 1;
+  let min = 0,
+    max = 1;
 
-    if (arg2 === undefined) {
-        max = arg1 || max;
-    } else {
-        max = arg2;
-        min = arg1 || min;
-    }
+  if (arg2 === undefined) {
+    max = arg1 || max;
+  } else {
+    max = arg2;
+    min = arg1 || min;
+  }
 
-    const diff = max - min;
-    const rand = (getNext() - 1) / (mod - 2);
+  const diff = max - min;
+  const rand = (getNext() - 1) / (mod - 2);
 
-    return rand * diff + min;
+  return rand * diff + min;
 }
 
 // -----------------------------------------------------------------------------
@@ -56,30 +56,30 @@ export function getInt(max: number): number;
 export function getInt(min: number, max: number): number;
 
 export function getInt(arg1?: number, arg2?: number): number {
-    const rand = getNext() - 1;
-    let min = 0,
-        max = 0;
+  const rand = getNext() - 1;
+  let min = 0,
+    max = 0;
 
-    if (arg1 === undefined) {
-        if (arg2 === undefined) {
-            return rand;
-        }
-        max = toInt(arg2);
-    } else {
-        if (arg2 === undefined) {
-            max = toInt(arg1);
-        } else {
-            min = toInt(arg1);
-            max = toInt(arg2);
-        }
+  if (arg1 === undefined) {
+    if (arg2 === undefined) {
+      return rand;
     }
+    max = toInt(arg2);
+  } else {
+    if (arg2 === undefined) {
+      max = toInt(arg1);
+    } else {
+      min = toInt(arg1);
+      max = toInt(arg2);
+    }
+  }
 
-    const diff = max - min;
-    const mod = Math.abs(diff) + 1;
+  const diff = max - min;
+  const mod = Math.abs(diff) + 1;
 
-    const result = rand % mod;
+  const result = rand % mod;
 
-    return (diff > 0 ? 1 : -1) * result + min;
+  return (diff > 0 ? 1 : -1) * result + min;
 }
 
 // -----------------------------------------------------------------------------
@@ -94,18 +94,18 @@ export function setSeed(): void;
 export function setSeed(seed: number): void;
 
 export function setSeed(seed?: number): void {
-    if (!seed) {
-        val = mod;
-        return;
-    }
+  if (!seed) {
+    val = mod;
+    return;
+  }
 
-    val = Math.ceil(Math.abs(seed)) % mod;
+  val = Math.ceil(Math.abs(seed)) % mod;
 }
 
 // -----------------------------------------------------------------------------
 
 function toInt(number: number): number {
-    return number > 0 ? Math.floor(number) : Math.ceil(number);
+  return number > 0 ? Math.floor(number) : Math.ceil(number);
 }
 
 // -----------------------------------------------------------------------------
@@ -122,5 +122,6 @@ let val = defaultSeed;
 
 /** Returns an int between 1 and mod - 1 (both included) */
 function getNext(): number {
-    return (val = (val * mul) % mod);
+  val = (val * mul) % mod;
+  return val;
 }

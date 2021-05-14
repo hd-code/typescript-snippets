@@ -13,15 +13,15 @@
  * _Attention_: Classes are not correctly cloned.
  */
 export function clone<T>(original: T): T {
-    if (original instanceof Array) {
-        return (original.slice() as unknown) as T;
-    }
+  if (original instanceof Array) {
+    return original.slice() as unknown as T;
+  }
 
-    if (original !== null && typeof original === 'object') {
-        return { ...original };
-    }
+  if (original !== null && typeof original === "object") {
+    return { ...original };
+  }
 
-    return original;
+  return original;
 }
 
 /**
@@ -32,22 +32,22 @@ export function clone<T>(original: T): T {
  * _Attention_: Classes are not correctly cloned.
  */
 export function deepClone<T>(original: T): T {
-    // TODO: Find solution for Classes and Dates
-    if (original instanceof Array) {
-        const result = [];
-        for (let i = 0, ie = original.length; i < ie; i++) {
-            result.push(deepClone(original[i]));
-        }
-        return (result as unknown) as T;
+  // TODO: Find solution for Classes and Dates
+  if (original instanceof Array) {
+    const result = [];
+    for (let i = 0, ie = original.length; i < ie; i++) {
+      result.push(deepClone(original[i]));
     }
+    return result as unknown as T;
+  }
 
-    if (original !== null && typeof original === 'object') {
-        const result: Partial<T> = {};
-        for (const key in original) {
-            result[key] = deepClone(original[key]);
-        }
-        return result as T;
+  if (original !== null && typeof original === "object") {
+    const result: Partial<T> = {};
+    for (const key in original) {
+      result[key] = deepClone(original[key]);
     }
+    return result as T;
+  }
 
-    return original;
+  return original;
 }

@@ -1,298 +1,316 @@
-import * as assert from 'assert';
-import { add, dot, flatten, isMatrix, mul, mulVector, scale, sub, transpose } from 'matrix';
+import {
+  add,
+  div,
+  dot,
+  flatten,
+  isMatrix,
+  mul,
+  mulVector,
+  scale,
+  sub,
+  transpose,
+} from "matrix";
 
 // -----------------------------------------------------------------------------
 
-describe('math/matrix', () => {
-    describe(isMatrix.name, () => {
+describe("math/matrix", () => {
+  describe(isMatrix.name, () => {
+    it.each([
+      [[], true],
+      [[[]], true],
+      [
         [
-            {
-                name: '0x0 matrix',
-                expected: true,
-                input: [],
-            },
-            {
-                name: '1x0 matrix',
-                expected: true,
-                input: [[]],
-            },
-            {
-                name: '2x2 matrix',
-                expected: true,
-                input: [
-                    [1, 2],
-                    [3, 4],
-                ],
-            },
-            {
-                name: '2x3 matrix',
-                expected: true,
-                input: [
-                    [1, 2, 3],
-                    [4, 5, 6],
-                ],
-            },
-            {
-                name: '1x3 matrix',
-                expected: true,
-                input: [[1, 2, 3]],
-            },
-            {
-                name: 'not all rows have same length',
-                expected: false,
-                input: [
-                    [1, 2, 3],
-                    [4, 5],
-                ],
-            },
-            {
-                name: 'not all elements are numbers',
-                expected: false,
-                input: [
-                    [1, 2],
-                    ['3', 4],
-                ],
-            },
-            {
-                name: 'just a vector',
-                expected: false,
-                input: [1, 2, 3],
-            },
-            {
-                name: 'number',
-                expected: false,
-                input: 123,
-            },
-            {
-                name: 'string',
-                expected: false,
-                input: '123',
-            },
-        ].forEach(({ name, input, expected }) =>
-            it(name + ' – expect: ' + expected, () => {
-                const actual = isMatrix(input);
-                assert.strictEqual(actual, expected);
-            }),
-        );
-    });
-
-    it.todo('det');
-
-    describe(flatten.name, () => {
+          [1, 2],
+          [3, 4],
+        ],
+        true,
+      ],
+      [
         [
-            {
-                input: [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                expected: [1, 2, 3, 4, 5, 6],
-            },
-            {
-                input: [
-                    [1, 2, 3],
-                    [4, 5, 6],
-                ],
-                expected: [1, 2, 3, 4, 5, 6],
-            },
-            { input: [[1, 2, 3, 4, 5, 6]], expected: [1, 2, 3, 4, 5, 6] },
-            { input: [[1], [2], [3], [4], [5], [6]], expected: [1, 2, 3, 4, 5, 6] },
-            { input: [], expected: [] },
-            { input: [[], []], expected: [] },
-        ].forEach(({ input, expected }) => {
-            it(JSON.stringify(input) + ' => ' + JSON.stringify(expected), () => {
-                const actual = flatten(input);
-                assert.deepStrictEqual(actual, expected);
-            });
-        });
-    });
-
-    describe(transpose.name, () => {
+          [1, 2],
+          [null, 4],
+        ],
+        false,
+      ],
+      [
         [
-            {
-                input: [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                expected: [
-                    [1, 3, 5],
-                    [2, 4, 6],
-                ],
-            },
-            {
-                input: [
-                    [1, 2, 3],
-                    [4, 5, 6],
-                ],
-                expected: [
-                    [1, 4],
-                    [2, 5],
-                    [3, 6],
-                ],
-            },
-            { input: [[1, 2, 3, 4, 5, 6]], expected: [[1], [2], [3], [4], [5], [6]] },
-            { input: [[1], [2], [3], [4], [5], [6]], expected: [[1, 2, 3, 4, 5, 6]] },
-            { input: [], expected: [] },
-            { input: [[], []], expected: [] },
-        ].forEach(({ input, expected }) => {
-            it(JSON.stringify(input) + ' => ' + JSON.stringify(expected), () => {
-                const actual = transpose(input);
-                assert.deepStrictEqual(actual, expected);
-            });
-        });
-    });
-
-    it.todo(add.name);
-
-    it.todo(sub.name);
-
-    it.todo(mul.name);
-
-    it.todo(dot.name);
-
-    describe(scale.name, () => {
-        it.each([
-            [
-                0,
-                [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                [
-                    [0, 0],
-                    [0, 0],
-                    [0, 0],
-                ],
-            ],
-            [
-                0.5,
-                [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                [
-                    [0.5, 1],
-                    [1.5, 2],
-                    [2.5, 3],
-                ],
-            ],
-            [
-                1,
-                [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-            ],
-            [
-                -0.5,
-                [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                [
-                    [-0.5, -1],
-                    [-1.5, -2],
-                    [-2.5, -3],
-                ],
-            ],
-            [
-                3,
-                [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                [
-                    [3, 6],
-                    [9, 12],
-                    [15, 18],
-                ],
-            ],
-            [
-                2,
-                [
-                    [1, 2, 3],
-                    [4, 5, 6],
-                ],
-                [
-                    [2, 4, 6],
-                    [8, 10, 12],
-                ],
-            ],
-            [-3, [[1, 2, 3, 4, 5, 6]], [[-3, -6, -9, -12, -15, -18]]],
-            [0, [], []],
-            [1, [], []],
-            [0.5, [], []],
-            [0, [[], []], [[], []]],
-            [1, [[], []], [[], []]],
-            [0.5, [[], []], [[], []]],
-        ])('%d * %j = %j', (scalar, matrix, expected) => {
-            const actual = scale(scalar, matrix);
-            expect(actual).toEqual(expected);
-        });
-    });
-
-    describe(mulVector.name, () => {
+          [1, "2"],
+          [3, 4],
+        ],
+        false,
+      ],
+      [[[1], [3, 4]], false],
+      [
         [
-            {
-                matrix: [
-                    [1, 2, 3],
-                    [4, 5, 6],
-                ],
-                vector: [2, 4, 6],
-                expected: [28, 64],
-            },
-            { matrix: [[1, 2, 3]], vector: [0.5, 2, 1], expected: [7.5] },
-            {
-                matrix: [
-                    [1, 2, 3],
-                    [4, 5, 6],
-                ],
-                vector: [1, 1, 1],
-                expected: [6, 15],
-            },
-            {
-                matrix: [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                vector: [2, 4],
-                expected: [10, 22, 34],
-            },
-            {
-                matrix: [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                vector: [2, 4, 6],
-                expected: [],
-            },
-            {
-                matrix: [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                ],
-                vector: [2],
-                expected: [],
-            },
-        ].forEach(({ matrix, vector, expected }) => {
-            it(JSON.stringify(matrix) + ' * ' + JSON.stringify(vector) + ' = ' + JSON.stringify(expected), () => {
-                const actual = mulVector(matrix, vector);
-                assert.deepStrictEqual(actual, expected);
-            });
-        });
+          [1, 2, 3],
+          [4, 5, 6],
+        ],
+        true,
+      ],
+      [
+        [
+          [1, 2, 3],
+          [4, 6],
+        ],
+        false,
+      ],
+      [[[1, 2, 3]], true],
+      [[1, 2, 3], false],
+      [123, false],
+      ["123", false],
+      [{}, false],
+    ])("%j => %j", (input, expected) => {
+      const actual = isMatrix(input);
+      expect(actual).toBe(expected);
     });
+  });
+
+  // ---------------------------------------------------------------------------
+
+  const data = [
+    { mat1: [], mat2: [], add: [], sub: [], mul: [], div: [] },
+    {
+      mat1: [[1]],
+      mat2: [[2]],
+      add: [[3]],
+      sub: [[-1]],
+      mul: [[2]],
+      div: [[0.5]],
+    },
+    {
+      mat1: [[12, 4]],
+      mat2: [[6, 3]],
+      add: [[18, 7]],
+      sub: [[6, 1]],
+      mul: [[72, 12]],
+      div: [[2, 4 / 3]],
+    },
+    {
+      mat1: [[12], [4]],
+      mat2: [[6], [3]],
+      add: [[18], [7]],
+      sub: [[6], [1]],
+      mul: [[72], [12]],
+      div: [[2], [4 / 3]],
+    },
+    { mat1: [[1, 2]], mat2: [[3]], add: [], sub: [], mul: [], div: [] },
+    { mat1: [[1]], mat2: [[2, 3]], add: [], sub: [], mul: [], div: [] },
+    { mat1: [[1], [2]], mat2: [[3, 4]], add: [], sub: [], mul: [], div: [] },
+  ];
+
+  [add, sub, mul, div].forEach((func) => {
+    const name = func.name as keyof typeof data[0];
+    describe(name, () => {
+      data.forEach((d) => {
+        const expected = d[name];
+        it(`[${d.mat1}] ${name} [${d.mat2}] = [${expected}]`, () => {
+          const actual = func(d.mat1, d.mat2);
+          expect(actual).toEqual(expected);
+        });
+      });
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+
+  describe(scale.name, () => {
+    it.each([
+      [
+        0,
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [
+          [0, 0],
+          [0, 0],
+          [0, 0],
+        ],
+      ],
+      [
+        0.5,
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [
+          [0.5, 1],
+          [1.5, 2],
+          [2.5, 3],
+        ],
+      ],
+      [
+        1,
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+      ],
+      [
+        -0.5,
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [
+          [-0.5, -1],
+          [-1.5, -2],
+          [-2.5, -3],
+        ],
+      ],
+      [
+        3,
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [
+          [3, 6],
+          [9, 12],
+          [15, 18],
+        ],
+      ],
+      [
+        2,
+        [
+          [1, 2, 3],
+          [4, 5, 6],
+        ],
+        [
+          [2, 4, 6],
+          [8, 10, 12],
+        ],
+      ],
+      [-3, [[1, 2, 3, 4, 5, 6]], [[-3, -6, -9, -12, -15, -18]]],
+      [0, [], []],
+      [1, [], []],
+      [0.5, [], []],
+      [0, [[], []], [[], []]],
+      [1, [[], []], [[], []]],
+      [0.5, [[], []], [[], []]],
+    ])("%d * %j = %j", (scalar, matrix, expected) => {
+      const actual = scale(scalar, matrix);
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  describe(mulVector.name, () => {
+    it.each([
+      [
+        [
+          [1, 2, 3],
+          [4, 5, 6],
+        ],
+        [2, 4, 6],
+        [28, 64],
+      ],
+      [[[1, 2, 3]], [0.5, 2, 1], [7.5]],
+      [
+        [
+          [1, 2, 3],
+          [4, 5, 6],
+        ],
+        [1, 1, 1],
+        [6, 15],
+      ],
+      [
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [2, 4, 6],
+        [],
+      ],
+      [
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [2],
+        [],
+      ],
+    ])("%j * %j => %j", (matrix, vector, expected) => {
+      const actual = mulVector(matrix, vector);
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  it.todo(dot.name);
+
+  // ---------------------------------------------------------------------------
+
+  describe(flatten.name, () => {
+    it.each([
+      [
+        [
+          [1, 2],
+          [3, 4],
+        ],
+        [1, 2, 3, 4],
+      ],
+      [
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [1, 2, 3, 4, 5, 6],
+      ],
+      [
+        [[1], [2], [3], [4]],
+        [1, 2, 3, 4],
+      ],
+      [[], []],
+      [[[], []], []],
+    ])("%j => %j", (input, expected) => {
+      const actual = flatten(input);
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  describe(transpose.name, () => {
+    it.each([
+      [
+        [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ],
+        [
+          [1, 3, 5],
+          [2, 4, 6],
+        ],
+      ],
+      [
+        [
+          [1, 2, 3],
+          [4, 5, 6],
+        ],
+        [
+          [1, 4],
+          [2, 5],
+          [3, 6],
+        ],
+      ],
+      [[[1], [2], [3], [4]], [[1, 2, 3, 4]]],
+      [[[1, 2, 3, 4]], [[1], [2], [3], [4]]],
+      [[], []],
+      [[[], []], []],
+    ])("%j => %j", (input, expected) => {
+      const actual = transpose(input);
+      expect(actual).toEqual(expected);
+    });
+  });
 });

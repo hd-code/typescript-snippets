@@ -1,6 +1,20 @@
-/*! vector v0.2.0 | MIT | https://github.com/hd-code/web-snippets */
+/*! vector v0.3.0 | MIT | https://github.com/hd-code/web-snippets */
 /** TypeGuard for a vector. */
 export declare function isVector(vector: unknown): vector is number[];
+/** Adds two vectors element-wise. */
+export declare function add(x: number[], y: number[]): number[];
+/** Subtract vector y from vector x element-wise. */
+export declare function sub(x: number[], y: number[]): number[];
+/** Multiplies two vectors element-wise. For dot-product see {@link dot} */
+export declare function mul(x: number[], y: number[]): number[];
+/** Divide two vectors element-wise. */
+export declare function div(x: number[], y: number[]): number[];
+/** Scales a vector by multiplying each element with the scalar value. */
+export declare function scale(scalar: number, vector: number[]): number[];
+/** Calculates the dot product of two vectors. */
+export declare function dot(x: number[], y: number[]): number;
+/** Multiplies a vector with a matrix (in that order). */
+export declare function mulMatrix(vector: number[], matrix: number[][]): number[];
 /** Calculates the average (mean) of all elements in a vector. */
 export declare function avg(vector: number[]): number;
 /** Calculates the magnitude of a vector. */
@@ -11,15 +25,3 @@ export declare function median(vector: number[]): number;
 export declare function quickselect(vector: number[], _index: number): number;
 /** Calculates the sum of all elements in a vector. */
 export declare function sum(vector: number[]): number;
-/** Adds two vectors element-wise. */
-export declare function add(x: number[], y: number[]): number[];
-/** Subtract vector y from vector x element-wise. */
-export declare function sub(x: number[], y: number[]): number[];
-/** Multiplies two vectors element-wise. For dot-product see {@link dot} */
-export declare function mul(x: number[], y: number[]): number[];
-/** Calculates the dot product of two vectors. */
-export declare function dot(x: number[], y: number[]): number;
-/** Scales a vector by multiplying each element with the scalar value. */
-export declare function scale(scalar: number, vector: number[]): number[];
-/** Multiplies a vector with a matrix (in that order). */
-export declare function mulMatrix(vector: number[], matrix: number[][]): number[];
