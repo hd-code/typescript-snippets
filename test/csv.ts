@@ -96,7 +96,7 @@ describe("csv", () => {
       ],
       [
         "should correctly parse a CSV string with escaped strings",
-        'page,description\n"Home, get started",There is no place like 127.0.0.1\nAbout,"The story of the Company: ""CSV Adventures"""\nStart,"Ready\nSteady\nGo!"',
+        'page,description\r\n"Home, get started",There is no place like 127.0.0.1\nAbout,"The story of the Company: ""CSV Adventures"""\nStart,"Ready\nSteady\nGo!"',
         [
           {
             page: "Home, get started",

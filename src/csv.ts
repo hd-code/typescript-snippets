@@ -78,7 +78,7 @@ function hasToBeEscaped(string: string): boolean {
 
 // --- parse -------------------------------------------------------------------
 
-const regexRow = /(([^\n"])|("([^"]|"")*"))+/g;
+const regexRow = /(([^\r\n"])|("([^"]|"")*"))+/g;
 const regexEntry = /(([^,"])|("([^"]|"")*"))+/g;
 const regexEscaped = /("([^"]|"")*")/g;
 const regex2Quotes = /""/g;
