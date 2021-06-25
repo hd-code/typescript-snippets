@@ -96,7 +96,7 @@ describe("csv", () => {
       ],
       [
         "should correctly parse a CSV string with escaped strings",
-        'page,description\r\n"Home, get started",There is no place like 127.0.0.1\nAbout,"The story of the Company: ""CSV Adventures"""\nStart,"Ready\nSteady\nGo!"',
+        'page,description\r\n"Home, get started",There is no place like 127.0.0.1\nAbout,"The story of the Company: ""CSV Adventures"""\nStart,"Ready\nSteady\nGo!"\r\n"Posts, Pages and more","[1,12]"',
         [
           {
             page: "Home, get started",
@@ -107,6 +107,7 @@ describe("csv", () => {
             description: 'The story of the Company: "CSV Adventures"',
           },
           { page: "Start", description: "Ready\nSteady\nGo!" },
+          { page: "Posts, Pages and more", description: "[1,12]" },
         ],
       ],
     ])("%s", (_, input, expected) => {

@@ -1,4 +1,4 @@
-/*! csv v0.0.2 | MIT | https://github.com/hd-code/web-snippets */
+/*! csv v0.0.3 | MIT | https://github.com/hd-code/web-snippets */
 
 /**
  * @fileoverview
@@ -80,7 +80,7 @@ function hasToBeEscaped(string: string): boolean {
 
 const regexRow = /(([^\r\n"])|("([^"]|"")*"))+/g;
 const regexEntry = /(([^,"])|("([^"]|"")*"))+/g;
-const regexEscaped = /("([^"]|"")*")/g;
+const regexEscaped = /("([^"]|"")*")/;
 const regex2Quotes = /""/g;
 
 function extractRows(csv: string): string[][] {
