@@ -1,3 +1,4 @@
+import { strictEqual as equal } from "assert";
 import {
   hasKey,
   isArray,
@@ -9,8 +10,6 @@ import {
   isString,
   isUndefined,
 } from "type-guards";
-
-// -----------------------------------------------------------------------------
 
 type CaseKey = keyof typeof cases;
 const cases = {
@@ -35,10 +34,10 @@ function checkCases<T>(
   trueCases: CaseKey[],
 ) {
   for (const key in cases) {
-    const expected = trueCases.includes(key as CaseKey);
-    it(key + " – expect: " + expected, () => {
+    const want = trueCases.includes(key as CaseKey);
+    it(`${key} => ${want}`, () => {
       const actual = typeGuard(cases[key as CaseKey]);
-      expect(actual).toBe(expected);
+      equal(actual, want);
     });
   }
 }
@@ -75,66 +74,97 @@ describe("TypeGuards", () => {
       checkCases(isArray, ["arrayNumbers", "arrayStrings", "arrayMixed"]));
 
     describe("with type guard", () => {
-      it.each([
-        ["all elements match guard", true, cases.arrayNumbers, isNumber],
-        ["no elements match guard", false, cases.arrayStrings, isNumber],
-        ["some elements do not match guard", false, cases.arrayMixed, isNumber],
-      ])("%s => %j", (_, expected, value, typeGuard) => {
-        const actual = isArray(value, typeGuard);
-        expect(actual).toBe(expected);
+      [
+        {
+          name: "all elements match guard",
+          want: true,
+          value: cases.arrayNumbers,
+          typeGuard: isNumber,
+        },
+        {
+          name: "no elements match guard",
+          want: false,
+          value: cases.arrayStrings,
+          typeGuard: isNumber,
+        },
+        {
+          name: "some elements do not match guard",
+          want: false,
+          value: cases.arrayMixed,
+          typeGuard: isNumber,
+        },
+      ].forEach(({ name, want, value, typeGuard }) => {
+        it(`${name} => ${want}`, () => {
+          const actual = isArray(value, typeGuard);
+          equal(actual, want);
+        });
       });
     });
   });
 
   describe(hasKey.name, () => {
-    it.each([
-      ["object has key", true, { name: "John" }, "name", undefined],
-      ["object does not have key", false, { name: "John" }, "age", undefined],
-      [
-        "object has key and type guard matches",
-        true,
-        { name: "John" },
-        "name",
-        isString,
-      ],
-      [
-        "object has key but type guard fails",
-        false,
-        { name: "John" },
-        "name",
-        isNumber,
-      ],
-      [
-        "object has key with falsy value (empty string)",
-        true,
-        { name: "" },
-        "name",
-        undefined,
-      ],
-      [
-        "object has key with falsy value (0)",
-        true,
-        { name: 0 },
-        "name",
-        undefined,
-      ],
-      [
-        "object has key with falsy value (null)",
-        true,
-        { name: null },
-        "name",
-        undefined,
-      ],
-      [
-        "object has key with falsy value (undefined)",
-        true,
-        { name: undefined },
-        "name",
-        undefined,
-      ],
-    ])("%s => %j", (_, expected, obj, key, typeGuard) => {
-      const actual = hasKey(obj, key, typeGuard);
-      expect(actual).toBe(expected);
+    [
+      {
+        name: "object has key",
+        want: true,
+        obj: { name: "John" },
+        key: "name",
+        typeGuard: undefined,
+      },
+      {
+        name: "object does not have key",
+        want: false,
+        obj: { name: "John" },
+        key: "age",
+        typeGuard: undefined,
+      },
+      {
+        name: "object has key and type guard matches",
+        want: true,
+        obj: { name: "John" },
+        key: "name",
+        typeGuard: isString,
+      },
+      {
+        name: "object has key and type guard matches",
+        want: false,
+        obj: { name: "John" },
+        key: "name",
+        typeGuard: isNumber,
+      },
+      {
+        name: "object has key with falsy value (empty string)",
+        want: true,
+        obj: { name: "" },
+        key: "name",
+        typeGuard: undefined,
+      },
+      {
+        name: "object has key with falsy value (0)",
+        want: true,
+        obj: { name: 0 },
+        key: "name",
+        typeGuard: undefined,
+      },
+      {
+        name: "object has key with falsy value (null)",
+        want: true,
+        obj: { name: null },
+        key: "name",
+        typeGuard: undefined,
+      },
+      {
+        name: "object has key with falsy value (undefined)",
+        want: true,
+        obj: { name: undefined },
+        key: "name",
+        typeGuard: undefined,
+      },
+    ].forEach(({ name, want, obj, key, typeGuard }) => {
+      it(`${name} => ${want}`, () => {
+        const actual = hasKey(obj, key, typeGuard);
+        equal(actual, want);
+      });
     });
   });
 });

@@ -1,3 +1,5 @@
+// FIXME: port tests
+/*
 import {
   add,
   avg,
@@ -199,3 +201,4 @@ describe("vector", () => {
     });
   });
 });
+// */

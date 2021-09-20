@@ -12,9 +12,10 @@ Website's Theme
 
 .bg-main, .bg-main-focus:focus, .bg-main-hover:hover { background-color: #ddd }
 
-.bg-primary, .bg-primary-focus:focus, .bg-primary-hover:hover { color: #00a }
-.bg-secondary, .bg-secondary-focus:focus, .bg-secondary-hover:hover { color: #06a }
-.bg-neutral, .bg-neutral-focus:focus, .bg-neutral-hover:hover { color: #fff }
+.bg-primary, .bg-primary-focus:focus, .bg-primary-hover:hover { background-color: #00a }
+.bg-secondary, .bg-secondary-focus:focus, .bg-secondary-hover:hover { background-color: #06a }
+.bg-neutral, .bg-neutral-focus:focus, .bg-neutral-hover:hover { background-color: #fff }
+.bg-contrast, .bg-contrast-focus:focus, .bg-contrast-hover:hover { background-color: #000 }
 
 .bg-error, .bg-error-focus:focus, .bg-error-hover:hover { background-color: #800 }
 .bg-warn, .bg-warn-focus:focus, .bg-warn-hover:hover { background-color: #880 }
@@ -22,8 +23,8 @@ Website's Theme
 
 .c-primary, .c-primary-focus:focus, .c-primary-hover:hover { color: #00a }
 .c-secondary, .c-secondary-focus:focus, .c-secondary-hover:hover { color: #06a }
-.c-neutral, .c-neutral-focus:focus, .c-neutral-hover:hover { color: #000 }
-.c-contrast, .c-contrast-focus:focus, .c-contrast-hover:hover { color: #fff }
+.c-neutral, .c-neutral-focus:focus, .c-neutral-hover:hover { color: #fff }
+.c-contrast, .c-contrast-focus:focus, .c-contrast-hover:hover { color: #000 }
 
 .c-error, .c-error-focus:focus, .c-error-hover:hover { color: #800 }
 .c-warn, .c-warn-focus:focus, .c-warn-hover:hover { color: #a80 }
@@ -31,8 +32,9 @@ Website's Theme
 
 /* Typography --------------------------------------------------------------- */
 
-.font-1 { font-family: Helvetica, sans-serif }
-.font-2 { font-family: Times, serif }
+.font-main { font-family: Helvetica, sans-serif }
+.font-heading { font-family: Verdana, sans-serif }
+.font-monospace { font-family: monospace, monospace }
 
 .text-block * + * { margin-top: .5em }
 .text-border { text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000 }
@@ -96,7 +98,7 @@ Website's Theme
 
 .headline,
 .h1, .h2, .h3, .h4, .h5, .h6,
-h1, h2, h3, h4, h5, h6 { font-family: Helvetica, sans-serif; text-align: center }
+h1, h2, h3, h4, h5, h6 { font-family: Verdana, sans-serif; text-align: center }
 .h1, h1 { font-size: 2.5em }
 .h2, h2 { font-size: 2.0em }
 .h3, h3 { font-size: 1.5em }

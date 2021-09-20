@@ -1,10 +1,12 @@
-import * as assert from "assert";
+import {
+  ok as assert,
+  deepStrictEqual as equal,
+  notDeepStrictEqual as notEqual,
+} from "assert";
 import { MAX_INT, getFloat, getInt, setSeed } from "random";
 import { isInteger } from "type-guards";
 
-// -----------------------------------------------------------------------------
-
-describe("math/random", () => {
+describe("random", () => {
   const numberOfTries = 1000;
   const minSpreadCoverage = 0.95;
 
@@ -65,19 +67,16 @@ describe("math/random", () => {
         const smallest = Math.min(...actuals);
         const largest = Math.max(...actuals);
 
-        assert.ok(smallest >= expected.from, "some value were too small");
-        assert.ok(smallest < expected.til, "some value were too large");
-        assert.ok(largest >= expected.from, "some value were too small");
-        assert.ok(largest < expected.til, "some value were too large");
+        assert(smallest >= expected.from, "some value were too small");
+        assert(smallest < expected.til, "some value were too large");
+        assert(largest >= expected.from, "some value were too small");
+        assert(largest < expected.til, "some value were too large");
 
         const actDiff = largest - smallest;
         const expDiff = expected.til - expected.from;
 
-        assert.ok(
-          actDiff <= expDiff,
-          "values have a bigger spread then allowed",
-        );
-        assert.ok(
+        assert(actDiff <= expDiff, "values have a bigger spread then allowed");
+        assert(
           actDiff > expDiff * minSpreadCoverage,
           "values do not span the whole range",
         );
@@ -152,25 +151,22 @@ describe("math/random", () => {
         const actuals = [];
         for (let i = 0; i < numberOfTries; i++) {
           actuals.push(getInt(args[0] as number, args[1] as number));
-          assert.ok(actuals.every(isInteger), "did not return an integer");
+          assert(actuals.every(isInteger), "did not return an integer");
         }
 
         const smallest = Math.min(...actuals);
         const largest = Math.max(...actuals);
 
-        assert.ok(smallest >= expected.from, "smallest value was too small");
-        assert.ok(smallest <= expected.til, "smallest value was too large");
-        assert.ok(largest >= expected.from, "largest value was too small");
-        assert.ok(largest <= expected.til, "largest value was too large");
+        assert(smallest >= expected.from, "smallest value was too small");
+        assert(smallest <= expected.til, "smallest value was too large");
+        assert(largest >= expected.from, "largest value was too small");
+        assert(largest <= expected.til, "largest value was too large");
 
         const actDiff = largest - smallest;
         const expDiff = expected.til - expected.from;
 
-        assert.ok(
-          actDiff <= expDiff,
-          "values have a bigger spread then allowed",
-        );
-        assert.ok(
+        assert(actDiff <= expDiff, "values have a bigger spread then allowed");
+        assert(
           actDiff > expDiff * minSpreadCoverage,
           "values do not span the whole range",
         );
@@ -205,11 +201,7 @@ describe("math/random", () => {
         for (let i = 0; i < numOfTries; i++) {
           setSeed(seed as number);
           const actual = generateValues();
-          assert.deepStrictEqual(
-            actual,
-            expected,
-            "did not generate the same values",
-          );
+          equal(actual, expected, "did not generate the same values");
         }
       }),
     );
@@ -219,7 +211,7 @@ describe("math/random", () => {
       const valuesZero = generateValues();
       setSeed(1);
       const valuesOne = generateValues();
-      assert.notDeepStrictEqual(valuesZero, valuesOne);
+      notEqual(valuesZero, valuesOne);
     });
   });
 });

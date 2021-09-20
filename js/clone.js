@@ -1,2 +1,2 @@
 /*! clone v0.0.1 | MIT | https://github.com/hd-code/web-snippets */
-export function clone(e){return e instanceof Array?e.slice():null!==e&&"object"==typeof e?Object.assign({},e):e};export function deepClone(e){if(e instanceof Array){const n=[];for(let t=0,o=e.length;t<o;t++)n.push(deepClone(e[t]));return n}if(null!==e&&"object"==typeof e){const n={};for(const t in e)n[t]=deepClone(e[t]);return n}return e};
+function clone(e){return e instanceof Array?e.slice():null!==e&&"object"==typeof e?Object.assign({},e):e}function deepClone(o){if(o instanceof Array){const t=[];for(let e=0,n=o.length;e<n;e++)t.push(deepClone(o[e]));return t}if(null===o||"object"!=typeof o)return o;{const e={};for(const n in o)e[n]=deepClone(o[n]);return e}}export{clone,deepClone};

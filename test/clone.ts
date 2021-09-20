@@ -1,42 +1,44 @@
+import {
+  deepStrictEqual as equal,
+  notDeepStrictEqual as notEqual,
+} from "assert";
 import { clone, deepClone } from "clone";
-
-// -----------------------------------------------------------------------------
 
 describe("clone", () => {
   describe(clone.name + "()", () => {
     it("should clone primitive types (number,string,null,undefined)", () => {
       const original = [1, "text", null, undefined];
-      original.forEach((data) => expect(clone(data)).toEqual(data));
+      original.forEach((data) => equal(clone(data), data));
     });
 
-    it("should clone array of numbers – arrays should be independant now", () => {
+    it("should clone array of numbers – arrays should be independent now", () => {
       const original = [1, 2, 3, 4];
       const actual = clone(original);
-      expect(actual).toEqual(original);
+      equal(actual, original);
       actual[0] = 0;
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
     });
 
-    it("should clone array of array of numbers – nested arrays are not independant!", () => {
+    it("should clone array of array of numbers – nested arrays are not independent!", () => {
       const original = [
         [1, 2],
         [3, 4],
       ];
       const actual = clone(original);
-      expect(actual).toEqual(original);
+      equal(actual, original);
       (actual[0] as number[])[0] = 0;
-      expect(actual).toEqual(original);
+      equal(actual, original);
     });
 
     it("should clone object of primitive values – objects should be independent now", () => {
       const original = { name: "John Doe", age: 42 };
       const actual = clone(original);
-      expect(actual).toEqual(original);
+      equal(actual, original);
       actual.age = 0;
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
     });
 
-    it("should clone complex object – nested elements are not independant", () => {
+    it("should clone complex object – nested elements are not independent", () => {
       const original = {
         name: "John Doe",
         age: 42,
@@ -45,16 +47,16 @@ describe("clone", () => {
         greet: () => "Hello World",
       };
       const actual = clone(original);
-      expect(actual).toEqual(original);
+      equal(actual, original);
 
       actual.age = 0;
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
       (actual.age = 42), (actual.hobbies[0] = "roulette");
-      expect(actual).toEqual(original);
+      equal(actual, original);
       actual.hobbies[0] = "poker";
 
       actual.phone.company = "Samsung";
-      expect(actual).toEqual(original);
+      equal(actual, original);
       actual.phone.company = "Apple";
     });
 
@@ -66,22 +68,22 @@ describe("clone", () => {
       }
       const original = new CTest();
       const actual = clone(original);
-      expect(actual instanceof CTest).toBeFalsy();
+      notEqual(actual, original);
     });
   });
 
   describe(deepClone.name + "()", () => {
     it("should clone primitive types (number,string,null,undefined)", () => {
       const original = [1, "text", null, undefined];
-      original.forEach((data) => expect(deepClone(data)).toEqual(data));
+      original.forEach((data) => equal(deepClone(data), data));
     });
 
-    it("should clone array of numbers – arrays should be independant now", () => {
+    it("should clone array of numbers – arrays should be independent now", () => {
       const original = [1, 2, 3, 4];
       const actual = deepClone(original);
-      expect(actual).toEqual(original);
+      equal(actual, original);
       actual[0] = 0;
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
     });
 
     it("should clone array of array of numbers – arrays should be independant now", () => {
@@ -90,17 +92,17 @@ describe("clone", () => {
         [3, 4],
       ];
       const actual = deepClone(original);
-      expect(actual).toEqual(original);
+      equal(actual, original);
       (actual[0] as number[])[0] = 0;
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
     });
 
     it("should clone object of primitive values – objects should be independent now", () => {
       const original = { name: "John Doe", age: 42 };
       const actual = deepClone(original);
-      expect(actual).toEqual(original);
+      equal(actual, original);
       actual.age = 0;
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
     });
 
     it("should clone complex object – objects should be independent now", () => {
@@ -112,16 +114,16 @@ describe("clone", () => {
         greet: () => "Hello World",
       };
       const actual = deepClone(original);
-      expect(actual).toEqual(original);
+      equal(actual, original);
 
       actual.age = 0;
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
       (actual.age = 42), (actual.hobbies[0] = "roulette");
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
       actual.hobbies[0] = "poker";
 
       actual.phone.company = "Samsung";
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
       actual.phone.company = "Apple";
     });
 
@@ -133,7 +135,7 @@ describe("clone", () => {
       }
       const original = new CTest();
       const actual = deepClone(original);
-      expect(actual).not.toEqual(original);
+      notEqual(actual, original);
     });
   });
 });
