@@ -1,6 +1,0 @@
-{
-  "modulePaths": ["<rootDir>/src"],
-  "roots": ["<rootDir>/test"],
-  "testMatch": ["**/*.(js|jsx|ts|tsx)"],
-  "transform": {"^.+\\.(ts|tsx)$": "ts-jest"}
-}
