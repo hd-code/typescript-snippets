@@ -1,65 +1,27 @@
-import * as assert from "assert";
+import { testFunc } from "testutil";
 
 // -----------------------------------------------------------------------------
 
-type TestFunc = (...args: any[]) => any;
+function add(x: number, y: number): number {
+  return x + y;
+}
 
-export function testFunc(fn: TestFunc, cases: TestCaseMap): void;
-export function testFunc(fn: TestFunc, cases: TestCase[]): void;
-export function testFunc(fn: TestFunc, cases: TestCaseMap | TestCase[]) {
-  const testCases = cases instanceof Array ? toCaseMap(cases) : cases;
+function mul(x: number, y: number): number {
+  return x * y;
+}
 
-  describe(fn.name, () => {
-    for (const name in testCases) {
-      const args = testCases[name].args || [];
-      const want = testCases[name].want;
-      const errMsg = testCases[name].errMsg;
+describe("testutil", () => {
+  testFunc(add, [
+    [[1, 2], 3],
+    [[1, 1], 2],
+    [[0, 5], 5],
+    [[34, 12], 46],
+  ]);
 
-      it(name, () => {
-        const got = fn(...args);
-        if (typeof got === "object") {
-          assert.deepStrictEqual(got, want, errMsg);
-        } else {
-          assert.strictEqual(got, want, errMsg);
-        }
-      });
-    }
+  testFunc(mul, {
+    named: [[1, 2], 2],
+    cases: [[1, 1], 1],
+    should: [[0, 5], 0],
+    "work too": [[34, 12], 34 * 12],
   });
-}
-
-// -----------------------------------------------------------------------------
-
-export type TestCase = {
-  args?: any[];
-  want: any;
-  errMsg?: string;
-};
-
-export type TestCaseMap = { [name: string]: TestCase };
-
-function toCaseMap(cases: TestCase[]): TestCaseMap {
-  let result: TestCaseMap = {};
-  cases.forEach((testCase) => {
-    const name = getName(testCase);
-    result[name] = testCase;
-  });
-  return result;
-}
-
-// -----------------------------------------------------------------------------
-
-function getName(testCase: TestCase): string {
-  const args = testCase.args?.map(toString).join(", ") || "";
-  return `(${args}) => ${toString(testCase.want)}`;
-}
-
-const maxStrLen = 10;
-
-function toString<T>(value: T): string {
-  const valueSting = "" + value;
-  const result =
-    valueSting.length > maxStrLen
-      ? valueSting.slice(0, maxStrLen) + "…"
-      : valueSting;
-  return value instanceof Array ? `[${result}]` : result;
-}
+});

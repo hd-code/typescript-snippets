@@ -1,5 +1,5 @@
 import { toBinary, toBinaryString } from "binary";
-import { testFunc } from "./testutil";
+import { testFunc } from "testutil";
 
 const cases = [
   { args: [2], wantStr: "10", wantArr: [1, 0] },
@@ -20,10 +20,16 @@ const cases = [
 describe("binary", () => {
   testFunc(
     toBinary,
-    cases.map(({ args, wantArr }) => ({ args, want: wantArr })),
+    cases.map(({ args, wantArr }) => [
+      args as [number, number | undefined],
+      wantArr,
+    ]),
   );
   testFunc(
     toBinaryString,
-    cases.map(({ args, wantStr }) => ({ args, want: wantStr })),
+    cases.map(({ args, wantStr }) => [
+      args as [number, number | undefined],
+      wantStr,
+    ]),
   );
 });

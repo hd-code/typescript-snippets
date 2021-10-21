@@ -3,18 +3,7 @@
     "baseUrl": "src",
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-
-    // strict checks
     "strict": true,
-
-    // linter checks
-    "noFallthroughCasesInSwitch": true,
-    // "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    // "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
   },
   "exclude": ["draft"],
 }

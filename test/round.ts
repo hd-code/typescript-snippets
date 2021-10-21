@@ -1,5 +1,5 @@
 import round from "round";
-import { testFunc, TestCase } from "./testutil";
+import { testFunc } from "testutil";
 
 const precisions = [undefined, 0, 2, -2];
 const mapping = [
@@ -12,7 +12,9 @@ const mapping = [
   { number: -654.321, expected: [-654, -654, -654.32, -700] },
 ];
 
-let cases: TestCase[] = [];
+type Struct = number | number[] | number[][];
+
+let cases: [[Struct, number | undefined], Struct][] = [];
 
 precisions.forEach((precision, i) => {
   let values: number[] = [];
@@ -20,26 +22,20 @@ precisions.forEach((precision, i) => {
 
   mapping.forEach((mapping) => {
     // single values
-    cases.push({
-      args: [mapping.number, precision],
-      want: mapping.expected[i],
-    });
+    cases.push([[mapping.number, precision], mapping.expected[i]]);
 
     values.push(mapping.number);
     want.push(mapping.expected[i]);
   });
 
   // vector
-  cases.push({
-    args: [values, precision],
-    want,
-  });
+  cases.push([[values, precision], want]);
 
   // matrix
-  cases.push({
-    args: [[values, values], precision],
-    want: [want, want],
-  });
+  cases.push([
+    [[values, values], precision],
+    [want, want],
+  ]);
 });
 
 describe("round", () => {
