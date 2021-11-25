@@ -1,4 +1,4 @@
-/*! type-guards v0.0.4 | MIT | https://github.com/hd-code/web-snippets */
+/*! type-guards v0.1.0 | MIT | https://github.com/hd-code/web-snippets */
 
 /**
  * @file
@@ -21,23 +21,23 @@ export function isNull(value: unknown): value is null {
 // -----------------------------------------------------------------------------
 
 /** TypeGuard to check if a value is a `boolean`. */
-export function isBool(bool: unknown): bool is boolean {
-  return typeof bool === "boolean";
+export function isBool(value: unknown): value is boolean {
+  return typeof value === "boolean";
 }
 
 /** TypeGuard to check if a value is a `number` with no decimals. */
-export function isInteger(num: unknown): num is number {
-  return typeof num === "number" && Math.floor(num) === num;
+export function isInteger(value: unknown): value is number {
+  return typeof value === "number" && Math.floor(value) === value;
 }
 
 /** TypeGuard to check if a value is a `number`. */
-export function isNumber(num: unknown): num is number {
-  return typeof num === "number";
+export function isNumber(value: unknown): value is number {
+  return typeof value === "number";
 }
 
 /** TypeGuard to check if a value is a `string`. */
-export function isString(str: unknown): str is string {
-  return typeof str === "string";
+export function isString(value: unknown): value is string {
+  return typeof value === "string";
 }
 
 // -----------------------------------------------------------------------------
@@ -50,10 +50,10 @@ export function isString(str: unknown): str is string {
  * element, the function will return false.
  */
 export function isArray<T>(
-  arr: unknown,
+  value: unknown,
   typeGuard?: (el: unknown) => el is T,
-): arr is T[] {
-  if (!(arr instanceof Array)) {
+): value is T[] {
+  if (!(value instanceof Array)) {
     return false;
   }
 
@@ -61,8 +61,8 @@ export function isArray<T>(
     return true;
   }
 
-  for (let i = 0, ie = arr.length; i < ie; i++) {
-    if (!typeGuard(arr[i])) {
+  for (let i = 0, ie = value.length; i < ie; i++) {
+    if (!typeGuard(value[i])) {
       return false;
     }
   }
@@ -78,8 +78,10 @@ export function isArray<T>(
  *
  * If you want to check the object for specific keys, use `hasKey()`.
  */
-export function isObject<T>(obj: unknown): obj is T {
-  return typeof obj === "object" && obj !== null && !(obj instanceof Array);
+export function isObject<T>(value: unknown): value is T {
+  return (
+    typeof value === "object" && value !== null && !(value instanceof Array)
+  );
 }
 
 /**
@@ -104,4 +106,23 @@ export function hasKey<T>(
     key in obj &&
     (!typeGuard || typeGuard((obj as unknown as T)[key]))
   );
+}
+
+// -----------------------------------------------------------------------------
+
+/**
+ * TypeGuard to check if a value is an instance of an enum.
+ *
+ * This guard is only effectively usable with typescript.
+ */
+export function isEnum<T extends { [key: number | string]: number | string }>(
+  value: unknown,
+  enumType: T,
+): value is T[keyof T] {
+  switch (typeof value) {
+    case "number":
+    case "string":
+      return enumType[value] != undefined;
+  }
+  return false;
 }

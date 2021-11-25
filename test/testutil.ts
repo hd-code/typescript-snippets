@@ -22,6 +22,6 @@ describe("testutil", () => {
     named: [[1, 2], 2],
     cases: [[1, 1], 1],
     should: [[0, 5], 0],
-    "work too": [[34, 12], 34 * 12],
+    "works too": [[34, 12], 34 * 12],
   });
 });

@@ -1,8 +1,10 @@
 import { strictEqual as equal } from "assert";
+import { testFunc } from "testutil";
 import {
   hasKey,
   isArray,
   isBool,
+  isEnum,
   isInteger,
   isNull,
   isNumber,
@@ -166,5 +168,20 @@ describe("TypeGuards", () => {
         equal(actual, want);
       });
     });
+  });
+
+  enum TestEnum {
+    one,
+    two,
+    three,
+  }
+
+  testFunc(isEnum, {
+    "number member": [[1, TestEnum], true],
+    "number member too high": [[99, TestEnum], false],
+    "number member float": [[1.1, TestEnum], false],
+    "string member": [["three", TestEnum], true],
+    "string member false": [["ninety", TestEnum], false],
+    "wrong value type": [[true, TestEnum], false],
   });
 });
