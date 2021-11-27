@@ -1,4 +1,4 @@
-/*! testutil v0.0.2 | MIT | https://github.com/hd-code/web-snippets */
+/*! testutil v0.0.3 | MIT | https://github.com/hd-code/web-snippets */
 
 /**
  * @file
@@ -22,7 +22,7 @@ import * as assert from "assert";
  * value is a tuple with two entries. The first are the params (as an array) and
  * the second is the expected return value.
  */
-export function testFunc<Args extends any[], Return>(
+export function testFunc<Args extends unknown[], Return>(
   fn: (...args: Args) => Return,
   cases: [Args, Return][] | { [name: string]: [Args, Return] },
 ) {
@@ -50,7 +50,7 @@ export function testFunc<Args extends any[], Return>(
 type RecursiveArray<Type> = Array<RecursiveArray<Type> | Type>;
 
 export function testFuncClose<
-  Args extends any[],
+  Args extends unknown[],
   Return extends number | RecursiveArray<number>,
 >(
   fn: (...args: Args) => Return,
@@ -92,10 +92,10 @@ export function testFuncClose<
 
 // -----------------------------------------------------------------------------
 
-function toCaseMap<Args extends any[], Return>(
+function toCaseMap<Args extends unknown[], Return>(
   cases: [Args, Return][],
 ): { [name: string]: [Args, Return] } {
-  let result: { [name: string]: [Args, Return] } = {};
+  const result: { [name: string]: [Args, Return] } = {};
   cases.forEach((testCase) => {
     const name = getName(testCase);
     result[name] = testCase;
@@ -105,7 +105,9 @@ function toCaseMap<Args extends any[], Return>(
 
 // -----------------------------------------------------------------------------
 
-function getName<Args extends any[], Return>(testCase: [Args, Return]): string {
+function getName<Args extends unknown[], Return>(
+  testCase: [Args, Return],
+): string {
   const args = testCase[0]?.map(toString).join(", ") || "";
   return `(${args}) => ${toString(testCase[1])}`;
 }

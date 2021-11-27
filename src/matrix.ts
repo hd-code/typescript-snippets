@@ -128,6 +128,7 @@ function hasSameDimensions(x: Matrix, y: Matrix): boolean {
 
 type Vector = number[];
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 namespace vector {
   /** Adds two vectors element-wise. */
   export function add(x: Vector, y: Vector): Vector {
