@@ -191,8 +191,8 @@ describe("random", () => {
       { name: "0 seed", seed: 0 },
       { name: "normal seed", seed: 23 },
       { name: "negative seed", seed: -23 },
-      { name: "very large seed", seed: 999999999999999999 },
-      { name: "very large negative seed", seed: -999999999999999999 },
+      { name: "very large seed", seed: 999999999999999 },
+      { name: "very large negative seed", seed: -999999999999999 },
     ].forEach(({ name, seed }) =>
       it(name, () => {
         setSeed(seed as number);

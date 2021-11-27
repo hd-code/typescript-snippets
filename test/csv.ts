@@ -2,7 +2,7 @@ import { parse, serialize } from "csv";
 import { testFunc } from "testutil";
 
 describe("csv", () => {
-  testFunc<[any[]], string>(serialize, {
+  testFunc<[unknown[]], string>(serialize, {
     "primitive types": [
       [
         [
@@ -73,7 +73,7 @@ describe("csv", () => {
     ],
   });
 
-  testFunc<[string], any[]>(parse, {
+  testFunc<[string], unknown[]>(parse, {
     "plain types": [
       [
         "id,firstname,lastname,age\n1,John,Doe,42\n2,Jane,Doe,38\n3,Mary,Bee,null\n4,Loyd,Hue,54",

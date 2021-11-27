@@ -8,7 +8,7 @@
     "clear": "rm -rf js/*",
     "deploy": "n='npm run'; $n format && $n check && $n lint && $n test && $n build",
     "format": "prettier --write src test",
-    "lint": "eslint src",
+    "lint": "eslint src test",
     "minify": "for i in $(find js -name *.js); do uglifyjs $i -o $i -mc --comments '/^!/'; done;",
     "start": "npm run deploy",
     "test": "mocha -r ts-node/register -r tsconfig-paths/register -p 'test/**/*.ts'"

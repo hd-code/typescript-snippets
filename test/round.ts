@@ -14,11 +14,11 @@ const mapping = [
 
 type Struct = number | number[] | number[][];
 
-let cases: [[Struct, number | undefined], Struct][] = [];
+const cases: [[Struct, number | undefined], Struct][] = [];
 
 precisions.forEach((precision, i) => {
-  let values: number[] = [];
-  let want: number[] = [];
+  const values: number[] = [];
+  const want: number[] = [];
 
   mapping.forEach((mapping) => {
     // single values
