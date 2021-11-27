@@ -1,4 +1,4 @@
-/*! testutil v0.0.3 | MIT | https://github.com/hd-code/web-snippets */
+/*! testutil v0.0.4 | MIT | https://github.com/hd-code/web-snippets */
 
 /**
  * @file
@@ -108,23 +108,40 @@ function toCaseMap<Args extends unknown[], Return>(
 function getName<Args extends unknown[], Return>(
   testCase: [Args, Return],
 ): string {
-  const args = testCase[0]?.map(toString).join(", ") || "";
-  return `(${args}) => ${toString(testCase[1])}`;
+  return `(${toString(testCase[0]).slice(1, -1)}) => ${toString(testCase[1])}`;
 }
 
-const maxStringLen = 10;
-
-function toString<T>(value: T): string {
+function toString<T>(value: T, maxLen = 38, minLen = 5): string {
   if (value instanceof Array) {
-    const string = value.map(toString).join(",");
-    return `[${clipString(string, maxStringLen - 2)}]`;
+    const len = Math.max(minLen, Math.floor(maxLen / value.length));
+    const string = value.map((v) => toString(v, len)).join(",");
+    return `[${clipString(string, maxLen - 2)}]`;
   }
 
-  return clipString("" + value, maxStringLen);
+  if (typeof value === "object") {
+    const entries = extractEntries(value);
+    const len = Math.max(minLen, Math.floor(maxLen / entries.length / 2));
+    const string = entries
+      .map((e) => `${toString(e[0], len)}:${toString(e[1], len)}`)
+      .join(",");
+    return `{${clipString(string, maxLen - 2)}}`;
+  }
+
+  return clipString("" + value, maxLen);
 }
 
 function clipString(string: string, maxLen: number): string {
   return string.length <= maxLen ? string : string.slice(0, maxLen - 1) + "…";
+}
+
+function extractEntries<T>(obj: T): [keyof T, T[keyof T]][] {
+  const result: [keyof T, T[keyof T]][] = [];
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      result.push([key, obj[key]]);
+    }
+  }
+  return result;
 }
 
 // -----------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-/*! testutil v0.0.3 | MIT | https://github.com/hd-code/web-snippets */
+/*! testutil v0.0.4 | MIT | https://github.com/hd-code/web-snippets */
 /**
  * Tests a pure function against a list of test cases. Pure functions have no
  * side effects and their return value only depends on the input parameters.
