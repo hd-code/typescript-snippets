@@ -1,4 +1,4 @@
-/*! type-guards v0.1.0 | MIT | https://github.com/hd-code/web-snippets */
+/*! type-guards v0.1.1 | MIT | https://github.com/hd-code/web-snippets */
 
 /**
  * @file
@@ -122,7 +122,7 @@ export function isEnum<T extends { [key: number | string]: number | string }>(
   switch (typeof value) {
     case "number":
     case "string":
-      return enumType[value] != undefined;
+      return enumType[value] !== undefined;
   }
   return false;
 }
