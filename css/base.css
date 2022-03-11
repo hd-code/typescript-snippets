@@ -18,6 +18,10 @@ Base CSS Settings
     padding: 0;
 }
 
+input {
+    font: inherit
+}
+
 /* Base Settings */
 
 html {
