@@ -1,0 +1,81 @@
+/* flex */
+
+.flex {
+    display: flex;
+}
+
+/* flex direction */
+
+.flex-col {
+    flex-direction: column;
+}
+.flex-col-reverse {
+    flex-direction: column-reverse;
+}
+.flex-row {
+    flex-direction: row;
+} // default
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* flex wrap */
+
+.flex-nowrap {
+    flex-wrap: nowrap;
+} // default
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* flex alignment */
+
+$sizes: (
+    start: flex-start,
+    center: center,
+    end: flex-end,
+);
+@each $key, $value in $sizes {
+    .flex-#{$key},
+    .flex-x-#{$key} {
+        justify-content: $value;
+    }
+    .flex-y-#{$key} {
+        align-items: $value;
+    }
+
+    .self-y-#{$key} {
+        align-self: $value;
+    }
+}
+.flex-justify,
+.flex-x-justify {
+    justify-content: space-between;
+}
+.flex-y-stretch {
+    align-items: stretch;
+}
+.self-y-stretch {
+    align-self: stretch;
+}
+
+/* flex item sizing */
+
+.flex-base-content {
+    flex-basis: content;
+}
+
+@for $number from 0 through 4 {
+    .flex-#{$number} {
+        flex: $number;
+    }
+    .flex-grow-#{$number} {
+        flex-grow: $number;
+    }
+    .flex-shrink-#{$number} {
+        flex-shrink: $number;
+    }
+    .flex-order-#{$number} {
+        order: $number;
+    }
+}

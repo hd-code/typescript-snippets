@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Test base.css</title>
+
+    <link rel="stylesheet" href="../build/base.css">
+
+    <style>
+        body > section {
+            border: solid 1px;
+            padding: 1em calc((100% - 600px) / 2);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+    </section>
+
+    <section>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate sit iusto voluptatem, labore ullam voluptas in doloribus voluptatum aspernatur? Impedit, a ipsam. Ratione dolore dicta voluptates nesciunt iure soluta tempore.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate sit iusto voluptatem, labore ullam voluptas in doloribus voluptatum aspernatur? Impedit, a ipsam. Ratione dolore dicta voluptates nesciunt iure soluta tempore.</p>
+    </section>
+
+    <section>
+        <p>Links: <a href="">a tag</a>, <a href="https://www.google.com">www.google.com</a>, <a href="#" title="title of a">with title</a></p>
+        <p>Semantic: <strong>strong tag</strong>, <em>em tag</em>, <del>del tag</del>, <ins>ins tag</ins>, <mark>mark tag</mark></p>
+        <p>Formatting: <b>b tag</b>, <i>i tag</i>, <s>s tag</s>, <u>u tag</u></p>
+        <p>Baseline: <small>small tag</small>, <sub>sub tag</sub>, <sup>sup tag</sup></p>
+        <p>Code: <code>code tag</code>, <kbd>kbd tag</kbd>, <samp>samp tag</samp>, <var>var tag</var></p>
+        <p>Citation: <abbr title="abbreviation tag">abbr tag</abbr>, <cite>cite tag</cite>, <q>q tag</q></p>
+    </section>
+
+    <section>
+        <pre>pre tag:
+            1 2 3 4 5 6 7 8 9 0 ß
+             q w e r t z u i o p
+              a s d f g h j k l
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, tempore exercitationem nostrum molestias quis magni. Ut architecto nihil commodi ratione ullam consectetur ad nemo officia. Autem quam aut expedita provident?
+        </pre>
+    </section>
+
+    <section>
+        <form action="">
+            <select name="select-1">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+            <select name="select-2">
+                <optgroup label="OptGroup 1">
+                    <option value="1a">Option a</option>
+                    <option value="1b">Option b</option>
+                </optgroup>
+                <optgroup label="OptGroup 2">
+                    <option value="2a">Option a</option>
+                    <option value="2b">Option b</option>
+                </optgroup>
+            </select>
+        </form>
+    </section>
+
+    <section>
+        <p><button>button tag</button>, <button type="button">type button</button>, <button type="reset">type reset</button>, <button type="submit">type submit</button></p>
+        <p><input type="button" value="input button">, <input type="reset" value="input reset">, <input type="submit" value="input submit"></p>
+    </section>
+
+    <section>
+        <ul>
+            <li>ul li 1</li>
+            <li>ul li 2</li>
+            <li>ul li 3</li>
+        </ul>
+
+        <ul>
+            <li>Level 1
+                <ul>
+                    <li>Level 2
+                        <ul>
+                            <li>Level 3</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ol>
+            <li>ol li 1</li>
+            <li>ol li 2</li>
+            <li>ol li 3</li>
+        </ol>
+
+        <ol>
+            <li>Level 1
+                <ol>
+                    <li>Level 2
+                        <ol>
+                            <li>Level 3</li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+
+        <dl>
+            <dt>dt tag 1</dt><dd>dd tag 1</dd>
+            <dt>dt tag 2</dt><dd>dd tag 2</dd>
+            <dt>dt tag 3</dt><dd>dd tag 3</dd>
+        </dl>
+    </section>
+
+    <section>
+        <table>
+            <caption>Table Caption</caption>
+
+            <thead>
+                <tr><th>Header</th><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr>
+            </thead>
+
+            <tbody>
+                <tr><th>Row 1</th><td>Entry 1a</td><td>Entry 1b</td><td>Entry 1c</td></tr>
+                <tr><th>Row 2</th><td>Entry 2a</td><td>Entry 2b</td><td>Entry 2c</td></tr>
+                <tr><th>Row 3</th><td>Entry 3a</td><td>Entry 3b</td><td>Entry 3c</td></tr>
+            </tbody>
+
+            <tfoot>
+                <tr><th>Footer</th><td>Entry 1</td><td>Entry 2</td><td>Entry 3</td></tr>
+            </tfoot>
+        </table>
+    </section>
+
+    <section>
+        <blockquote>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit sit hic rem provident in corrupti illo minima eveniet libero ex totam, optio sapiente similique laboriosam repellat placeat doloremque, voluptatum magnam.</blockquote>
+    </section>
+</body>
+</html>

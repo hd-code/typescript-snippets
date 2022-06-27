@@ -1,0 +1,222 @@
+/******************************************************************************* 
+Responsive Helper Classes
+- utilities for different screen sizes
+- the design typically specifies different breakpoints
+- place helper classes under a breakpoint and assign suffixes accordingly
+- the set of breakpoints and the utility classes that need to be responsive
+  depend largely on the theme of the website
+- it is recommended to think about mobile first and tweak the design once the
+  screen size increases
+*******************************************************************************/
+
+/* -----------------------------------------------------------------------------
+breakpoint:        760   1200
+suffix:     (none)  |  m  |  l
+----------------------------------------------------------------------------- */
+
+.container {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.hide {
+    display: none;
+}
+
+@media (max-width: 761px) {
+    .show-m {
+        display: none;
+    }
+}
+@media (min-width: 760px) {
+    .container {
+        padding-left: calc((100% - 750px) / 2);
+        padding-right: calc((100% - 750px) / 2);
+    }
+
+    .hide-m {
+        display: none;
+    }
+
+    /* Box Model */
+
+    .hw-100-m,
+    .h-100-m {
+        height: 100%;
+    }
+    .hw-100-m,
+    .w-100-m {
+        width: 100%;
+    }
+
+    .hw-75-m,
+    .h-75-m {
+        height: 75%;
+    }
+    .hw-75-m,
+    .w-75-m {
+        width: 75%;
+    }
+
+    .hw-66-m,
+    .h-66-m {
+        height: 66.67%;
+    }
+    .hw-66-m,
+    .w-66-m {
+        width: 66.67%;
+    }
+
+    .hw-50-m,
+    .h-50-m {
+        height: 50%;
+    }
+    .hw-50-m,
+    .w-50-m {
+        width: 50%;
+    }
+
+    .hw-33-m,
+    .h-33-m {
+        height: 33.33%;
+    }
+    .hw-33-m,
+    .w-33-m {
+        width: 33.33%;
+    }
+
+    .hw-25-m,
+    .h-25-m {
+        height: 25%;
+    }
+    .hw-25-m,
+    .w-25-m {
+        width: 25%;
+    }
+
+    .hw-12-m,
+    .h-12-m {
+        height: 12.5%;
+    }
+    .hw-12-m,
+    .w-12-m {
+        width: 12.5%;
+    }
+
+    /* Flexbox */
+
+    .order-0-m {
+        order: 0;
+    }
+    .order-1-m {
+        order: 1;
+    }
+    .order-2-m {
+        order: 2;
+    }
+    .order-3-m {
+        order: 3;
+    }
+    .order-4-m {
+        order: 4;
+    }
+}
+
+@media (max-width: 1201px) {
+    .show-l {
+        display: none;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        padding-left: calc((100% - 1180px) / 2);
+        padding-right: calc((100% - 1180px) / 2);
+    }
+
+    .hide-l {
+        display: none;
+    }
+
+    /* Box Model */
+
+    .hw-100-l,
+    .h-100-l {
+        height: 100%;
+    }
+    .hw-100-l,
+    .w-100-l {
+        width: 100%;
+    }
+
+    .hw-75-l,
+    .h-75-l {
+        height: 75%;
+    }
+    .hw-75-l,
+    .w-75-l {
+        width: 75%;
+    }
+
+    .hw-66-l,
+    .h-66-l {
+        height: 66.67%;
+    }
+    .hw-66-l,
+    .w-66-l {
+        width: 66.67%;
+    }
+
+    .hw-50-l,
+    .h-50-l {
+        height: 50%;
+    }
+    .hw-50-l,
+    .w-50-l {
+        width: 50%;
+    }
+
+    .hw-33-l,
+    .h-33-l {
+        height: 33.33%;
+    }
+    .hw-33-l,
+    .w-33-l {
+        width: 33.33%;
+    }
+
+    .hw-25-l,
+    .h-25-l {
+        height: 25%;
+    }
+    .hw-25-l,
+    .w-25-l {
+        width: 25%;
+    }
+
+    .hw-12-l,
+    .h-12-l {
+        height: 12.5%;
+    }
+    .hw-12-l,
+    .w-12-l {
+        width: 12.5%;
+    }
+
+    /* Flexbox */
+
+    .order-0-l {
+        order: 0;
+    }
+    .order-1-l {
+        order: 1;
+    }
+    .order-2-l {
+        order: 2;
+    }
+    .order-3-l {
+        order: 3;
+    }
+    .order-4-l {
+        order: 4;
+    }
+}

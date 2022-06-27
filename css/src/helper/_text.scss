@@ -1,0 +1,49 @@
+/* font size */
+
+@for $i from 5 through 30 {
+    .fz-#{$i}0 {
+        font-size: #{calc($i / 10)}em;
+    }
+}
+
+/* font style */
+
+.bold {
+    font-weight: bold;
+}
+.italic {
+    font-style: italic;
+}
+.underline {
+    text-decoration: underline;
+}
+.strike {
+    text-decoration: line-through;
+}
+
+/* text alignment */
+
+@each $value in left, center, right, justify {
+    .#{$value} {
+        text-align: $value;
+    }
+}
+
+/* text wrap */
+
+.nowrap {
+    white-space: nowrap;
+}
+.oneline {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* text transforms */
+
+@each $value in capitalize, lowercase, uppercase {
+    .#{$value} {
+        text-transform: $value;
+    }
+}

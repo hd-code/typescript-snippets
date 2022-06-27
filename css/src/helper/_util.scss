@@ -1,0 +1,49 @@
+/* display */
+
+.block {
+    display: block;
+}
+.inline {
+    display: inline;
+}
+
+/* position */
+
+.absolute {
+    position: absolute;
+}
+.relative {
+    position: relative;
+}
+
+/* overflow */
+
+.no-overflow,
+.no-overflow-x {
+    overflow-x: hidden;
+}
+.no-overflow,
+.no-overflow-y {
+    overflow-y: hidden;
+}
+
+.scroll,
+.scroll-x {
+    overflow-x: auto;
+}
+.scroll,
+.scroll-y {
+    overflow-y: auto;
+}
+
+/* cursor */
+
+.forbidden {
+    cursor: not-allowed;
+}
+.no-select {
+    user-select: none;
+}
+.pointer {
+    cursor: pointer;
+}

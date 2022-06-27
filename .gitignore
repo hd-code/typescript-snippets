@@ -1,8 +1,12 @@
+/.nyc_output/
+/node_modules/
+
 # IDEs
-.vscode
+.idea/
+.vscode/
 
 # macOS
 .DS_Store
 
-# npm
-node_modules/
+# Windows
+Thumbs.db

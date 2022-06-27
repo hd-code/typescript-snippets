@@ -1,20 +1,18 @@
 # Web Snippets
 
-This repo contains a collection of helpful code snippets for web development (TypeScript, Javascript, CSS).
+This repo contains a collection of helpful code snippets for web development (Javascript, CSS).
 
-## CSS Snippets
+## Overview
 
-The files in `css/` form a good style basis for any new project. They follow the atomic css principle.
+The CSS snippets are on the `css/` directory, JS snippets in the `js/` directory.
 
-## Javascript Snippets
+CSS is compiled from SASS and JS from TypeScript source code. There is always a `src/` directory with the source files. The generated CSS and JS files are put in a `build/` directory. So do not edit anything in the `build/` folders. Also, the code is the `build/` folders is always standalone and ready to be copied and used.
 
-All Javascript snippets are generated from the corresponding TypeScript snippets in `src/`. So, do not edit the files in `js/`.
+For the TypeScript code there are automated tests in the corresponding `*.test.ts` files. There are also some manual tests. These are usually done with help of an HTML file of the same name. These can be found in a separate `test/` folder.
 
-## TypeScript Snippets
+## Development
 
-The `src/` directory holds helpful utility scripts for a bunch of different tasks.
-
-### General
+### Versioning
 
 All files should start with this line:
 
@@ -27,21 +25,17 @@ All files should start with this line:
 
 Make sure to update the version number after changing a snippet.
 
-### Preparation
+### Tools
 
-Please install the dev dependencies before working on the TypeScript snippets.
+Please install the dev dependencies before working on the source code. To use any of the snippets in the `build/` folders no external dependencies are required. They can be used right away.
 
 ```sh
 npm ci
 ```
 
-### Testing
+### Compile `build/` files
 
-All TypeScript snippets should be tested thoroughly. Tests are placed in `test/` and are executed with <https://jestjs.io/>.
-
-### Compile to Javascript
-
-**Always run `npm run deploy` after editing the TypeScript snippets.**
+**Always run `npm run all` after editing anything.**
 
 This will perform several tasks: first it performs type checks and validates the code style. It then runs the tests. If all goes well, the Javascript files will be compiled and put into the `js/` folder together with TypeScript declaration files. The Javascript files will be minified as well.
 

@@ -1,0 +1,47 @@
+@use "sass:math";
+
+/* height & width */
+
+@each $ratio in 1, 0.75, math.div(2, 3), 0.5, math.div(1, 3), 0.25, 0.125 {
+    $key: floor($ratio * 100);
+    $value: #{$ratio * 100%};
+
+    @each $kind in height, width {
+        $k: str-slice($kind, 1, 1);
+        .hw-#{$key},
+        .#{$k}-#{$key} {
+            #{$kind}: $value;
+        }
+    }
+}
+
+/* padding & margin */
+
+$sizes: (
+    4: 2em,
+    3: 1.5em,
+    2: 1em,
+    1: 0.5em,
+    "05": 0.25em,
+    0: 0,
+    auto: auto,
+);
+$directions: (
+    left: x,
+    right: x,
+    top: y,
+    bottom: y,
+);
+@each $kind in padding, margin {
+    $k: str-slice($kind, 1, 1);
+    @each $key, $value in $sizes {
+        @each $dir, $axis in $directions {
+            $d: str-slice($dir, 1, 1);
+            .#{$k}-#{$key},
+            .#{$k}#{$axis}-#{$key},
+            .#{$k}#{$d}-#{$key} {
+                #{$kind}-#{$dir}: $value;
+            }
+        }
+    }
+}

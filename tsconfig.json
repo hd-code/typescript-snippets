@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
+    "outDir": "js/build",
     "strict": true,
+    "target": "es6",
   },
-  "exclude": ["draft"],
+  "exclude": ["js/src/**/*.test.ts"],
+  "include": ["js/src"],
 }
