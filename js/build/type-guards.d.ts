@@ -1,4 +1,4 @@
-/*! type-guards v0.1.1 | MIT | https://github.com/hd-code/web-snippets */
+/*! type-guards v0.1.2 | MIT | https://github.com/hd-code/web-snippets */
 /**
  * @file
  * This file contains several type guards that can be used for excessive type

@@ -1,4 +1,4 @@
-/*! type-guards v0.1.1 | MIT | https://github.com/hd-code/web-snippets */
+/*! type-guards v0.1.2 | MIT | https://github.com/hd-code/web-snippets */
 
 /**
  * @file
@@ -120,9 +120,12 @@ export function isEnum<T extends { [key: number | string]: number | string }>(
     enumType: T,
 ): value is T[keyof T] {
     switch (typeof value) {
-        case "number":
         case "string":
-            return enumType[value] !== undefined;
+            if (Object.values(enumType).some(isNumber)) {
+                return false;
+            }
+        case "number": // eslint-disable-line no-fallthrough
+            return Object.values(enumType).includes(value);
     }
     return false;
 }

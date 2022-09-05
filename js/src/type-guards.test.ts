@@ -175,18 +175,26 @@ describe("TypeGuards", () => {
         });
     });
 
-    enum TestEnum {
+    enum NumberEnum {
         one,
         two,
         three,
     }
 
+    enum StringEnum {
+        one = "1",
+        two = "2",
+        three = "3",
+    }
+
     testFunc(isEnum, {
-        "number member": [[1, TestEnum], true],
-        "number member too high": [[99, TestEnum], false],
-        "number member float": [[1.1, TestEnum], false],
-        "string member": [["three", TestEnum], true],
-        "string member false": [["ninety", TestEnum], false],
-        "wrong value type": [[true, TestEnum], false],
+        "number enum success": [[1, NumberEnum], true],
+        "number enum too high": [[99, NumberEnum], false],
+        "number enum float": [[1.1, NumberEnum], false],
+        "number enum key": [["one", NumberEnum], false],
+        "string enum success": [["1", StringEnum], true],
+        "string enum unknown": [["foo", StringEnum], false],
+        "string enum key": [["two", StringEnum], false],
+        "wrong value type": [[true, NumberEnum], false],
     });
 });
