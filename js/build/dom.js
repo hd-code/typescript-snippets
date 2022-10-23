@@ -1,2 +1,0 @@
-/*! dom v0.0.2 | MIT | https://github.com/hd-code/web-snippets */
-function $(t,e,n){const o="string"!=typeof t?t:document;n="string"==typeof e?n:e;const s=o.querySelectorAll("string"==typeof t?t:e);return n&&s.forEach(n),s}function hide(t){t.style.display="none"}function show(t){t.style.display=""}function toggle(t){"none"===t.style.display?t.style.display="":t.style.display="none"}export{$,hide,show,toggle};

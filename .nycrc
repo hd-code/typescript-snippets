@@ -1,6 +1,0 @@
-{
-  "all": true,
-  "check-coverage": true,
-  "include": "js/src",
-  "exclude": ["js/src/**/*.test.ts"]
-}

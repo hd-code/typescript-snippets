@@ -1,3 +1,5 @@
+typescript-snippets / [Exports](modules.md)
+
 # Typescript Snippets
 
 This repo contains a collection of helpful code snippets in TypeScript for several topics. See `snippets` folder for the actual code, the `docs` folder holds high level documentation for all the snippets.
