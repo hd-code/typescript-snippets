@@ -1,5 +1,5 @@
-import * as typeguards from "./typeguards";
 import * as assert from "assert/strict";
+import * as typeguards from "./typeguards";
 
 type CaseKey = keyof typeof cases;
 const cases = {
@@ -21,7 +21,7 @@ const cases = {
 };
 function checkCases<T>(
     typeGuard: (val: unknown) => val is T,
-    trueCases: CaseKey[]
+    trueCases: CaseKey[],
 ) {
     for (const key in cases) {
         const want = trueCases.includes(key as CaseKey);
@@ -34,19 +34,23 @@ function checkCases<T>(
 
 describe("typeguards", () => {
     describe(typeguards.isUndefined.name, () =>
-        checkCases(typeguards.isUndefined, ["undefined"])
+        checkCases(typeguards.isUndefined, ["undefined"]),
     );
 
     describe(typeguards.isNull.name, () =>
-        checkCases(typeguards.isNull, ["null"])
+        checkCases(typeguards.isNull, ["null"]),
     );
 
     describe(typeguards.isBool.name, () =>
-        checkCases(typeguards.isBool, ["true", "false"])
+        checkCases(typeguards.isBool, ["true", "false"]),
     );
 
     describe(typeguards.isInteger.name, () =>
-        checkCases(typeguards.isInteger, ["zero", "integer", "integerNegative"])
+        checkCases(typeguards.isInteger, [
+            "zero",
+            "integer",
+            "integerNegative",
+        ]),
     );
 
     describe(typeguards.isNumber.name, () =>
@@ -56,15 +60,15 @@ describe("typeguards", () => {
             "integerNegative",
             "number",
             "numberNegative",
-        ])
+        ]),
     );
 
     describe(typeguards.isString.name, () =>
-        checkCases(typeguards.isString, ["string", "emptyString"])
+        checkCases(typeguards.isString, ["string", "emptyString"]),
     );
 
     describe(typeguards.isObject.name, () =>
-        checkCases(typeguards.isObject, ["object"])
+        checkCases(typeguards.isObject, ["object"]),
     );
 
     describe(typeguards.isArray.name, () => {

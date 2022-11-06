@@ -49,7 +49,7 @@ export function isString(value: unknown): value is string {
  */
 export function isArray<T>(
     value: unknown,
-    typeGuard?: (el: unknown) => el is T
+    typeGuard?: (el: unknown) => el is T,
 ): value is T[] {
     if (!(value instanceof Array)) {
         return false;
@@ -96,7 +96,7 @@ export function isObject<T>(value: unknown): value is T {
 export function hasKey<T>(
     obj: unknown,
     key: keyof T,
-    typeGuard?: (el: unknown) => el is T[keyof T]
+    typeGuard?: (el: unknown) => el is T[keyof T],
 ): obj is T {
     return (
         typeof obj === "object" &&
@@ -117,7 +117,7 @@ export type EnumType = { [key: number | string]: number | string };
  */
 export function isEnum<T extends EnumType>(
     value: unknown,
-    enumType: T
+    enumType: T,
 ): value is T[keyof T] {
     switch (typeof value) {
         case "string":

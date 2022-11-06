@@ -1,5 +1,5 @@
-import { parse, serialize } from "./csv";
 import * as assert from "assert/strict";
+import { parse, serialize } from "./csv";
 
 describe("csv", () => {
     describe(serialize.name, () => {

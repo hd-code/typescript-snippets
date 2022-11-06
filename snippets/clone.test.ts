@@ -1,5 +1,5 @@
-import { clone, deepClone } from "./clone";
 import * as assert from "assert/strict";
+import { clone, deepClone } from "./clone";
 
 describe("clone", () => {
     describe(clone.name + "()", () => {
