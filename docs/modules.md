@@ -8,4 +8,5 @@
 
 - [clone](modules/clone.md)
 - [csv](modules/csv.md)
+- [domfiles](modules/domfiles.md)
 - [typeguards](modules/typeguards.md)

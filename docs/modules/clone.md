@@ -44,7 +44,7 @@ _Attention_: Classes are not correctly cloned.
 
 #### Defined in
 
-[clone.ts:18](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/clone.ts#L18)
+[clone.ts:18](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/clone.ts#L18)
 
 ___
 
@@ -76,4 +76,4 @@ _Attention_: Classes are not correctly cloned.
 
 #### Defined in
 
-[clone.ts:37](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/clone.ts#L37)
+[clone.ts:37](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/clone.ts#L37)

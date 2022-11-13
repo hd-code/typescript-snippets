@@ -38,7 +38,7 @@ Converts a csv string back to an array of objects.
 
 #### Defined in
 
-[csv.ts:19](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/csv.ts#L19)
+[csv.ts:19](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/csv.ts#L19)
 
 ___
 
@@ -66,4 +66,4 @@ Converts an array of objects into a csv string.
 
 #### Defined in
 
-[csv.ts:12](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/csv.ts#L12)
+[csv.ts:12](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/csv.ts#L12)

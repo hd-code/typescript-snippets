@@ -36,7 +36,7 @@ checking in Typescript or Javascript.
 
 #### Defined in
 
-[typeguards.ts:111](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L111)
+[typeguards.ts:111](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L111)
 
 ## Functions
 
@@ -74,7 +74,7 @@ obj is T
 
 #### Defined in
 
-[typeguards.ts:96](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L96)
+[typeguards.ts:96](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L96)
 
 ___
 
@@ -107,7 +107,7 @@ value is T[]
 
 #### Defined in
 
-[typeguards.ts:50](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L50)
+[typeguards.ts:50](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L50)
 
 ___
 
@@ -129,7 +129,7 @@ value is boolean
 
 #### Defined in
 
-[typeguards.ts:22](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L22)
+[typeguards.ts:22](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L22)
 
 ___
 
@@ -160,7 +160,7 @@ value is T[keyof T]
 
 #### Defined in
 
-[typeguards.ts:118](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L118)
+[typeguards.ts:118](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L118)
 
 ___
 
@@ -182,7 +182,7 @@ value is number
 
 #### Defined in
 
-[typeguards.ts:27](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L27)
+[typeguards.ts:27](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L27)
 
 ___
 
@@ -204,7 +204,7 @@ value is null
 
 #### Defined in
 
-[typeguards.ts:17](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L17)
+[typeguards.ts:17](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L17)
 
 ___
 
@@ -226,7 +226,7 @@ value is number
 
 #### Defined in
 
-[typeguards.ts:32](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L32)
+[typeguards.ts:32](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L32)
 
 ___
 
@@ -259,7 +259,7 @@ value is T
 
 #### Defined in
 
-[typeguards.ts:79](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L79)
+[typeguards.ts:79](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L79)
 
 ___
 
@@ -281,7 +281,7 @@ value is string
 
 #### Defined in
 
-[typeguards.ts:37](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L37)
+[typeguards.ts:37](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L37)
 
 ___
 
@@ -303,4 +303,4 @@ value is undefined
 
 #### Defined in
 
-[typeguards.ts:12](https://github.com/hd-code/typescript-snippets/blob/3d4193d/snippets/typeguards.ts#L12)
+[typeguards.ts:12](https://github.com/hd-code/typescript-snippets/blob/e094efc/snippets/typeguards.ts#L12)

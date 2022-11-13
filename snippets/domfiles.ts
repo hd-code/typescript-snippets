@@ -1,8 +1,12 @@
-/** Saves a string of data to a file. */
-export function downloadFile(
-    data: string,
-    filename = "data.txt"
-): Promise<void> {
+/*! domfiles v0.1.0 | MIT | https://github.com/hd-code/typescript-snippets */
+
+/**
+ * Download and upload data from and to data files in the browser.
+ * @module domfiles
+ */
+
+/** Download a string of data from the browser into a data file. */
+export function download(data: string, filename = "data.txt"): Promise<void> {
     return new Promise((resolve, reject) => {
         if (!data || typeof data !== "string") {
             reject("Data to save was either empty or not a string");
@@ -22,7 +26,7 @@ export function downloadFile(
     });
 }
 
-/** Opens the file browser to choose a file. */
+/** Open a data file in the browser. */
 export function openFile(): Promise<string> {
     return new Promise((resolve, reject) => {
         if (!window.FileReader) {
