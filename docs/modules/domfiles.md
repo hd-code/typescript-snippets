@@ -32,7 +32,7 @@ Download a string of data from the browser into a data file.
 
 #### Defined in
 
-domfiles.ts:9
+[domfiles.ts:9](https://github.com/hd-code/typescript-snippets/blob/a489483/snippets/domfiles.ts#L9)
 
 ___
 
@@ -48,4 +48,4 @@ Open a data file in the browser.
 
 #### Defined in
 
-domfiles.ts:30
+[domfiles.ts:30](https://github.com/hd-code/typescript-snippets/blob/a489483/snippets/domfiles.ts#L30)
