@@ -1,11 +1,11 @@
+import assert from "assert/strict";
 import * as storage from "./storage";
-import * as assert from "assert/strict";
 
 // -----------------------------------------------------------------------------
 
 export function TestStorage(
     msg: string,
-    InitStorage: () => storage.Storage<IPerson>
+    InitStorage: () => storage.Storage<IPerson>,
 ) {
     const initFilledStorage = () => {
         const cache = InitStorage();
@@ -21,12 +21,12 @@ export function TestStorage(
             assert.deepEqual(
                 cache.clear(),
                 filledStorage,
-                "did not return former cache content"
+                "did not return former cache content",
             );
             assert.deepEqual(
                 cache.getAll(),
                 {},
-                "should be empty after clearing"
+                "should be empty after clearing",
             );
         });
 
@@ -37,30 +37,30 @@ export function TestStorage(
             assert.deepEqual(
                 deleted2,
                 person2,
-                "deleted element was not correct"
+                "deleted element was not correct",
             );
             assert.deepEqual(
                 cache.get(id2),
                 undefined,
-                "failed to delete element"
+                "failed to delete element",
             );
 
             const deleted3 = cache.delete(id3);
             assert.deepEqual(
                 deleted3,
                 person3,
-                "deleted element was not correct"
+                "deleted element was not correct",
             );
             assert.deepEqual(
                 cache.get(id3),
                 undefined,
-                "failed to delete element"
+                "failed to delete element",
             );
 
             assert.deepEqual(
                 cache.getAll(),
                 { [id1]: person1 },
-                "only first element should be in cache"
+                "only first element should be in cache",
             );
         });
 
@@ -74,7 +74,7 @@ export function TestStorage(
             it("should return all entries when all match the filter", () => {
                 const cache = initFilledStorage();
                 const filtered = cache.filter(
-                    (person) => person.lastname === "Doe"
+                    (person) => person.lastname === "Doe",
                 );
                 assert.deepEqual(filtered, filledStorage);
             });
@@ -82,7 +82,7 @@ export function TestStorage(
             it("should return the matching entries", () => {
                 const cache = initFilledStorage();
                 const filtered = cache.filter(
-                    (person) => person.firstname === "John"
+                    (person) => person.firstname === "John",
                 );
                 assert.deepEqual(filtered, { [id1]: person1 });
             });
@@ -96,7 +96,7 @@ export function TestStorage(
             it("should return no entries when filter accesses invalid properties", () => {
                 const cache = initFilledStorage();
                 const filtered = cache.filter(
-                    (person) => (person as any).foo === 0
+                    (person) => (person as any).foo === 0,
                 );
                 assert.deepEqual(filtered, {});
             });
@@ -140,12 +140,12 @@ export function TestStorage(
                 assert.deepEqual(
                     modifiedReturn,
                     filledStorage,
-                    "did not return original elements"
+                    "did not return original elements",
                 );
                 assert.deepEqual(
                     cache.getAll(),
                     filledStorage,
-                    "does not have original elements"
+                    "does not have original elements",
                 );
             });
 
@@ -155,12 +155,12 @@ export function TestStorage(
                 assert.deepEqual(
                     modifiedReturn,
                     getModifiedStorage(),
-                    "did not return modified elements"
+                    "did not return modified elements",
                 );
                 assert.deepEqual(
                     cache.getAll(),
                     getModifiedStorage(),
-                    "did not store modified elements"
+                    "did not store modified elements",
                 );
             });
 
@@ -170,12 +170,12 @@ export function TestStorage(
                 assert.deepEqual(
                     modifiedReturn,
                     getModifiedStorage(),
-                    "did not return modified elements"
+                    "did not return modified elements",
                 );
                 assert.deepEqual(
                     cache.getAll(),
                     getModifiedStorage(),
-                    "did not store modified elements"
+                    "did not store modified elements",
                 );
             });
 
@@ -185,12 +185,12 @@ export function TestStorage(
                 assert.deepEqual(
                     modifiedReturn,
                     getModifiedStorage(),
-                    "did not return modified elements"
+                    "did not return modified elements",
                 );
                 assert.deepEqual(
                     cache.getAll(),
                     filledStorage,
-                    "modified the elements in storage"
+                    "modified the elements in storage",
                 );
             });
         });
@@ -206,15 +206,15 @@ export function TestStorage(
 
             assert.ok(
                 regexHex16.test(id1),
-                "id1 should be a 16 digit hex string"
+                "id1 should be a 16 digit hex string",
             );
             assert.ok(
                 regexHex16.test(id2),
-                "id2 should be a 16 digit hex string"
+                "id2 should be a 16 digit hex string",
             );
             assert.ok(
                 regexHex16.test(id3),
-                "id3 should be a 16 digit hex string"
+                "id3 should be a 16 digit hex string",
             );
 
             const expected = {
@@ -234,12 +234,12 @@ export function TestStorage(
                 assert.deepEqual(
                     old,
                     undefined,
-                    "there should not be a former element"
+                    "there should not be a former element",
                 );
                 assert.deepEqual(
                     cache.get(id2),
                     person2,
-                    "did not save element"
+                    "did not save element",
                 );
             });
 
@@ -251,7 +251,7 @@ export function TestStorage(
                 assert.deepEqual(
                     cache.get(id1),
                     person3,
-                    "did not update element"
+                    "did not update element",
                 );
             });
         });

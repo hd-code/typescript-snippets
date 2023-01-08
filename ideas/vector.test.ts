@@ -1,5 +1,5 @@
-import { testFunc } from "./testutil";
 import * as vector from "./vector";
+import { testFunc } from "./testutil";
 
 // -----------------------------------------------------------------------------
 
@@ -84,7 +84,7 @@ describe("vector", () => {
     ];
 
     [vector.add, vector.sub, vector.mul, vector.div].forEach((func) => {
-        const name = func.name as keyof typeof data[0];
+        const name = func.name as keyof (typeof data)[0];
         const cases: [[vector.Vector, vector.Vector], vector.Vector][] =
             data.map((d) => [[d.vec1, d.vec2], d[name]]);
         testFunc(func, cases);

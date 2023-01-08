@@ -1,7 +1,7 @@
-import { hasKey, isArray } from "../../snippets/typeguards";
 import * as Matrix from "../matrix";
-import { getFloat } from "../random";
 import * as Vector from "../vector";
+import { float } from "../../snippets/random";
+import { hasKey, isArray } from "../../snippets/typeguards";
 import * as a from "./activation";
 import * as e from "./error";
 
@@ -51,18 +51,18 @@ export function init(numOfInputs: number, ...layers: LayerConfig[]): ANN {
         ...layers.map((layer) => layer.numOfNeurons),
     ];
     return layers.map(({ activation }, i) =>
-        makeLayer(numOfNeurons[i], numOfNeurons[i + 1], activation)
+        makeLayer(numOfNeurons[i], numOfNeurons[i + 1], activation),
     );
 }
 
 function makeLayer(
     numOfInputs: number,
     numOfOutputs: number,
-    activation: a.Activation
+    activation: a.Activation,
 ): Layer {
-    const bias = [...Array(numOfOutputs)].map(() => getFloat(-1, 1));
+    const bias = [...Array(numOfOutputs)].map(() => float(-1, 1));
     const weights = [...Array(numOfOutputs)].map(() =>
-        [...Array(numOfInputs)].map(() => getFloat(-1, 1))
+        [...Array(numOfInputs)].map(() => float(-1, 1)),
     );
     return { activation, bias, weights };
 }
@@ -98,7 +98,7 @@ export function train(
     input: number[],
     expected: number[],
     errorFunc: e.Error,
-    learnRate: number
+    learnRate: number,
 ): ANN {
     const delta = calcDelta(ann, input, expected, errorFunc);
     return applyDelta(ann, delta, learnRate);
@@ -109,7 +109,7 @@ export function trainBatch(
     input: number[][],
     expected: number[][],
     errorFunc: e.Error,
-    learnRate: number
+    learnRate: number,
 ): ANN {
     const deltas: Delta[] = [];
     for (let i = 0, ie = input.length; i < ie; i++) {
@@ -133,14 +133,14 @@ function applyDelta(ann: ANN, delta: Delta, learnRate: number): ANN {
 function applyDeltaLayer(
     layer: Layer,
     delta: DeltaLayer,
-    learnRate: number
+    learnRate: number,
 ): Layer {
     return {
         activation: layer.activation,
         bias: Vector.sub(layer.bias, Vector.scale(learnRate, delta.bias)),
         weights: Matrix.sub(
             layer.weights,
-            Matrix.scale(learnRate, delta.weights)
+            Matrix.scale(learnRate, delta.weights),
         ),
     };
 }
@@ -154,7 +154,7 @@ function calcDelta(
     ann: ANN,
     input: number[],
     expected: number[],
-    errorFunc: e.Error
+    errorFunc: e.Error,
 ): Delta {
     const { actDeriv, inOutputs } = forwardPass(ann, input);
 
@@ -162,7 +162,7 @@ function calcDelta(
     const errGradient = e.diff(
         inOutputs[inOutputs.length - 1],
         expected,
-        errorFunc
+        errorFunc,
     );
 
     const deltaB = [Vector.mul(errGradient, actDeriv[actDeriv.length - 1])];
@@ -172,8 +172,8 @@ function calcDelta(
         deltaB.unshift(
             Vector.mul(
                 Vector.mulMatrix(deltaB[0], Matrix.transpose(ann[i].weights)),
-                actDeriv[i - 1]
-            )
+                actDeriv[i - 1],
+            ),
         );
         deltaW.unshift(calcDeltaW(deltaB[0], inOutputs[i - 1]));
     }
@@ -187,7 +187,7 @@ function calcDelta(
 
 function forwardPass(
     ann: ANN,
-    input: number[]
+    input: number[],
 ): { actDeriv: number[][]; inOutputs: number[][] } {
     const actDeriv: number[][] = [];
     const inOutputs = [input];

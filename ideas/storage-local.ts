@@ -1,6 +1,6 @@
-import { Storage, StorageMap, BaseStorage } from "./storage";
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
+import { BaseStorage, Storage, StorageMap } from "./storage";
 
 // -----------------------------------------------------------------------------
 

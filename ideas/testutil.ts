@@ -1,4 +1,4 @@
-import * as assert from "assert/strict";
+import assert from "assert/strict";
 
 /**
  * @file
@@ -20,7 +20,7 @@ import * as assert from "assert/strict";
  */
 export function testFunc<Args extends unknown[], Return>(
     fn: (...args: Args) => Return,
-    cases: [Args, Return][] | { [name: string]: [Args, Return] }
+    cases: [Args, Return][] | { [name: string]: [Args, Return] },
 ) {
     const testCases = cases instanceof Array ? toCaseMap(cases) : cases;
 
@@ -47,11 +47,11 @@ type RecursiveArray<Type> = Array<RecursiveArray<Type> | Type>;
 
 export function testFuncClose<
     Args extends unknown[],
-    Return extends number | RecursiveArray<number>
+    Return extends number | RecursiveArray<number>,
 >(
     fn: (...args: Args) => Return,
     cases: [Args, Return][] | { [name: string]: [Args, Return] },
-    delta: number
+    delta: number,
 ) {
     const testCases = cases instanceof Array ? toCaseMap(cases) : cases;
 
@@ -79,7 +79,7 @@ export function testFuncClose<
                     const wantFlat = flatten(want);
                     if (gotFlat.length !== wantFlat.length) {
                         assert.fail(
-                            "Returned value does not match expected structure"
+                            "Returned value does not match expected structure",
                         );
                     }
                     assert.ok(isCloseArray(gotFlat, wantFlat, delta));
@@ -92,7 +92,7 @@ export function testFuncClose<
 // -----------------------------------------------------------------------------
 
 function toCaseMap<Args extends unknown[], Return>(
-    cases: [Args, Return][]
+    cases: [Args, Return][],
 ): { [name: string]: [Args, Return] } {
     const result: { [name: string]: [Args, Return] } = {};
     cases.forEach((testCase) => {
@@ -105,10 +105,10 @@ function toCaseMap<Args extends unknown[], Return>(
 // -----------------------------------------------------------------------------
 
 function getName<Args extends unknown[], Return>(
-    testCase: [Args, Return]
+    testCase: [Args, Return],
 ): string {
     return `(${toString(testCase[0]).slice(1, -1)}) => ${toString(
-        testCase[1]
+        testCase[1],
     )}`;
 }
 

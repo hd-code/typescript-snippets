@@ -18,7 +18,7 @@ export function isError(error: unknown): error is Error {
 export function calc(
     actual: number[],
     expected: number[],
-    error = Error.meanSquared
+    error = Error.meanSquared,
 ): number {
     switch (error) {
         case Error.absolute:
@@ -35,7 +35,7 @@ export function calc(
 export function diff(
     actual: number[],
     expected: number[],
-    error = Error.meanSquared
+    error = Error.meanSquared,
 ): number[] {
     switch (error) {
         case Error.absolute:
@@ -54,7 +54,7 @@ export function diff(
 function sum(
     actual: number[],
     expected: number[],
-    func: (actual: number, expected: number) => number
+    func: (actual: number, expected: number) => number,
 ): number {
     let result = 0;
     for (let i = 0, ie = actual.length; i < ie; i++) {
@@ -66,7 +66,7 @@ function sum(
 function sumDeriv(
     actual: number[],
     expected: number[],
-    func: (actual: number, expected: number) => number
+    func: (actual: number, expected: number) => number,
 ): number[] {
     const result: number[] = [];
     for (let i = 0, ie = actual.length; i < ie; i++) {
@@ -78,7 +78,7 @@ function sumDeriv(
 function mean(
     actual: number[],
     expected: number[],
-    func: (actual: number, expected: number) => number
+    func: (actual: number, expected: number) => number,
 ): number {
     return sum(actual, expected, func) / actual.length;
 }
@@ -86,7 +86,7 @@ function mean(
 function meanDeriv(
     actual: number[],
     expected: number[],
-    func: (actual: number, expected: number) => number
+    func: (actual: number, expected: number) => number,
 ): number[] {
     const len = actual.length;
     const result: number[] = [];

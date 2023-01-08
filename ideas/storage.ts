@@ -42,7 +42,7 @@ export interface Storage<T> {
      * replace function works as intended before actually doing the replacement. */
     replace: (
         replaceFunc: (element: T) => T,
-        preview?: boolean
+        preview?: boolean,
     ) => StorageMap<T>;
 
     /** Saves an element to the storage. A new random id is generated under

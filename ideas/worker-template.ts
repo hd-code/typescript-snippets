@@ -46,7 +46,7 @@
  * worker.delete();
  * ```
  */
-import { isMainThread, parentPort, Worker } from "worker_threads";
+import { Worker, isMainThread, parentPort } from "worker_threads";
 
 // -----------------------------------------------------------------------------
 // Worker Implementation – This is, where you insert your code !!!

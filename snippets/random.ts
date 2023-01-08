@@ -1,4 +1,4 @@
-/*! random v0.1.0 | MIT | https://github.com/hd-code/typescript-snippets */
+/*! random v0.2.0 | MIT | https://github.com/hd-code/typescript-snippets */
 
 /**
  * The JavaScript `Math.random()` function is not seedable. This package

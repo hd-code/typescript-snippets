@@ -4,13 +4,13 @@ export function $(selector: string, fn?: ElFunc): NodeListOf<Element>;
 export function $(
     root: Element,
     selector: string,
-    fn?: ElFunc
+    fn?: ElFunc,
 ): NodeListOf<Element>;
 
 export function $(
     arg1: Element | string,
     arg2?: ElFunc | string,
-    arg3?: ElFunc
+    arg3?: ElFunc,
 ): NodeListOf<Element> {
     const root = typeof arg1 !== "string" ? arg1 : document;
     const selector = typeof arg1 === "string" ? arg1 : (arg2 as string);

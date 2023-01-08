@@ -1,6 +1,6 @@
-import { hasKey, isNumber } from "../../snippets/typeguards";
-import { getFloat } from "../random";
 import * as Vector from "../vector";
+import { float } from "../../snippets/random";
+import { hasKey, isNumber } from "../../snippets/typeguards";
 
 // -----------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ export function isPerceptron(p: unknown): p is Perceptron {
 
 export function init(numOfInputs: number): Perceptron {
     return {
-        bias: getFloat(),
+        bias: float(),
         weights: getRandomVector(numOfInputs),
     };
 }
@@ -25,7 +25,7 @@ export function init(numOfInputs: number): Perceptron {
 function getRandomVector(length: number): number[] {
     const result: number[] = [];
     for (let i = 0; i < length; i++) {
-        result.push(getFloat(-1, 1));
+        result.push(float(-1, 1));
     }
     return result;
 }
@@ -55,7 +55,7 @@ export function train(
     p: Perceptron,
     input: number[],
     expected: number,
-    learnRate: number
+    learnRate: number,
 ): Perceptron {
     const delta = calcDelta(p, input, expected);
     return applyDelta(p, delta, learnRate);
@@ -65,7 +65,7 @@ export function trainBatch(
     p: Perceptron,
     input: number[][],
     expected: number[],
-    learnRate: number
+    learnRate: number,
 ): Perceptron {
     const deltas: Delta[] = [];
     for (let i = 0, ie = input.length; i < ie; i++) {
@@ -83,7 +83,7 @@ interface Delta {
 function applyDelta(
     p: Perceptron,
     delta: Delta,
-    learnRate: number
+    learnRate: number,
 ): Perceptron {
     return {
         bias: p.bias + learnRate * delta.bias,
@@ -97,7 +97,7 @@ function avgDeltas(deltas: Delta[]): Delta {
         bias: deltas.reduce((sum, delta) => sum + delta.bias, 0) / len,
         weights: deltas[0].weights.map(
             (_, i) =>
-                deltas.reduce((sum, delta) => sum + delta.weights[i], 0) / len
+                deltas.reduce((sum, delta) => sum + delta.weights[i], 0) / len,
         ),
     };
 }

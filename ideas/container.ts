@@ -33,7 +33,7 @@ export function BaseContainer<T>(initState: T): Container<T> {
         unsubscribe: (callback: (state: T) => void) => {
             const numOfSubscribers = subscribers.length;
             subscribers = subscribers.filter(
-                (subscriber) => subscriber !== callback
+                (subscriber) => subscriber !== callback,
             );
             return numOfSubscribers > subscribers.length;
         },

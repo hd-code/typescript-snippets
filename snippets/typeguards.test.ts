@@ -1,4 +1,4 @@
-import * as assert from "assert/strict";
+import assert from "assert/strict";
 import * as typeguards from "./typeguards";
 
 type CaseKey = keyof typeof cases;

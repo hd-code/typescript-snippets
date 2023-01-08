@@ -1,4 +1,4 @@
-import * as assert from "assert/strict";
+import assert from "assert/strict";
 import { clone, deepClone } from "./clone";
 
 describe("clone", () => {

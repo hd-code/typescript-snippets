@@ -161,7 +161,7 @@ describe("matrix", () => {
     ];
 
     [matrix.add, matrix.sub, matrix.mul, matrix.div].forEach((func) => {
-        const name = func.name as keyof typeof data[0];
+        const name = func.name as keyof (typeof data)[0];
         const cases: [[matrix.Matrix, matrix.Matrix], matrix.Matrix][] =
             data.map((d) => [[d.mat1, d.mat2], d[name]]);
         testFunc(func, cases);

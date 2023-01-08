@@ -1,6 +1,6 @@
-import round from "../round";
-import * as e from "./error";
 import * as assert from "assert/strict";
+import { round } from "../../snippets/round";
+import * as e from "./error";
 
 // -----------------------------------------------------------------------------
 
@@ -94,9 +94,9 @@ describe("Error", () => {
                     const actual = round(_actual, 8);
                     const expected = round(c.error, 8);
                     assert.strictEqual(actual, expected);
-                }
+                },
             );
-        })
+        }),
     );
 
     describe(e.diff.name + "()", () =>
@@ -110,8 +110,8 @@ describe("Error", () => {
                 () => {
                     const actual = e.diff(c.actual, c.expected, c.errorFunc);
                     assert.deepStrictEqual(actual, c.errorDeriv);
-                }
+                },
             );
-        })
+        }),
     );
 });

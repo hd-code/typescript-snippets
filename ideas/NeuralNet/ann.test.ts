@@ -1,10 +1,10 @@
 import * as Matrix from "../matrix";
-import round from "../round";
 import * as Vector from "../vector";
-import { Activation } from "./activation";
+import * as assert from "assert/strict";
+import { round } from "../../snippets/round";
 import * as ANN from "./ann";
 import * as e from "./error";
-import * as assert from "assert/strict";
+import { Activation } from "./activation";
 
 // -----------------------------------------------------------------------------
 
@@ -365,7 +365,7 @@ describe("ANN", () => {
             it(name + " should return " + expected, () => {
                 const actual = ANN.isANN(ann);
                 assert.strictEqual(actual, expected);
-            })
+            }),
         );
 
         ["string", -90, 2.5, 99999, {}, true].forEach((value) => {
@@ -390,11 +390,11 @@ describe("ANN", () => {
                     assert.deepStrictEqual(
                         actual,
                         expected,
-                        "failed on input: " + d.input
+                        "failed on input: " + d.input,
                     );
                 }
-            })
-        )
+            }),
+        ),
     );
 
     describe(ANN.calcBatch.name, () =>
@@ -402,15 +402,15 @@ describe("ANN", () => {
             it(c.name, () => {
                 const input = c.data.map((d) => d.input);
                 const expected = c.data.map(
-                    (d) => d.layers[d.layers.length - 1].activated
+                    (d) => d.layers[d.layers.length - 1].activated,
                 );
 
                 const _actual = ANN.calcBatch(c.ann, input);
                 const actual = round(_actual, 5);
 
                 assert.deepStrictEqual(actual, expected);
-            })
-        )
+            }),
+        ),
     );
 
     // TODO: validate test data in study
@@ -424,11 +424,11 @@ describe("ANN", () => {
                         activation: layer.activation,
                         bias: Vector.sub(
                             layer.bias,
-                            Vector.scale(c.learningRate, d.layers[i].deltaB)
+                            Vector.scale(c.learningRate, d.layers[i].deltaB),
                         ),
                         weights: Matrix.sub(
                             layer.weights,
-                            Matrix.scale(c.learningRate, d.layers[i].deltaW)
+                            Matrix.scale(c.learningRate, d.layers[i].deltaW),
                         ),
                     }));
                     const actual = ANN.train(
@@ -436,16 +436,16 @@ describe("ANN", () => {
                         d.input,
                         d.target,
                         c.errorFunc,
-                        c.learningRate
+                        c.learningRate,
                     );
 
                     assert.deepStrictEqual(
                         actual,
                         expected,
-                        "failed on input: " + d.input
+                        "failed on input: " + d.input,
                     );
                 }
-            })
-        )
+            }),
+        ),
     );
 });

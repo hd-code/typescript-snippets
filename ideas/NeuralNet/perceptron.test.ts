@@ -1,5 +1,5 @@
-import * as p from "./perceptron";
 import * as assert from "assert/strict";
+import * as p from "./perceptron";
 
 // -----------------------------------------------------------------------------
 
@@ -204,11 +204,11 @@ describe("Perceptron", () => {
                     assert.strictEqual(
                         p.calc(perceptron, input),
                         expected,
-                        "failed for " + input
+                        "failed for " + input,
                     );
-                })
+                }),
             );
-        })
+        }),
     );
 
     describe(p.calcBatch.name + "()", () =>
@@ -219,7 +219,7 @@ describe("Perceptron", () => {
                 const actual = p.calcBatch(perceptron, input);
                 assert.deepStrictEqual(actual, expected);
             });
-        })
+        }),
     );
 
     describe(p.train.name + "()", () =>
@@ -229,19 +229,19 @@ describe("Perceptron", () => {
                     const expected = {
                         bias: perceptron.bias + learningRate * d.deltaB,
                         weights: perceptron.weights.map(
-                            (w, i) => w + learningRate * d.deltaW[i]
+                            (w, i) => w + learningRate * d.deltaW[i],
                         ),
                     };
                     const actual = p.train(
                         perceptron,
                         d.input,
                         d.expected,
-                        learningRate
+                        learningRate,
                     );
                     assert.deepStrictEqual(actual, expected);
-                })
+                }),
             );
-        })
+        }),
     );
 
     describe(p.trainBatch.name + "()", () =>
@@ -252,12 +252,12 @@ describe("Perceptron", () => {
                 const deltaW = data[0].deltaW.map(
                     (_, i) =>
                         data.reduce((sum, d) => sum + d.deltaW[i], 0) /
-                        data.length
+                        data.length,
                 );
                 const expected = {
                     bias: perceptron.bias + learningRate * deltaB,
                     weights: perceptron.weights.map(
-                        (w, i) => w + learningRate * deltaW[i]
+                        (w, i) => w + learningRate * deltaW[i],
                     ),
                 };
 
@@ -267,11 +267,11 @@ describe("Perceptron", () => {
                     perceptron,
                     input,
                     expOutput,
-                    learningRate
+                    learningRate,
                 );
 
                 assert.deepStrictEqual(actual, expected);
             });
-        })
+        }),
     );
 });

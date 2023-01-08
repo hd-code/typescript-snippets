@@ -23,13 +23,13 @@ describe("binary", () => {
         cases.map(({ args, wantArr }) => [
             args as [number, number | undefined],
             wantArr,
-        ])
+        ]),
     );
     testFunc(
         toBinaryString,
         cases.map(({ args, wantStr }) => [
             args as [number, number | undefined],
             wantStr,
-        ])
+        ]),
     );
 });

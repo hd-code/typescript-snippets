@@ -1,6 +1,6 @@
-import round from "../round";
-import * as a from "./activation";
 import * as assert from "assert/strict";
+import { round } from "../../snippets/round";
+import * as a from "./activation";
 
 // -----------------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ describe("Activation", () => {
                 const expected = round(output, precision);
                 assert.deepStrictEqual(actual, expected);
             });
-        })
+        }),
     );
 
     describe(a.diff.name + "()", () =>
@@ -124,6 +124,6 @@ describe("Activation", () => {
                 const expected = round(deriv, precision);
                 assert.deepStrictEqual(actual, expected);
             });
-        })
+        }),
     );
 });

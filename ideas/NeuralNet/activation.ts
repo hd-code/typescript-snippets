@@ -1,5 +1,5 @@
-import { isInteger } from "../../snippets/typeguards";
 import * as Vector from "../vector";
+import { isInteger } from "../../snippets/typeguards";
 
 // -----------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ export function isActivation(activation: unknown): activation is Activation {
 
 export function calc(
     input: number[],
-    activation = Activation.sigmoid
+    activation = Activation.sigmoid,
 ): number[] {
     const func = functions[activation]?.func;
     return func ? applyFunc(input, func) : softmax(input);
@@ -30,7 +30,7 @@ export function calc(
 
 export function diff(
     input: number[],
-    activation = Activation.sigmoid
+    activation = Activation.sigmoid,
 ): number[] {
     const func = functions[activation]?.deriv;
     return func ? applyFunc(input, func) : softmaxDeriv(input);

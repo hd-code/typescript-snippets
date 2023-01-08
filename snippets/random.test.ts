@@ -1,4 +1,4 @@
-import * as assert from "assert/strict";
+import assert from "assert/strict";
 import * as random from "./random";
 
 describe("random", function () {
