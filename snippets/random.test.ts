@@ -55,18 +55,18 @@ describe("random", function () {
         });
         it("should behave like in with no args, when first arg is undefined", function () {
             random.seed();
-            const want = Array.from({length: 10}, () => random.int());
+            const want = Array.from({ length: 10 }, () => random.int());
 
             random.seed();
             const u = undefined as unknown as number;
-            const got = Array.from({length: 10}, () => random.int(u, 10));
+            const got = Array.from({ length: 10 }, () => random.int(u, 10));
 
             assert.deepEqual(got, want);
         });
     });
 
     describe(random.seed.name, function () {
-        const sequence = () => Array.from({length: 10}, () => random.int());
+        const sequence = () => Array.from({ length: 10 }, () => random.int());
         const testSeeds = [
             0,
             1,

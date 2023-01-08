@@ -1,8 +1,6 @@
 # Typescript Snippets
 
-This repo contains a collection of helpful code snippets in TypeScript for several topics. See `snippets` folder for the actual code, the `docs` folder holds high level documentation for all the snippets.
-
-All snippets are automatically tested by the corresponding `*.test.ts` files besides the snippets.
+This repo contains a collection of helpful code snippets in TypeScript for several topics. See `snippets` folder for the actual code snippets. They are grouped into modules by topic.
 
 ## Installation & Usage
 
@@ -31,7 +29,6 @@ There a several scripts to support development.
 - `npm test`: run all unit tests
 - `npm run coverage`: display test coverage for all unit tests
 - `npm run format`: auto format all snippets with prettier
-- `npm run docs`: generate documentation from the typedoc comments into the `docs` directory
 
 The scripts can also be run for the modules in `ideas` directory by appending `:ideas` to the commands above.
 

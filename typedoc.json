@@ -1,8 +1,0 @@
-{
-  "entryPoints": ["snippets"],
-  "entryPointStrategy": "expand",
-  "exclude": ["snippets/**/*.test.ts"],
-  "githubPages": false,
-  "out": "docs",
-  "plugin": ["typedoc-plugin-markdown"]
-}
