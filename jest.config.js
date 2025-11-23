@@ -4,6 +4,7 @@ const tsJestTransformCfg = createDefaultPreset().transform;
 
 /** @type {import("jest").Config} **/
 module.exports = {
+  collectCoverage: true,
   testEnvironment: "node",
   transform: {
     ...tsJestTransformCfg,
