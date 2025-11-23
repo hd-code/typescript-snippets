@@ -1,7 +1,7 @@
-import * as Matrix from "../matrix";
-import * as Vector from "../vector";
 import { float } from "../../snippets/random";
 import { hasKey, isArray } from "../../snippets/typeguards";
+import * as Matrix from "../matrix";
+import * as Vector from "../vector";
 import * as a from "./activation";
 import * as e from "./error";
 

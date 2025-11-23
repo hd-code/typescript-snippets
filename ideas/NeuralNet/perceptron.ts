@@ -1,6 +1,6 @@
-import * as Vector from "../vector";
 import { float } from "../../snippets/random";
 import { hasKey, isNumber } from "../../snippets/typeguards";
+import * as Vector from "../vector";
 
 // -----------------------------------------------------------------------------
 

@@ -48,7 +48,7 @@ describe("clone", () => {
 
             actual.age = 0;
             assert.notDeepEqual(actual, original);
-            (actual.age = 42), (actual.hobbies[0] = "roulette");
+            ((actual.age = 42), (actual.hobbies[0] = "roulette"));
             assert.deepEqual(actual, original);
             actual.hobbies[0] = "poker";
 
@@ -115,7 +115,7 @@ describe("clone", () => {
 
             actual.age = 0;
             assert.notDeepEqual(actual, original);
-            (actual.age = 42), (actual.hobbies[0] = "roulette");
+            ((actual.age = 42), (actual.hobbies[0] = "roulette"));
             assert.notDeepEqual(actual, original);
             actual.hobbies[0] = "poker";
 

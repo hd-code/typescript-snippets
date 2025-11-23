@@ -1,45 +1,26 @@
 {
   "name": "typescript-snippets",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "check": "tsc",
-    "coverage": "nyc --include 'snippets/**/*.ts' npm test -- -R dot",
-    "coverage:ideas": "nyc --include 'ideas/**/*.ts' npm run test:ideas -- -R dot",
-    "format": "prettier --write snippets",
-    "format:ideas": "prettier --write ideas",
-    "start": "run-s format check test coverage",
-    "start:ideas": "run-s format:ideas check test:ideas coverage:ideas",
-    "test": "mocha 'snippets/**/*.test.ts'",
-    "test:ideas": "mocha 'ideas/**/*.test.ts'"
+    "format": "prettier --write ideas snippets",
+    "lint": "tsc --noEmit",
+    "test": "jest"
   },
   "devDependencies": {
-    "@istanbuljs/nyc-config-typescript": "^1.0.2",
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^18.11.18",
-    "mocha": "^10.2.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "jest": "^30.2.0",
     "npm-run-all": "^4.1.5",
-    "nyc": "^15.1.0",
-    "prettier": "^2.8.2",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.4"
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.9.3"
   },
   "prettier": {
-    "importOrder": [
-      "../",
-      "./"
+    "plugins": [
+      "prettier-plugin-organize-imports"
     ],
-    "importOrderSortSpecifiers": true,
-    "importOrderGroupNamespaceSpecifiers": true,
     "trailingComma": "all"
-  },
-  "mocha": {
-    "require": "ts-node/register"
-  },
-  "nyc": {
-    "extends": "@istanbuljs/nyc-config-typescript",
-    "all": true,
-    "check-coverage": true
   }
 }

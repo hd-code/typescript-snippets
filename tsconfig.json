@@ -3,10 +3,12 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true,
     "strict": true,
-    "noImplicitAny": true
-  },
+    "target": "esnext"
+  }
 }

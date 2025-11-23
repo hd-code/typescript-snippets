@@ -1,5 +1,5 @@
-import * as Vector from "../vector";
 import { isInteger } from "../../snippets/typeguards";
+import * as Vector from "../vector";
 
 // -----------------------------------------------------------------------------
 

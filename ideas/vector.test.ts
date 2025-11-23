@@ -1,5 +1,5 @@
-import * as vector from "./vector";
 import { testFunc } from "./testutil";
+import * as vector from "./vector";
 
 // -----------------------------------------------------------------------------
 

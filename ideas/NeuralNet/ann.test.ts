@@ -1,10 +1,10 @@
-import * as Matrix from "../matrix";
-import * as Vector from "../vector";
 import * as assert from "assert/strict";
 import { round } from "../../snippets/round";
+import * as Matrix from "../matrix";
+import * as Vector from "../vector";
+import { Activation } from "./activation";
 import * as ANN from "./ann";
 import * as e from "./error";
-import { Activation } from "./activation";
 
 // -----------------------------------------------------------------------------
 
@@ -375,7 +375,7 @@ describe("ANN", () => {
         });
     });
 
-    it(ANN.init.name);
+    it.todo(ANN.init.name);
 
     describe(ANN.calc.name, () =>
         cases.forEach((c) =>
